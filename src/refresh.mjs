@@ -6,14 +6,16 @@ const target=new URL('../docs/api/listings.json',import.meta.url);
 let prior={ads:[],categories:[]};
 try{prior=JSON.parse(fs.readFileSync(target,'utf8'));}catch{}
 const now=()=>Date.now();
-const outside=/(?:گرم\s*دره|صفا\s*دشت)/u;
+const outside=/(?:گرم\s*دره|صفا\s*دشت|صبا\s*شهر|صالح\s*آباد\s*غربی)/u;
 const cover=/رو\s*مبلی/u;
+const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_']);
 export function eligible(ad,time=now()){
-  return ad&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
+  return ad&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
     ['کارکرده','در حد نو'].includes(ad.condition)&&isTehranCityListing(ad)&&
     !outside.test([ad.area,ad.title,ad.desc].join(' '))&&
     !(ad.category===categories.furniture&&cover.test(ad.title.replace(/\u200c/g,'')))&&
+    !(ad.category===categories['rugs-woolen-cloth']&&/خورجین|موتور\s*سیکلت/u.test(ad.title))&&
     (ad.category!==categories['dining-table']||ad.seats>=6)&&
     Array.isArray(ad.pics)&&ad.pics.length&&ad.pics.every(u=>/^https:\/\/[a-z0-9.-]+\.divarcdn\.com\//.test(u));
 }
