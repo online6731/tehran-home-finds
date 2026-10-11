@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {categories,collectHtmlCategory} from './source.mjs';
-import {isTehranCityListing} from './divar.mjs';
+import {isTehranCityListing,matchesAppliance} from './divar.mjs';
 import {attachReviews} from './quality.mjs';
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
@@ -10,8 +10,9 @@ const now=()=>Date.now();
 const outside=/(?:گرم\s*دره|صفا\s*دشت|صبا\s*شهر|صالح\s*آباد\s*غربی)/u;
 const cover=/رو\s*مبلی/u;
 const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8']);
+const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 export function eligible(ad,time=now()){
-  return ad&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
+  return ad&&slugByCategory[ad.category]&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
     ['کارکرده','در حد نو'].includes(ad.condition)&&isTehranCityListing(ad)&&
     !outside.test([ad.area,ad.title,ad.desc].join(' '))&&
@@ -37,17 +38,20 @@ async function writeSnapshot(){
   let message='آخرین دریافت: '+(finishedAt?new Intl.DateTimeFormat('fa-IR',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(finishedAt):'هنوز انجام نشده');
   if(partial)message+=' · پوشش محدود؛ همهٔ صفحات منبع بررسی نشده‌اند';
   if(status.some(c=>c.error))message+=' · دریافت بخشی از منبع ناموفق بود';
-  const snapshot={ads,checkedAt,categories:status.map(({ads,...c})=>c),coverage:partial?'بخشی از آگهی‌های تازهٔ شش دسته؛ همهٔ صفحات منبع بررسی نشده‌اند':'همهٔ صفحات دسته‌های انتخاب‌شده',sourceStatus:{message,partial,updating:false,lastStartedAt:startedAt,lastFinishedAt:finishedAt,hosting:'GitHub Pages',updateEveryHours:4},qualityError:prior.qualityError||null};
+  const snapshot={ads,checkedAt,categories:status.map(({ads,...c})=>c),coverage:partial?'بخشی از آگهی‌های تازهٔ دسته‌های انتخاب‌شده؛ همهٔ صفحات منبع بررسی نشده‌اند':'همهٔ صفحات دسته‌های انتخاب‌شده',sourceStatus:{message,partial,updating:false,lastStartedAt:startedAt,lastFinishedAt:finishedAt,hosting:'GitHub Pages',updateEveryHours:4},qualityError:prior.qualityError||null};
   fs.writeFileSync(target,JSON.stringify(snapshot));
   return snapshot;
 }
 if(!snapshotOnly){
   const maxPages=Number(process.env.MAX_PAGES||200);
+  const selected=(process.env.CATEGORY_SLUGS||'').split(',').map(s=>s.trim()).filter(Boolean);
+  if(selected.some(slug=>!categories[slug]))throw Error('Unknown category selection');
   for(const [slug,name] of Object.entries(categories)){
+    if(selected.length&&!selected.includes(slug))continue;
     const old=rows[slug];
     const attempt=now();
     try{
-      const result=await collectHtmlCategory(slug,old.ads,p=>console.log(JSON.stringify(p)),{maxPages,maxDurationMs:6*60*1000});
+      const result=await collectHtmlCategory(slug,old.ads,p=>console.log(JSON.stringify(p)),{maxPages,maxDurationMs:3*60*1000});
       const complete=result.coverage==='complete-24h-source'&&!result.failures.length;
       const fresh=new Map((complete?[]:old.ads).filter(a=>eligible(a)).map(a=>[a.id,a]));
       for(const id of result.rejectedIds||[])fresh.delete(id);
@@ -61,6 +65,6 @@ if(!snapshotOnly){
 }
 const result=await writeSnapshot();
 fs.mkdirSync(new URL('../docs/update-plan/',import.meta.url),{recursive:true});
-fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),'<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت برای شش دستهٔ دیوار، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. میز غذاخوری حداقل شش نفره. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>');
+fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دسته‌ها: ${Object.values(categories).join('، ')}.</p><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. میز غذاخوری حداقل شش نفره؛ گاز فقط رومیزی یا صفحه‌ای. لوازم یدکی، خدمات تعمیر و کالاهای نامرتبط پذیرفته نمی‌شوند. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است؛ سلامت فنی وسایل برقی و گاز با عکس تأیید نمی‌شود.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>`);
 console.log(JSON.stringify({ads:result.ads.length,partial:result.sourceStatus.partial,hadFailures}));
 if(process.env.GITHUB_OUTPUT)fs.appendFileSync(process.env.GITHUB_OUTPUT,'source_failed='+hadFailures+'\n');

@@ -70,14 +70,22 @@ export async function collectHtmlCategory(slug,previous=[],onProgress,options={}
   const deadline=startedAt+(options.maxDurationMs??6*60*1000);
   const ads=new Map(),seen=new Set(),rejectedIds=new Set(),failures=[];
   let scanned=0,locationRejected=0,pages=0,detailFailed=false,timeLimited=false;
-  let state;
+  let initialPage;
   try{
     const response=await request('https://divar.ir/s/tehran/'+slug+'?price=1000000-15000000&recent_ads=1d',{headers:{Accept:'text/html','User-Agent':'Mozilla/5.0'}});
     if(!response.ok)throw Error('Public HTML search HTTP '+response.status);
-    state=extractState(await response.text());
+    const state=extractState(await response.text());
     if(!Array.isArray(state.nb?.listWidgets))throw Error('Public HTML search format changed');
-  }catch(error){return {ads:[],rejectedIds:[],scanned:0,failures:[failureText('HTML search',error)],locationRejected:0,hasMore:true,checkedAt:new Date().toISOString(),coverage:'source-unavailable',pages:0,elapsedMs:Date.now()-startedAt,sourcePages:[]};}
-  let page={rows:state.nb.listWidgets.map(w=>w.data?.dto?.data).filter(w=>w?.token),hasMore:state.nb.pagination?.hasMore===true,pagination:state.nb.pagination?.data};
+    if(!state.nb.listWidgets.length&&!state.nb.pagination?.data)throw Error('Public HTML search returned no validated listing page');
+    initialPage={rows:state.nb.listWidgets.map(w=>w.data?.dto?.data).filter(w=>w?.token),hasMore:state.nb.pagination?.hasMore===true,pagination:state.nb.pagination?.data};
+  }catch(htmlError){
+    try{
+      const response=await request('https://api.divar.ir/v8/postlist/w/search',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json','X-Standard-Divar-Error':'true','X-Render-Type':'CSR','User-Agent':'Mozilla/5.0'},body:JSON.stringify(listBody(slug))});
+      if(!response.ok)throw Error('HTTP '+response.status);
+      initialPage=apiPage(await response.json(),slug);
+    }catch(apiError){return {ads:[],rejectedIds:[],scanned:0,failures:[failureText('HTML search',htmlError),failureText('API search',apiError)],locationRejected:0,hasMore:true,checkedAt:new Date().toISOString(),coverage:'source-unavailable',pages:0,elapsedMs:Date.now()-startedAt,sourcePages:[]};}
+  }
+  let page=initialPage;
   const reported=[];
 
   async function processRows(rows){

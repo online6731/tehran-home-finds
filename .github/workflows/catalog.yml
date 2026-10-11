@@ -10,6 +10,10 @@ on:
         description: 'Maximum source pages per category (1–200)'
         required: true
         default: '200'
+      category_slugs:
+        description: 'Optional comma-separated source categories; empty refreshes all'
+        required: false
+        default: ''
 permissions:
   contents: write
   pages: write
@@ -34,6 +38,7 @@ jobs:
         if: github.event_name != 'push'
         env:
           MAX_PAGES: ${{ inputs.max_pages || '200' }}
+          CATEGORY_SLUGS: ${{ inputs.category_slugs || '' }}
         run: node src/refresh.mjs
       - name: Preserve refreshed public snapshot
         if: github.event_name != 'push'

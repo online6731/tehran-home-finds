@@ -1,6 +1,9 @@
+import {applianceCategories,matchesAppliance} from './appliances.mjs';
+export {applianceCategories,matchesAppliance} from './appliances.mjs';
 export const categories = {
   furniture:'مبل و کاناپه', 'dining-table':'میز غذاخوری', 'bed-service':'تخت و سرویس خواب',
-  'shoe-rack-drawer':'کمد و جاکفشی', carpet:'فرش', 'rugs-woolen-cloth':'گلیم و جاجیم'
+  'shoe-rack-drawer':'کمد و جاکفشی', carpet:'فرش', 'rugs-woolen-cloth':'گلیم و جاجیم',
+  ...applianceCategories
 };
 const digits=s=>String(s||'').replace(/[۰-۹٠-٩]/g,c=>String('۰۱۲۳۴۵۶۷۸۹'.includes(c)?'۰۱۲۳۴۵۶۷۸۹'.indexOf(c):'٠١٢٣٤٥٦٧٨٩'.indexOf(c)));
 export function extractState(html){
@@ -140,7 +143,11 @@ function postLocation(p){
 export function parsePost(state,slug,points,now=Date.now()){
   const p=state.currentPost?.post;
   if(!p||p.city?.slug!=='tehran')return null;
-  const sections=p.sections||{},values=Object.fromEntries((sections.LIST_DATA||[]).map(w=>[w.dto?.data.title,w.dto?.data.value]));
+  const sections=p.sections||{},values={};
+  // Appliance subtype/energy/capacity fields also live inside a public
+  // SELECTOR_ROW's feature modal. Read both layouts without losing labels.
+  const readFields=widgets=>{for(const w of widgets||[]){const d=w.dto?.data||w.data;if(!d)continue;if(typeof d.title==='string'&&typeof d.value==='string')values[d.title]=d.value;readFields(d.action?.payload?.modal_page?.widget_list);readFields(d.action?.payload?.modalPage?.widgetList);}};
+  readFields(sections.LIST_DATA);
   const condition=values['وضعیت'];
   if(!['کارکرده','در حد نو'].includes(condition))return null;
   const price=Number(digits(values['قیمت']).replace(/[^0-9]/g,''));
@@ -149,6 +156,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   if(!posted||posted<=now-86400000||posted>now+300000)return null;
   const title=p.seo?.webInfo?.title||'',area=p.seo?.webInfo?.district_persian||'نامشخص';
   const desc=(sections.DESCRIPTION||[]).filter(w=>w.dto?.widget_type==='DESCRIPTION_ROW').map(w=>w.dto.data.text||'').join('\n');
+  if(!matchesAppliance(slug,title,values,desc))return null;
   if(!isTehranCityListing({...locationEvidence(p),area,title,desc}))return null;
   let seats=+(digits(values['تعداد نشیمن']||title).match(/(\d+)\s*نفر/)||[])[1]||0;
   if(!seats){const words={'یک':1,'دو':2,'سه':3,'چهار':4,'شش':6,'هفت':7,'هشت':8,'نه':9};seats=Object.entries(words).find(([k])=>new RegExp(k+'\\s*نفره').test(title))?.[1]||0;}
@@ -159,9 +167,10 @@ export function parsePost(state,slug,points,now=Date.now()){
   const pics=[...new Set((sections.IMAGE||[]).flatMap(w=>(w.dto?.data.items||[]).map(i=>i.image?.url||i.image_url)).filter(u=>/^https:\/\/[a-z0-9.-]+\.divarcdn\.com\//.test(u)))];
   if(!pics.length)return null;
   const timeTitle=(sections.TITLE||[]).find(w=>w.dto?.widget_type==='EXPANDABLE_SECTION')?.dto.data.title||'';
-  const features=['بافت','ابعاد','نوع کالا','رنگ زمینه'].filter(k=>values[k]).map(k=>k+': '+values[k]);
+  const productFields=Object.fromEntries(['نوع کالا','نوع دستگاه','نوع گاز','نوع اجاق گاز','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','نوع انرژی','تعداد شعله','رنگ'].filter(k=>values[k]).map(k=>[k,values[k]]));
+  const features=['بافت','ابعاد','نوع کالا','رنگ زمینه',...(Object.hasOwn(applianceCategories,slug)?['نوع دستگاه','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','تعداد شعله','رنگ']:[])].filter(k=>values[k]).map(k=>k+': '+values[k]);
   const chairs=/بدون صندلی|فقط (خود )?میز/.test(title+' '+desc)?'بدون صندلی':(/با\s*صندلی|همراه صندلی|\d+\s*(عدد )?صندلی/.test(digits(title+' '+desc))?'همراه صندلی':'نامشخص');
-  return {id:p.token,url:'https://divar.ir/v/'+encodeURIComponent(title.replace(/\s+/g,'-'))+'/'+p.token,title,price,area,condition,seats:slug==='furniture'||slug==='dining-table'?seats:0,category:categories[slug],kind:slug==='shoe-rack-drawer'?(values['نوع کالا']||''):'',chairs,desc:features.join(' | ')+(features.length?'\n':'')+desc,issues:[],pics,distanceKm:distance(area,points),age:timeTitle.split(' در ')[0],postedAt:posted,expiresAt:posted+86400000,verifiedAt:now,checkedAt:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(now),...locationEvidence(p)};
+  return {id:p.token,url:'https://divar.ir/v/'+encodeURIComponent(title.replace(/\s+/g,'-'))+'/'+p.token,title,price,area,condition,seats:slug==='furniture'||slug==='dining-table'?seats:0,category:categories[slug],kind:slug==='shoe-rack-drawer'||Object.hasOwn(applianceCategories,slug)?(values['نوع دستگاه']||values['نوع کالا']||''):'',...(Object.hasOwn(applianceCategories,slug)?{productFields}:{}),chairs,desc:features.join(' | ')+(features.length?'\n':'')+desc,issues:[],pics,distanceKm:distance(area,points),age:timeTitle.split(' در ')[0],postedAt:posted,expiresAt:posted+86400000,verifiedAt:now,checkedAt:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(now),...locationEvidence(p)};
 }
 export async function collectCategory(slug,points,cursor,cached=[]){
   if(!categories[slug])throw Error('Invalid category');
