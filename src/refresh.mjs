@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import {categories,collectHtmlCategory} from './source.mjs';
 import {isTehranCityListing} from './divar.mjs';
+import {attachReviews} from './quality.mjs';
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
 let prior={ads:[],categories:[]};
@@ -26,9 +27,11 @@ const snapshotOnly=process.argv.includes('--snapshot-only');
 const startedAt=snapshotOnly?(prior.sourceStatus?.lastStartedAt||null):now();
 let finishedAt=prior.sourceStatus?.lastFinishedAt||null;
 let hadFailures=false;
-function writeSnapshot(){
+let reviews=[];
+try{reviews=JSON.parse(fs.readFileSync(new URL('../data/quality-reviews.json',import.meta.url),'utf8'));}catch{}
+async function writeSnapshot(){
   const status=Object.values(rows);
-  const ads=[...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,a])).values()].sort((a,b)=>a.price-b.price);
+  const ads=await attachReviews([...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,a])).values()].sort((a,b)=>a.price-b.price),reviews);
   const partial=status.some(c=>c.coverage!=='complete-24h-source'||c.error);
   const checkedAt=status.every(c=>c.checkedAt)?Math.min(...status.map(c=>c.checkedAt)):null;
   let message='آخرین دریافت: '+(finishedAt?new Intl.DateTimeFormat('fa-IR',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(finishedAt):'هنوز انجام نشده');
@@ -53,10 +56,10 @@ if(!snapshotOnly){
       rows[slug]={slug,name,ads:[...fresh.values()],checkedAt:complete?now():old.checkedAt||null,lastAttemptAt:attempt,lastFetchedAt:result.ads.length?now():old.lastFetchedAt||null,error:result.failures.length?'دریافت بعضی آگهی‌ها انجام نشد':null,coverage:result.coverage,scanned:result.scanned,pages:result.pages,hasMore:result.hasMore};
       console.log(JSON.stringify({slug,count:result.ads.length,coverage:result.coverage,failures:result.failures}));
     }catch(error){hadFailures=true;rows[slug]={...old,lastAttemptAt:attempt,error:'دریافت منبع انجام نشد',coverage:'source-unavailable'};console.error(slug+': '+error.message);}
-    finishedAt=now();writeSnapshot();
+    finishedAt=now();await writeSnapshot();
   }
 }
-const result=writeSnapshot();
+const result=await writeSnapshot();
 fs.mkdirSync(new URL('../docs/update-plan/',import.meta.url),{recursive:true});
 fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),'<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت برای شش دستهٔ دیوار، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. میز غذاخوری حداقل شش نفره. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>');
 console.log(JSON.stringify({ads:result.ads.length,partial:result.sourceStatus.partial,hadFailures}));
