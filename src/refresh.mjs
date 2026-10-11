@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {categories,collectHtmlCategory} from './source.mjs';
-import {isTehranCityListing,matchesAppliance,matchesDiningTable} from './divar.mjs';
+import {isTehranCityListing,matchesAppliance,matchesDiningTable,matchesFurniture,diningChairs} from './divar.mjs';
 import {attachReviews} from './quality.mjs';
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
@@ -18,6 +18,7 @@ export function eligible(ad,time=now()){
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
     ['کارکرده','در حد نو'].includes(ad.condition)&&isTehranCityListing(ad)&&
     !outside.test([ad.area,ad.title,ad.desc].join(' '))&&
+    (ad.category!==categories.furniture||matchesFurniture(ad.title))&&
     !(ad.category===categories.furniture&&cover.test(ad.title.replace(/\u200c/g,'')))&&
     !(ad.category===categories['rugs-woolen-cloth']&&/خورجین|موتور\s*سیکلت/u.test(ad.title))&&
     !(ad.category===categories['bed-service']&&/پاتختی/u.test(ad.title)&&!/(?:^|\s)تخت|سرویس\s*خواب/u.test(ad.title))&&
@@ -34,7 +35,7 @@ let reviews=[];
 try{reviews=JSON.parse(fs.readFileSync(new URL('../data/quality-reviews.json',import.meta.url),'utf8'));}catch{}
 async function writeSnapshot(){
   const status=Object.values(rows);
-  const ads=await attachReviews([...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,a])).values()].sort((a,b)=>a.price-b.price),reviews);
+  const ads=await attachReviews([...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,{...a,chairs:diningChairs(a.title,a.desc)}])).values()].sort((a,b)=>a.price-b.price),reviews);
   const partial=status.some(c=>c.coverage!=='complete-24h-source'||c.error);
   const checkedAt=status.every(c=>c.checkedAt)?Math.min(...status.map(c=>c.checkedAt)):null;
   let message='آخرین دریافت: '+(finishedAt?new Intl.DateTimeFormat('fa-IR',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(finishedAt):'هنوز انجام نشده');
