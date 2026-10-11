@@ -154,7 +154,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   if(!seats){const words={'یک':1,'دو':2,'سه':3,'چهار':4,'شش':6,'هفت':7,'هشت':8,'نه':9};seats=Object.entries(words).find(([k])=>new RegExp(k+'\\s*نفره').test(title))?.[1]||0;}
   if(slug==='dining-table'&&seats<6)return null;
   if(slug==='furniture'&&!/مبل|کاناپه|آرمچیر|صندلی/.test(title))return null;
-  if(slug==='furniture'&&/کاور|روکش|شستشو|تعمیر|جلومبلی|جلو مبلی|میز عسلی/.test(title))return null;
+  if(slug==='furniture'&&/کاور|روکش|شستشو|تعمیر|جلومبلی|جلو مبلی|میز عسلی/.test(title)&&!/مبل|کاناپه|آرمچیر|صندلی/.test(title.replace(/جلومبلی|جلو مبلی|رو مبلی|میز عسلی/g,'')))return null;
   if(slug==='bed-service'&&!/تخت|سرویس خواب/.test(title))return null;
   const pics=[...new Set((sections.IMAGE||[]).flatMap(w=>(w.dto?.data.items||[]).map(i=>i.image?.url||i.image_url)).filter(u=>/^https:\/\/[a-z0-9.-]+\.divarcdn\.com\//.test(u)))];
   if(!pics.length)return null;

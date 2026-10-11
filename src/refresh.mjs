@@ -8,7 +8,7 @@ try{prior=JSON.parse(fs.readFileSync(target,'utf8'));}catch{}
 const now=()=>Date.now();
 const outside=/(?:گرم\s*دره|صفا\s*دشت|صبا\s*شهر|صالح\s*آباد\s*غربی)/u;
 const cover=/رو\s*مبلی/u;
-const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_']);
+const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8']);
 export function eligible(ad,time=now()){
   return ad&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
@@ -16,11 +16,14 @@ export function eligible(ad,time=now()){
     !outside.test([ad.area,ad.title,ad.desc].join(' '))&&
     !(ad.category===categories.furniture&&cover.test(ad.title.replace(/\u200c/g,'')))&&
     !(ad.category===categories['rugs-woolen-cloth']&&/خورجین|موتور\s*سیکلت/u.test(ad.title))&&
+    !(ad.category===categories['bed-service']&&/پاتختی/u.test(ad.title)&&!/(?:^|\s)تخت|سرویس\s*خواب/u.test(ad.title))&&
+    !(ad.category===categories['shoe-rack-drawer']&&/رگال/u.test(ad.title)&&!/کمد|جا\s*کفشی/u.test(ad.title))&&
     (ad.category!==categories['dining-table']||ad.seats>=6)&&
     Array.isArray(ad.pics)&&ad.pics.length&&ad.pics.every(u=>/^https:\/\/[a-z0-9.-]+\.divarcdn\.com\//.test(u));
 }
 const rows=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[slug,{slug,name,...prior.categories.find(c=>c.slug===slug),ads:prior.ads.filter(a=>a.category===name&&eligible(a))}]));
-const startedAt=now();
+const snapshotOnly=process.argv.includes('--snapshot-only');
+const startedAt=snapshotOnly?(prior.sourceStatus?.lastStartedAt||null):now();
 let finishedAt=prior.sourceStatus?.lastFinishedAt||null;
 let hadFailures=false;
 function writeSnapshot(){
@@ -35,13 +38,13 @@ function writeSnapshot(){
   fs.writeFileSync(target,JSON.stringify(snapshot));
   return snapshot;
 }
-if(!process.argv.includes('--snapshot-only')){
+if(!snapshotOnly){
   const maxPages=Number(process.env.MAX_PAGES||200);
   for(const [slug,name] of Object.entries(categories)){
     const old=rows[slug];
     const attempt=now();
     try{
-      const result=await collectHtmlCategory(slug,old.ads,p=>console.log(JSON.stringify(p)),{maxPages});
+      const result=await collectHtmlCategory(slug,old.ads,p=>console.log(JSON.stringify(p)),{maxPages,maxDurationMs:6*60*1000});
       const complete=result.coverage==='complete-24h-source'&&!result.failures.length;
       const fresh=new Map((complete?[]:old.ads).filter(a=>eligible(a)).map(a=>[a.id,a]));
       for(const id of result.rejectedIds||[])fresh.delete(id);

@@ -663,7 +663,9 @@ async function loadListings(){
     if(failed.length)message+=' · دریافت '+failed.map(c=>c.name||c.slug).join('، ')+' ناموفق بود';else if(delayed)message+=' · به‌روزرسانی تأخیر دارد';
     if(data.qualityError)message+=' · '+data.qualityError;
     if(data.sourceStatus?.message)message=data.sourceStatus.message;
-    $('refreshText').textContent=message;$('refreshStatus').dataset.state=failed.length||delayed||data.qualityError||data.sourceStatus?.partial?'error':'ready';
+    const sourceDelayed=data.sourceStatus?.lastStartedAt&&Date.now()-data.sourceStatus.lastStartedAt>270*60000;
+    if(sourceDelayed)message+=' · به‌روزرسانی تأخیر دارد';
+    $('refreshText').textContent=message;$('refreshStatus').dataset.state=failed.length||delayed||sourceDelayed||data.qualityError||data.sourceStatus?.partial?'error':'ready';
   }catch{
     loadFailed=true;$('refreshText').textContent=loaded?'دریافت تازه انجام نشد؛ فهرست قبلی نمایش داده می‌شود.':'دریافت فهرست ممکن نشد؛ دوباره تلاش می‌شود.';
     $('refreshStatus').dataset.state='error';render();

@@ -24,8 +24,9 @@ async function request(url,options={}){
   finally{const next=waiting.shift();if(next)next();else active--;}
 }
 const normalize=value=>String(value||'').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[\u200c\u200fـ]/g,'').replace(/\s+/g,' ').trim();
-const beyondTehran=/(?:^|[^\p{L}\p{N}])(?:گرم\s*دره|صفا\s*دشت)(?=$|[^\p{L}\p{N}])/u;
+const beyondTehran=/(?:^|[^\p{L}\p{N}])(?:گرم\s*دره|صفا\s*دشت|صبا\s*شهر)(?=$|[^\p{L}\p{N}])/u;
 const coffeeTable=/میز\s*وسط\s*مبل|میز\s*مبلی|میز\s*جلو|جلو\s*مبلی/u;
+const sofaEvidence=title=>/مبل|کاناپه|آرمچیر|صندلی/u.test(title.replace(/میز\s*وسط\s*مبل|میز\s*مبلی|میز\s*جلو\s*مبلی|جلو\s*مبلی|رو\s*مبلی/gu,''));
 const sofaCover=/رو\s*مبلی/u;
 const sofaCoverOnly=title=>sofaCover.test(title)&&!/مبل|کاناپه|آرمچیر|صندلی/u.test(title.replace(/رو\s*مبلی/gu,''));
 const failureText=(label,error)=>label+': '+(error.cause?.code||error.message||String(error));
@@ -66,8 +67,9 @@ export async function collectHtmlCategory(slug,previous=[],onProgress,options={}
   if(!Number.isInteger(maxPages)||maxPages<1||maxPages>200)throw Error('Invalid source page limit');
   void previous;
   const startedAt=Date.now();
+  const deadline=startedAt+(options.maxDurationMs??6*60*1000);
   const ads=new Map(),seen=new Set(),rejectedIds=new Set(),failures=[];
-  let scanned=0,locationRejected=0,pages=0,detailFailed=false;
+  let scanned=0,locationRejected=0,pages=0,detailFailed=false,timeLimited=false;
   let state;
   try{
     const response=await request('https://divar.ir/s/tehran/'+slug+'?price=1000000-15000000&recent_ads=1d',{headers:{Accept:'text/html','User-Agent':'Mozilla/5.0'}});
@@ -84,6 +86,7 @@ export async function collectHtmlCategory(slug,previous=[],onProgress,options={}
     let next=0;
     await Promise.all(Array.from({length:Math.min(1,candidates.length)},async()=>{
       while(next<candidates.length&&!detailFailed){
+        if(Date.now()>=deadline){timeLimited=true;break;}
         const row=candidates[next++];
         scanned++;
         try{
@@ -93,7 +96,7 @@ export async function collectHtmlCategory(slug,previous=[],onProgress,options={}
           const detail=normalizeDetail(await r.json(),row.token);
           const post=detail.currentPost.post;
           if(!locationAllowed(post)){locationRejected++;rejectedIds.add(row.token);continue;}
-          if(slug==='furniture'&&(coffeeTable.test(normalize(post.seo.webInfo.title))||sofaCoverOnly(normalize(post.seo.webInfo.title)))){rejectedIds.add(row.token);continue;}
+          if(slug==='furniture'&&((coffeeTable.test(normalize(post.seo.webInfo.title))&&!sofaEvidence(normalize(post.seo.webInfo.title)))||sofaCoverOnly(normalize(post.seo.webInfo.title)))){rejectedIds.add(row.token);continue;}
           const now=Date.now();
           const ad=parsePost(detail,slug,coordinates,now);
           if(ad&&ad.postedAt<=now&&ad.expiresAt>now&&ad.price>=1000000&&ad.price<=15000000&&ad.pics.length)ads.set(ad.id,ad);
@@ -109,6 +112,7 @@ export async function collectHtmlCategory(slug,previous=[],onProgress,options={}
     reported.push({page:page.pagination?.page||pages,discovered:page.rows.length,scanned,accepted:ads.size,hasMore:page.hasMore});
     if(onProgress)await onProgress({category:slug,...reported.at(-1),failures:failures.length,locationRejected});
     if(detailFailed)break;
+    if(timeLimited||Date.now()>=deadline){timeLimited=true;break;}
     if(!page.hasMore)break;
     if(Date.parse(page.pagination?.last_post_date)<=Date.now()-86400000){page.hasMore=false;break;}
     if(!page.pagination){failures.push('Public search pagination omitted cursor');break;}
@@ -123,7 +127,7 @@ export async function collectHtmlCategory(slug,previous=[],onProgress,options={}
   const checkedAt=new Date().toISOString();
   const now=Date.now();
   const current=[...ads.values()].filter(ad=>ad.postedAt<=now&&ad.expiresAt>now);
-  const hasMore=detailFailed||page.hasMore;
+  const hasMore=detailFailed||timeLimited||page.hasMore;
   const coverage=detailFailed?'partial-source-details':hasMore?(pages===1?'first-source-page':'partial-source-pages'):'complete-24h-source';
   return {ads:current,rejectedIds:[...rejectedIds],scanned,failures,locationRejected,hasMore,checkedAt,coverage,pages,elapsedMs:Date.now()-startedAt,sourcePages:reported};
 }
