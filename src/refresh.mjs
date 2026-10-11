@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {categories,collectHtmlCategory} from './source.mjs';
-import {isTehranCityListing,matchesAppliance} from './divar.mjs';
+import {isTehranCityListing,matchesAppliance,matchesDiningTable} from './divar.mjs';
 import {attachReviews} from './quality.mjs';
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
@@ -9,7 +9,9 @@ try{prior=JSON.parse(fs.readFileSync(target,'utf8'));}catch{}
 const now=()=>Date.now();
 const outside=/(?:گرم\s*دره|صفا\s*دشت|صبا\s*شهر|صالح\s*آباد\s*غربی)/u;
 const cover=/رو\s*مبلی/u;
-const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8']);
+// gaLLSabb explicitly advertises imported, completely new goods despite its
+// "like new" form value; it is outside the used/like-new household catalog.
+const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb']);
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 export function eligible(ad,time=now()){
   return ad&&slugByCategory[ad.category]&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
@@ -20,7 +22,7 @@ export function eligible(ad,time=now()){
     !(ad.category===categories['rugs-woolen-cloth']&&/خورجین|موتور\s*سیکلت/u.test(ad.title))&&
     !(ad.category===categories['bed-service']&&/پاتختی/u.test(ad.title)&&!/(?:^|\s)تخت|سرویس\s*خواب/u.test(ad.title))&&
     !(ad.category===categories['shoe-rack-drawer']&&/رگال/u.test(ad.title)&&!/کمد|جا\s*کفشی/u.test(ad.title))&&
-    (ad.category!==categories['dining-table']||ad.seats>=6)&&
+    (ad.category!==categories['dining-table']||matchesDiningTable(ad.title,ad.desc,ad.seats))&&
     Array.isArray(ad.pics)&&ad.pics.length&&ad.pics.every(u=>/^https:\/\/[a-z0-9.-]+\.divarcdn\.com\//.test(u));
 }
 const rows=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[slug,{slug,name,...prior.categories.find(c=>c.slug===slug),ads:prior.ads.filter(a=>a.category===name&&eligible(a))}]));

@@ -120,6 +120,11 @@ const reyAreas = new Set(['جوانمرد قصاب','دولت آباد (شهرر
 function locationText(value){
   return String(value||'').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[\u200c\u200f]/g,'').replace(/[ـ]/g,'').replace(/\s+/g,' ').trim();
 }
+export function matchesDiningTable(title,desc,seats){
+  const text=locationText([title,desc].join(' '));
+  if(!Number.isFinite(seats)||seats<6||/بدون\s*میز|فقط\s*(?:[۰-۹٠-٩0-9]+\s*(?:عدد\s*)?)?صندلی/u.test(text))return false;
+  return /میز|ست\s*.*(?:ناهار\s*خوری|نهار\s*خوری|غذا\s*خوری)/u.test(text);
+}
 export function isTehranCityListing(ad){
   if(ad?.cityId!=='1'||ad?.citySlug!=='tehran'||ad?.locationRuleVersion!==1)return false;
   if(reyDistrictIds.has(String(ad.districtId||''))||/-rey$/i.test(String(ad.districtSlug||'')))return false;
@@ -160,7 +165,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   if(!isTehranCityListing({...locationEvidence(p),area,title,desc}))return null;
   let seats=+(digits(values['تعداد نشیمن']||title).match(/(\d+)\s*نفر/)||[])[1]||0;
   if(!seats){const words={'یک':1,'دو':2,'سه':3,'چهار':4,'شش':6,'هفت':7,'هشت':8,'نه':9};seats=Object.entries(words).find(([k])=>new RegExp(k+'\\s*نفره').test(title))?.[1]||0;}
-  if(slug==='dining-table'&&seats<6)return null;
+  if(slug==='dining-table'&&!matchesDiningTable(title,desc,seats))return null;
   if(slug==='furniture'&&!/مبل|کاناپه|آرمچیر|صندلی/.test(title))return null;
   if(slug==='furniture'&&/کاور|روکش|شستشو|تعمیر|جلومبلی|جلو مبلی|میز عسلی/.test(title)&&!/مبل|کاناپه|آرمچیر|صندلی/.test(title.replace(/جلومبلی|جلو مبلی|رو مبلی|میز عسلی/g,'')))return null;
   if(slug==='bed-service'&&!/تخت|سرویس خواب/.test(title))return null;
