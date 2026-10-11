@@ -1,0 +1,515 @@
+{
+  "اختیاریه": {
+    "lat": 35.7863456,
+    "lon": 51.4611775,
+    "name": "اختیاریه",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321848,
+    "score": 26
+  },
+  "افسریه شمالی": {
+    "lat": 35.6523159,
+    "lon": 51.4930224,
+    "name": "افسریه شمالی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321756,
+    "score": 26
+  },
+  "امامت": {
+    "lat": 35.636524,
+    "lon": 51.3341627,
+    "name": "امامت",
+    "type": "footway",
+    "osm_type": "way",
+    "osm_id": 451341916,
+    "score": 21
+  },
+  "اوقاف": {
+    "lat": 35.7506521,
+    "lon": 51.5133048,
+    "name": "اوقاف",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321875,
+    "score": 26
+  },
+  "بریانک": {
+    "lat": 35.6752015,
+    "lon": 51.3769458,
+    "name": "بریانک",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321741,
+    "score": 26
+  },
+  "بلورسازی": {
+    "lat": 35.662873,
+    "lon": 51.3784,
+    "name": "بلورسازی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321648,
+    "score": 26
+  },
+  "تهرانسر شرقی": {
+    "lat": 35.6900106,
+    "lon": 51.2589076,
+    "name": "تهرانسر شرقی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 9167401,
+    "score": 26
+  },
+  "تهرانسر غربی": {
+    "lat": 35.6922667,
+    "lon": 51.2478056,
+    "name": "تهرانسر غربی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 9167403,
+    "score": 26
+  },
+  "تهرانپارس شرقی": {
+    "lat": 35.7411037,
+    "lon": 51.5466151,
+    "name": "تهرانپارس شرقی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 9167439,
+    "score": 26
+  },
+  "تهرانپارس غربی": {
+    "lat": 35.7425353,
+    "lon": 51.532288,
+    "name": "تهرانپارس غربی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 9167438,
+    "score": 26
+  },
+  "جردن": {
+    "lat": 35.7810654,
+    "lon": 51.4163299,
+    "name": "جردن - پارک ملت",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321843,
+    "score": 11
+  },
+  "جنت‌آباد جنوبی": {
+    "lat": 35.716784,
+    "lon": 51.3310658,
+    "name": "جنت‌آباد جنوبی",
+    "type": "bus_stop",
+    "osm_type": "node",
+    "osm_id": 13997095438,
+    "score": 21
+  },
+  "جوادیه": {
+    "lat": 35.6594089,
+    "lon": 51.3878098,
+    "name": "جوادیه",
+    "type": "station",
+    "osm_type": "way",
+    "osm_id": 1041344025,
+    "score": 22
+  },
+  "حکیمیه": {
+    "lat": 35.7447946,
+    "lon": 51.5788013,
+    "name": "حکیمیه",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321884,
+    "score": 26
+  },
+  "خلیج فارس": {
+    "lat": 35.6688025,
+    "lon": 51.2566545,
+    "name": "خلیج فارس",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321782,
+    "score": 26
+  },
+  "دستغیب": {
+    "lat": 35.6863225,
+    "lon": 51.3479507,
+    "name": "دستغیب",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321654,
+    "score": 26
+  },
+  "دهقان": {
+    "lat": 35.6942552,
+    "lon": 51.4779022,
+    "name": "دهقان",
+    "type": "tertiary",
+    "osm_type": "way",
+    "osm_id": 47198979,
+    "score": 13
+  },
+  "دژکام": {
+    "lat": 35.6785653,
+    "lon": 51.452172,
+    "name": "دژکام",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321575,
+    "score": 26
+  },
+  "زیبادشت": {
+    "lat": 35.7523909,
+    "lon": 51.2613119,
+    "name": "زیبادشت",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321558,
+    "score": 26
+  },
+  "سلسبیل جنوبی": {
+    "lat": 35.6860699,
+    "lon": 51.3751364,
+    "name": "سلسبیل جنوبی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 9167416,
+    "score": 26
+  },
+  "شارق": {
+    "lat": 35.7095905,
+    "lon": 51.4602552,
+    "name": "شارق غربی",
+    "type": "neighbourhood",
+    "osm_type": "node",
+    "osm_id": 4557460174,
+    "score": 21
+  },
+  "شهرآرا": {
+    "lat": 35.714958,
+    "lon": 51.3711604,
+    "name": "شهرآرا",
+    "type": "secondary",
+    "osm_type": "way",
+    "osm_id": 618430974,
+    "score": 13
+  },
+  "شهران شمالی": {
+    "lat": 35.7733591,
+    "lon": 51.2882503,
+    "name": "شهران شمالی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321775,
+    "score": 26
+  },
+  "قیطریه": {
+    "lat": 35.7913613,
+    "lon": 51.4426875,
+    "name": "قیطریه",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321846,
+    "score": 26
+  },
+  "مهران": {
+    "lat": 35.7487797,
+    "lon": 51.4565244,
+    "name": "مهران",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321836,
+    "score": 26
+  },
+  "میرداماد": {
+    "lat": 35.759387,
+    "lon": 51.43502,
+    "name": "میرداماد",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321835,
+    "score": 26
+  },
+  "نارمک": {
+    "lat": 35.7363694,
+    "lon": 51.5041892,
+    "name": "نارمک",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321872,
+    "score": 26
+  },
+  "هاشمی": {
+    "lat": 35.6846963,
+    "lon": 51.3593942,
+    "name": "هاشمی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321655,
+    "score": 26
+  },
+  "هروی": {
+    "lat": 35.7712377,
+    "lon": 51.4789648,
+    "name": "هروی - حسین آباد",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321850,
+    "score": 11
+  },
+  "وردآورد": {
+    "lat": 35.736939,
+    "lon": 51.1259936,
+    "name": "وردآورد",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321795,
+    "score": 26
+  },
+  "پرستار": {
+    "lat": 35.6883581,
+    "lon": 51.4837882,
+    "name": "پرستار",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321582,
+    "score": 26
+  },
+  "کاشانک": {
+    "lat": 35.8150678,
+    "lon": 51.4815151,
+    "name": "کاشانک",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321862,
+    "score": 26
+  },
+  "یافت آباد جنوبی": {
+    "lat": 35.641029,
+    "lon": 51.3041649,
+    "name": "یافت آباد جنوبی",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321724,
+    "score": 26
+  },
+  "امیر بهادر": {
+    "lat": 35.6714755,
+    "lon": 51.4037366,
+    "name": "فروزش - امیر بهادر",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321604,
+    "score": 0
+  },
+  "حبیب الله": {
+    "lat": 35.7141027,
+    "lon": 51.3583605,
+    "name": "حبیب الله",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321687,
+    "score": 0
+  },
+  "خانی آباد نو شمالی": {
+    "lat": 35.614825,
+    "lon": 51.3971663,
+    "name": "خانی آباد نو",
+    "type": "bus_stop",
+    "osm_type": "node",
+    "osm_id": 11891086534,
+    "score": 0
+  },
+  "خواجه نظام الملک": {
+    "lat": 35.7135374,
+    "lon": 51.4478501,
+    "name": "خواجه نظام الملک",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321784,
+    "score": 0
+  },
+  "شاهین": {
+    "lat": 35.7615514,
+    "lon": 51.3148597,
+    "name": "شاهین - مخبری",
+    "type": "neighbourhood",
+    "osm_type": "relation",
+    "osm_id": 8321814
+  },
+  "ملک‌آباد": {
+    "lat": 35.6201865,
+    "lon": 51.4295339,
+    "name": "ملک آباد",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 15261395,
+    "score": 0
+  },
+  "مهران (سیدخندان)": {
+    "lat": 35.7420774,
+    "lon": 51.4466076,
+    "name": "سیدخندان",
+    "type": "bus_stop",
+    "osm_type": "node",
+    "osm_id": 7133798568,
+    "score": 0
+  },
+  "هفت حوض": {
+    "lat": 35.7284069,
+    "lon": 51.4894177,
+    "name": "هفت حوض",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321808,
+    "score": 0
+  },
+  "یاخجی آباد": {
+    "lat": 35.631777,
+    "lon": 51.403082,
+    "name": "الف",
+    "type": "tertiary",
+    "osm_type": "way",
+    "osm_id": 36606271,
+    "score": 0
+  },
+  "آسمان": {
+    "lat": 35.7781358,
+    "lon": 51.3530071,
+    "name": "آسمان",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321823,
+    "score": 0
+  },
+  "اتابک": {
+    "lat": 35.6480563,
+    "lon": 51.462443,
+    "name": "اتابک",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321613,
+    "score": 0
+  },
+  "تقی آباد": {
+    "lat": 35.580065,
+    "lon": 51.463847,
+    "name": "تقی آباد",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321615,
+    "score": 0
+  },
+  "زرگنده": {
+    "lat": 35.7732674,
+    "lon": 51.4329527,
+    "name": "زرگنده",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321842,
+    "score": 0
+  },
+  "زمزم": {
+    "lat": 35.6483866,
+    "lon": 51.367811,
+    "name": "زمزم",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 17407535,
+    "score": 0
+  },
+  "سعادت‌آباد": {
+    "lat": 35.7858311,
+    "lon": 51.3723999,
+    "name": "استخر ارم سعادت‌آباد",
+    "type": "swimming_pool",
+    "osm_type": "node",
+    "osm_id": 11142986718,
+    "score": 0
+  },
+  "سلیمانی": {
+    "lat": 35.7408069,
+    "lon": 51.324406,
+    "name": "سلیمانی",
+    "type": "residential",
+    "osm_type": "way",
+    "osm_id": 492164359,
+    "score": 0
+  },
+  "شادآباد": {
+    "lat": 35.6564232,
+    "lon": 51.2968555,
+    "name": "شادآباد",
+    "type": "neighbourhood",
+    "osm_type": "node",
+    "osm_id": 5637867004,
+    "score": 0
+  },
+  "ایرانشهر": {
+    "lat": 35.7083993,
+    "lon": 51.4224119,
+    "name": "ایرانشهر",
+    "type": "administrative",
+    "osm_id": 8321672,
+    "osm_type": "relation"
+  },
+  "علی‌آباد": {
+    "lat": 35.629067,
+    "lon": 51.4225246,
+    "name": "علی آباد",
+    "type": "administrative",
+    "osm_id": 8321760,
+    "osm_type": "relation"
+  },
+  "مرزداران": {
+    "lat": 35.738556,
+    "lon": 51.3392797,
+    "name": "مرزداران",
+    "type": "administrative",
+    "osm_id": 8321694,
+    "osm_type": "relation"
+  },
+  "مشیریه": {
+    "lat": 35.624493,
+    "lon": 51.4796751,
+    "name": "مشیریه",
+    "type": "administrative",
+    "osm_id": 8321764,
+    "osm_type": "relation"
+  },
+  "وحیدیه": {
+    "lat": 35.7150203,
+    "lon": 51.4707557,
+    "name": "وحیدیه",
+    "type": "administrative",
+    "osm_id": 8321794,
+    "osm_type": "relation"
+  },
+  "پونک": {
+    "lat": 35.7579873,
+    "lon": 51.324842,
+    "name": "پونک",
+    "type": "administrative",
+    "osm_id": 8321816,
+    "osm_type": "relation"
+  },
+  "گرگان": {
+    "lat": 35.7115394,
+    "lon": 51.4528651,
+    "name": "گرگان",
+    "type": "administrative",
+    "osm_id": 8321595,
+    "osm_type": "relation"
+  },
+  "گیشا": {
+    "lat": 35.7358464,
+    "lon": 51.3763769,
+    "name": "گیشا",
+    "type": "neighbourhood",
+    "osm_id": 8565700082,
+    "osm_type": "node"
+  }
+}

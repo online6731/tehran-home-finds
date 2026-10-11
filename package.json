@@ -1,0 +1,1 @@
+{"name":"tehran-home-finds","private":true,"type":"module","scripts":{"refresh":"node src/refresh.mjs","snapshot":"node src/refresh.mjs --snapshot-only"},"engines":{"node":">=22"}}
