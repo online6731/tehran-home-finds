@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {categories,collectHtmlCategory} from './source.mjs';
-import {isTehranCityListing,matchesAppliance,matchesDiningTable,matchesFurniture,matchesHomeCategory,diningChairs} from './divar.mjs';
+import {isTehranCityListing,matchesAppliance,matchesDiningTable,matchesFurniture,matchesHomeCategory,diningChairs,storedPostingTime,preservePostingTime} from './divar.mjs';
 import {attachReviews} from './quality.mjs';
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
@@ -17,6 +17,7 @@ const cover=/رو\s*مبلی/u;
 // or a detached lifting grid, and gaLT__M9 sells only wardrobe doors/panels.
 const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9']);
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
+const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
   return ad&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
@@ -39,7 +40,7 @@ let reviews=[];
 try{reviews=JSON.parse(fs.readFileSync(new URL('../data/quality-reviews.json',import.meta.url),'utf8'));}catch{}
 async function writeSnapshot(){
   const status=Object.values(rows);
-  const ads=await attachReviews([...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,{...a,chairs:diningChairs(a.title,a.desc)}])).values()].sort((a,b)=>a.price-b.price),reviews);
+  const ads=await attachReviews([...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,{...storedPostingTime(a),chairs:diningChairs(a.title,a.desc)}])).values()].sort((a,b)=>a.price-b.price),reviews);
   const partial=status.some(c=>c.coverage!=='complete-24h-source'||c.error);
   const checkedAt=status.every(c=>c.checkedAt)?Math.min(...status.map(c=>c.checkedAt)):null;
   let message='آخرین دریافت: '+(finishedAt?new Intl.DateTimeFormat('fa-IR',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(finishedAt):'هنوز انجام نشده');
@@ -62,7 +63,7 @@ if(!snapshotOnly){
       const complete=result.coverage==='complete-24h-source'&&!result.failures.length;
       const fresh=new Map((complete?[]:old.ads).filter(a=>eligible(a)).map(a=>[a.id,a]));
       for(const id of result.rejectedIds||[])fresh.delete(id);
-      for(const ad of result.ads)if(eligible(ad))fresh.set(ad.id,ad);
+      for(const fetched of result.ads){const ad=preservePostingTime(fetched,priorById.get(fetched.id));if(eligible(ad))fresh.set(ad.id,ad);else fresh.delete(ad.id);}
       hadFailures ||= result.failures.length>0;
       rows[slug]={slug,name,ads:[...fresh.values()],checkedAt:complete?now():old.checkedAt||null,lastAttemptAt:attempt,lastFetchedAt:result.ads.length?now():old.lastFetchedAt||null,error:result.failures.length?'دریافت بعضی آگهی‌ها انجام نشد':null,coverage:result.coverage,scanned:result.scanned,pages:result.pages,hasMore:result.hasMore};
       console.log(JSON.stringify({slug,count:result.ads.length,coverage:result.coverage,failures:result.failures}));

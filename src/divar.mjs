@@ -84,19 +84,40 @@ function jalaliDate(y,m,d){
   }
   return null;
 }
-export function publishedAt(section,now=Date.now()){
+export function publishedAtInfo(section,now=Date.now()){
+  const info=(postedAt,postedAtSource)=>postedAt===null?null:{postedAt,postedAtIso:new Date(postedAt).toISOString(),postedAtSource,postedAtIsApproximate:postedAtSource==='divar-relative'};
   const s=digits(JSON.stringify(section));
   const m=s.match(/انتشار آگهی:\s*(\d+)\s+(\S+)\s+(\d+)،\s*(\d+):(\d+)/);
-  if(m){const date=jalaliDate(+m[3],months.indexOf(m[2])+1,+m[1]);return date===null?null:date+(+m[4]*60+ +m[5]-210)*60000;}
+  if(m){
+    const month=months.indexOf(m[2]),day=+m[1],hour=+m[4],minute=+m[5];
+    if(month<0||day<1||day>31||hour>23||minute>59)return null;
+    const date=jalaliDate(+m[3],month+1,day);
+    return date===null?null:info(date+(hour*60+minute-210)*60000,'divar-absolute');
+  }
   // Only a conservative bound is accepted if Divar omits the absolute publication field.
   const title=section.find(w=>w.dto?.widget_type==='EXPANDABLE_SECTION')?.dto.data.title||'';
   const age=digits(title.split(' در ')[0]);
   if(/روز|دیروز|هفته|ماه/.test(age))return null;
   const n=+(age.match(/\d+/)||[])[0];
-  if(/ساعت/.test(age)&&Number.isFinite(n))return now-(n+1)*3600000;
-  if(/دقیقه/.test(age)&&Number.isFinite(n))return now-(n+1)*60000;
-  if(/لحظه/.test(age))return now-60000;
+  if(/ساعت/.test(age)&&Number.isFinite(n))return info(now-(n+1)*3600000,'divar-relative');
+  if(/دقیقه/.test(age)&&Number.isFinite(n))return info(now-(n+1)*60000,'divar-relative');
+  if(/لحظه/.test(age))return info(now-60000,'divar-relative');
   return null;
+}
+export function publishedAt(section,now=Date.now()){
+  return publishedAtInfo(section,now)?.postedAt??null;
+}
+export function storedPostingTime(ad){
+  return {...ad,postedAtIso:new Date(ad.postedAt).toISOString(),postedAtSource:ad.postedAtSource||'legacy-timestamp',postedAtIsApproximate:typeof ad.postedAtIsApproximate==='boolean'?ad.postedAtIsApproximate:null};
+}
+export function preservePostingTime(ad,previous){
+  // A fresh relative label must not move the same ad's original publication
+  // forward, extend its lifetime, or replace a previously exact Divar date.
+  if(ad.postedAtSource==='divar-relative'&&Number.isFinite(previous?.postedAt)){
+    const prior=storedPostingTime(previous);
+    if(prior.postedAtSource!=='divar-relative'||prior.postedAt<=ad.postedAt)return {...ad,postedAt:prior.postedAt,postedAtIso:prior.postedAtIso,postedAtSource:prior.postedAtSource,postedAtIsApproximate:prior.postedAtIsApproximate,expiresAt:prior.postedAt+86400000};
+  }
+  return ad;
 }
 function distance(area,points){
   const p=points[area];
@@ -182,7 +203,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   if(!['کارکرده','در حد نو'].includes(condition))return null;
   const price=Number(digits(values['قیمت']).replace(/[^0-9]/g,''));
   if(price<1000000||price>15000000)return null;
-  const posted=publishedAt(sections.TITLE||[],now);
+  const postingTime=publishedAtInfo(sections.TITLE||[],now),posted=postingTime?.postedAt;
   if(!posted||posted<=now-86400000||posted>now+300000)return null;
   const title=p.seo?.webInfo?.title||'',area=p.seo?.webInfo?.district_persian||'نامشخص';
   const desc=(sections.DESCRIPTION||[]).filter(w=>w.dto?.widget_type==='DESCRIPTION_ROW').map(w=>w.dto.data.text||'').join('\n');
@@ -201,7 +222,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   const productFields=Object.fromEntries(['نوع کالا','نوع دستگاه','نوع گاز','نوع اجاق گاز','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','نوع انرژی','تعداد شعله','رنگ'].filter(k=>values[k]).map(k=>[k,values[k]]));
   const features=['بافت','ابعاد','نوع کالا','رنگ زمینه',...(Object.hasOwn(applianceCategories,slug)?['نوع دستگاه','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','تعداد شعله','رنگ']:[])].filter(k=>values[k]).map(k=>k+': '+values[k]);
   const chairs=diningChairs(title,desc);
-  return {id:p.token,url:'https://divar.ir/v/'+encodeURIComponent(title.replace(/\s+/g,'-'))+'/'+p.token,title,price,area,condition,seats:slug==='furniture'||slug==='dining-table'?seats:0,category:categories[slug],kind:slug==='shoe-rack-drawer'||Object.hasOwn(applianceCategories,slug)?(values['نوع دستگاه']||values['نوع کالا']||''):'',...(Object.hasOwn(applianceCategories,slug)?{productFields}:{}),chairs,desc:features.join(' | ')+(features.length?'\n':'')+desc,issues:[],pics,distanceKm:distance(area,points),age:timeTitle.split(' در ')[0],postedAt:posted,expiresAt:posted+86400000,verifiedAt:now,checkedAt:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(now),...locationEvidence(p)};
+  return {id:p.token,url:'https://divar.ir/v/'+encodeURIComponent(title.replace(/\s+/g,'-'))+'/'+p.token,title,price,area,condition,seats:slug==='furniture'||slug==='dining-table'?seats:0,category:categories[slug],kind:slug==='shoe-rack-drawer'||Object.hasOwn(applianceCategories,slug)?(values['نوع دستگاه']||values['نوع کالا']||''):'',...(Object.hasOwn(applianceCategories,slug)?{productFields}:{}),chairs,desc:features.join(' | ')+(features.length?'\n':'')+desc,issues:[],pics,distanceKm:distance(area,points),age:timeTitle.split(' در ')[0],...postingTime,expiresAt:posted+86400000,verifiedAt:now,checkedAt:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(now),...locationEvidence(p)};
 }
 export async function collectCategory(slug,points,cursor,cached=[]){
   if(!categories[slug])throw Error('Invalid category');
