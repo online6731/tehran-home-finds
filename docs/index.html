@@ -630,8 +630,9 @@ function card(ad,now){
   </article>`;
 }
 function emptyState(){
-  const title=loadFailed&&!loaded?'فهرست دریافت نشد':!ads.length?'آگهی تازه‌ای برای نمایش نداریم':'کالایی با این فیلترها پیدا نشد';
-  const message=loadFailed&&!loaded?'دریافت فهرست ممکن نشد. دوباره تلاش کنید.':!ads.length?'وضعیت دریافت آگهی‌ها در بالای صفحه نمایش داده می‌شود.':'سقف قیمت را افزایش دهید یا بعضی از فیلترها را بردارید.';
+  const hasFresh=ads.some(ad=>ad.expiresAt>Date.now());
+  const title=loadFailed&&!loaded?'فهرست دریافت نشد':!hasFresh?'آگهی تازه‌ای برای نمایش نداریم':'کالایی با این فیلترها پیدا نشد';
+  const message=loadFailed&&!loaded?'دریافت فهرست ممکن نشد. دوباره تلاش کنید.':!hasFresh?(ads.length?'آگهی‌های فهرست قبلی از بازهٔ ۲۴ ساعت خارج شده‌اند؛ وضعیت دریافت تازه را در بالای صفحه ببینید.':'وضعیت دریافت آگهی‌ها در بالای صفحه نمایش داده می‌شود.'):'سقف قیمت را افزایش دهید یا بعضی از فیلترها را بردارید.';
   return `<div class="empty">${icon('search-x')}<h3>${title}</h3><p>${message}</p><button type="button" class="settings-button" data-action="${loadFailed&&!loaded?'retry':'reset'}">${loadFailed&&!loaded?'تلاش دوباره':'پاک‌کردن فیلترها'}</button></div>`;
 }
 function syncControls(){
