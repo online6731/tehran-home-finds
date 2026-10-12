@@ -129,6 +129,17 @@ export function matchesFurniture(title){
   const text=locationText(title).replace(/میز\s*(?:وسط|کنار|جلوی?)\s*مبل(?:ی|مان)?|جلوی?\s*مبلی|میز\s*مبلی|میز\s*عسلی|رو\s*مبلی/gu,'');
   return /مبل|کاناپه|آرمچیر|صندلی/u.test(text);
 }
+export function matchesHomeCategory(slug,title,desc=''){
+  const name=locationText(title),text=locationText([title,desc].join(' '));
+  if(slug==='dining-table'&&/میز\s*(?:کار|اداری|جلسات|کنفرانس)/u.test(name)&&!/(?:ناهار|نهار|غذا)\s*خوری/u.test(text))return false;
+  if(slug==='bed-service'&&/تخت\s*(?:اپ[یی]?لا?سیون|اپلاسیون|ماساژ|معاینه|بیمارستانی|آرایشگاه)/u.test(text))return false;
+  if(slug==='shoe-rack-drawer'&&/(?:تعدادی|فقط|چند\s*(?:عدد)?)\s*(?:درب|درهای?|کشوهای?)\s*کمد/u.test(text))return false;
+  if(slug==='furniture'){
+    const remaining=name.replace(/میز\s*(?:وسط|کنار|جلوی?)\s*مبل(?:ی|مان)?|جلوی?\s*مبلی|میز\s*مبلی|میز\s*عسلی|صندلی\s*(?:گیمینگ|اداری|اپنی|اپن|بار)/gu,'');
+    if(!/مبل|کاناپه|آرمچیر|صندلی/u.test(remaining))return false;
+  }
+  return true;
+}
 export function diningChairs(title,desc){
   const text=locationText(digits([title,desc].join(' ')));
   if(/بدون\s*صندلی|فقط\s*(?:خود\s*)?میز/u.test(text))return 'بدون صندلی';
@@ -140,7 +151,9 @@ export function isTehranCityListing(ad){
   if(reyDistrictIds.has(String(ad.districtId||''))||/-rey$/i.test(String(ad.districtSlug||'')))return false;
   const area=locationText(ad.area);
   if(!area||area==='نامشخص'||reyAreas.has(area))return false;
-  return !outsideTehran.test(locationText([area,ad.title,ad.desc].join(' ')));
+  const text=locationText([area,ad.title,ad.desc].join(' '));
+  if(/(?:بازدید|تحویل|محل\s*کالا|آدرس)\s*(?:در\s*)?اندیشه(?:\s|$)/u.test(text))return false;
+  return !outsideTehran.test(text);
 }
 function districtEvidence(p){
   const found=[];
@@ -171,6 +184,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   if(!posted||posted<=now-86400000||posted>now+300000)return null;
   const title=p.seo?.webInfo?.title||'',area=p.seo?.webInfo?.district_persian||'نامشخص';
   const desc=(sections.DESCRIPTION||[]).filter(w=>w.dto?.widget_type==='DESCRIPTION_ROW').map(w=>w.dto.data.text||'').join('\n');
+  if(!matchesHomeCategory(slug,title,desc))return null;
   if(!matchesAppliance(slug,title,values,desc))return null;
   if(!isTehranCityListing({...locationEvidence(p),area,title,desc}))return null;
   let seats=+(digits(values['تعداد نشیمن']||title).match(/(\d+)\s*نفر/)||[])[1]||0;

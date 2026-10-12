@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {categories,collectHtmlCategory} from './source.mjs';
-import {isTehranCityListing,matchesAppliance,matchesDiningTable,matchesFurniture,diningChairs} from './divar.mjs';
+import {isTehranCityListing,matchesAppliance,matchesDiningTable,matchesFurniture,matchesHomeCategory,diningChairs} from './divar.mjs';
 import {attachReviews} from './quality.mjs';
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
@@ -14,7 +14,7 @@ const cover=/رو\s*مبلی/u;
 const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb']);
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 export function eligible(ad,time=now()){
-  return ad&&slugByCategory[ad.category]&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
+  return ad&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
     ['کارکرده','در حد نو'].includes(ad.condition)&&isTehranCityListing(ad)&&
     !outside.test([ad.area,ad.title,ad.desc].join(' '))&&
