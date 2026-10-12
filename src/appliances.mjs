@@ -26,10 +26,11 @@ export function matchesAppliance(slug,title,values={},desc=''){
   const type=[fields['نوع کالا'],fields['نوع دستگاه'],fields['نوع گاز'],fields['نوع اجاق گاز']].filter(Boolean).join(' ');
   // Product titles mentioning accessories, buying, services or broken items
   // are excluded; descriptions may legitimately mention prior maintenance.
-  if(buyers.test(name)||services.test(name)||parts.test(name)||incomplete.test(name)||commercial.test(name))return false;
+  if(buyers.test(name)||services.test(name)||parts.test(name)||incomplete.test(name)||commercial.test(name)||/(?:^|\s)پایه\s*(?:یخچال|فریزر|لباس\s*شویی|ظرف\s*شویی)/u.test(name))return false;
   // "خریدار واقعی تماس بگیرد" is normal seller wording, so description
   // buyer detection requires an explicit advertisement beginning.
   if(/^(?:خریدار\s*(?:انواع|یخچال|فریزر|لباس\s*شویی|ظرف\s*شویی|جارو|گاز)|تعمیرات|تعمیرکار|خدمات\s*تعمیر)/u.test(description))return false;
+  if(/خریدار\s*(?:همه\s*مدل|انواع)/u.test(description)||/(?:موتور|کمپرسور|برد)\s*(?:ندارد|نداره|نیست)/u.test(description))return false;
   if(parts.test(type)||commercial.test(type))return false;
 
   if(slug==='oven-baking-appliances'){
@@ -46,5 +47,6 @@ export function matchesAppliance(slug,title,values={},desc=''){
   if(slug==='refrigerator-freezer')return /یخچال|فریزر/u.test(name+' '+type);
   if(slug==='washing-machines')return /لباس\s*شویی|کهنه\s*شور|بچه\s*شور|مینی\s*واش|خشک\s*کن\s*لباس/u.test(name+' '+type);
   if(slug==='dishwasher')return /ظرف\s*شویی/u.test(name+' '+type);
+  if(/بخار\s*(?:شور|شو)/u.test(name)&&!/جارو\s*(?:برقی|شارژی|رباتیک)/u.test(name))return false;
   return /جارو\s*برقی|جارو\s*شارژی|جارو\s*رباتیک/u.test(name+' '+type);
 }

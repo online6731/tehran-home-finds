@@ -15,7 +15,10 @@ const cover=/رو\s*مبلی/u;
 // value is for one rug and the seller explicitly refuses individual sales.
 // Gallery inspection confirmed these four bed listings sell support boards
 // or a detached lifting grid, and gaLT__M9 sells only wardrobe doors/panels.
-const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9']);
+// gaMrJQAL: gallery contains only two wood/MDF support panels. gaMXZ7Jo:
+// three clothing racks, with a misspelled title. gaMr6j9P: minimum sale is
+// two rugs for 25 million despite the 12.5 million per-rug form price.
+const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P']);
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){

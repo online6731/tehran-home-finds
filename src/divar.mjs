@@ -155,6 +155,7 @@ export function matchesHomeCategory(slug,title,desc=''){
   if(slug==='dining-table'&&/میز\s*(?:کار|اداری|جلسات|کنفرانس)/u.test(name)&&!/(?:ناهار|نهار|غذا)\s*خوری/u.test(text))return false;
   if(slug==='bed-service'&&/تخت\s*(?:اپ[یی]?لا?سیون|اپلاسیون|ماساژ|معاینه|بیمارستانی|آرایشگاه)/u.test(text))return false;
   if(slug==='shoe-rack-drawer'&&/(?:تعدادی|فقط|چند\s*(?:عدد)?)\s*(?:درب|درهای?|کشوهای?)\s*کمد/u.test(text))return false;
+  if(slug==='shoe-rack-drawer'&&/^(?:فروش\s*)?درب?\s*کمد/u.test(name))return false;
   // A household entrance door can be mislabelled as a wardrobe in the form.
   if(slug==='shoe-rack-drawer'&&(/^(?:فروش\s*)?درب?\s*(?:خانه|منزل|ورودی|اتاق)/u.test(name)||/درب?\s*(?:چوبی\s*)?ورودی\s*(?:خانه|منزل)/u.test(text)))return false;
   if(slug==='furniture'){
@@ -176,6 +177,7 @@ export function isTehranCityListing(ad){
   if(!area||area==='نامشخص'||reyAreas.has(area))return false;
   const text=locationText([area,ad.title,ad.desc].join(' '));
   if(/(?:بازدید|تحویل|محل\s*کالا|آدرس)\s*(?:در\s*)?اندیشه(?:\s|$)/u.test(text))return false;
+  if(/همه\s*در\s*اندیشه(?:\s|$)|ارسال\s*از\s*شهرستان/u.test(text))return false;
   return !outsideTehran.test(text);
 }
 function districtEvidence(p){
