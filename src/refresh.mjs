@@ -11,7 +11,11 @@ const outside=/(?:گرم\s*دره|صفا\s*دشت|صبا\s*شهر|صالح\s*آ�
 const cover=/رو\s*مبلی/u;
 // gaLLSabb explicitly advertises imported, completely new goods despite its
 // "like new" form value; it is outside the used/like-new household catalog.
-const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb']);
+// gaLv9KXr requires buying both rugs for 20 million; the 10 million form
+// value is for one rug and the seller explicitly refuses individual sales.
+// Gallery inspection confirmed these four bed listings sell support boards
+// or a detached lifting grid, and gaLT__M9 sells only wardrobe doors/panels.
+const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9']);
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 export function eligible(ad,time=now()){
   return ad&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&

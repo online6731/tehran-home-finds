@@ -134,6 +134,8 @@ export function matchesHomeCategory(slug,title,desc=''){
   if(slug==='dining-table'&&/میز\s*(?:کار|اداری|جلسات|کنفرانس)/u.test(name)&&!/(?:ناهار|نهار|غذا)\s*خوری/u.test(text))return false;
   if(slug==='bed-service'&&/تخت\s*(?:اپ[یی]?لا?سیون|اپلاسیون|ماساژ|معاینه|بیمارستانی|آرایشگاه)/u.test(text))return false;
   if(slug==='shoe-rack-drawer'&&/(?:تعدادی|فقط|چند\s*(?:عدد)?)\s*(?:درب|درهای?|کشوهای?)\s*کمد/u.test(text))return false;
+  // A household entrance door can be mislabelled as a wardrobe in the form.
+  if(slug==='shoe-rack-drawer'&&(/^(?:فروش\s*)?درب?\s*(?:خانه|منزل|ورودی|اتاق)/u.test(name)||/درب?\s*(?:چوبی\s*)?ورودی\s*(?:خانه|منزل)/u.test(text)))return false;
   if(slug==='furniture'){
     const remaining=name.replace(/میز\s*(?:وسط|کنار|جلوی?)\s*مبل(?:ی|مان)?|جلوی?\s*مبلی|میز\s*مبلی|میز\s*عسلی|صندلی\s*(?:گیمینگ|اداری|اپنی|اپن|بار)/gu,'');
     if(!/مبل|کاناپه|آرمچیر|صندلی/u.test(remaining))return false;
@@ -143,7 +145,7 @@ export function matchesHomeCategory(slug,title,desc=''){
 export function diningChairs(title,desc){
   const text=locationText(digits([title,desc].join(' ')));
   if(/بدون\s*صندلی|فقط\s*(?:خود\s*)?میز/u.test(text))return 'بدون صندلی';
-  if(/(?:با|همراه)\s*صندلی|(?:\d+|شش|هشت|هفت|ده)\s*(?:(?:عدد|تا)\s*)?صندلی|این\s*تعداد\s*صندلی\s*با\s*میز/u.test(text))return 'همراه صندلی';
+  if(/(?:با|همراه)\s*صندلی|(?:\d+|یک|دو|سه|چهار|پنج|شش|هفت|هشت|نه|ده|یازده|دوازده)\s*(?:(?:عدد|تا)\s*)?صندلی|این\s*تعداد\s*صندلی\s*با\s*میز/u.test(text))return 'همراه صندلی';
   return 'نامشخص';
 }
 export function isTehranCityListing(ad){
