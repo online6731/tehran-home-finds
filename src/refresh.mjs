@@ -5,6 +5,7 @@ import {attachReviews} from './quality.mjs';
 import {listingDistance} from './locations.mjs';
 import {conditionScore} from './condition-score.mjs';
 import {attachPhotoAssessment} from './photo-assessment.mjs';
+import {matchesAdultRug} from './rugs.mjs';
 const coordinates=JSON.parse(fs.readFileSync(new URL('./area_coordinates.json',import.meta.url),'utf8'));
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
@@ -29,7 +30,9 @@ const cover=/رو\s*مبلی/u;
 // gaNHO2R3 and gaNjsdvi explicitly sell only loose mattress-support boards.
 // All gallery photos of gaNf9JKj and gaNb91mX show detached mounting frames
 // without floor legs. gaNnthos sells four loose drawers, confirmed by its photo.
-const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
+// gaNH08UZ: its 15 million form price buys only the 2-metre rug; the
+// adult-sized 4/9-metre rugs cost 25/45 million according to the description.
+const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
@@ -37,6 +40,7 @@ export function eligible(ad,time=now()){
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
     ['کارکرده','در حد نو'].includes(ad.condition)&&isTehranCityListing(ad)&&
     (ad.category!==categories['bed-service']||matchesDoubleBed(ad.title,ad.desc,ad.productFields))&&
+    (!['فرش','گلیم و جاجیم'].includes(ad.category)||matchesAdultRug(ad.title,ad.desc,ad.productFields))&&
     !outside.test([ad.area,ad.title,ad.desc].join(' '))&&
     (ad.category!==categories.furniture||matchesFurniture(ad.title))&&
     !(ad.category===categories.furniture&&cover.test(ad.title.replace(/\u200c/g,'')))&&
@@ -60,7 +64,9 @@ async function writeSnapshot(){
   const status=Object.values(rows);
   const reviewed=await attachReviews([...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,{...storedPostingTime(a),...listingDistance(a,coordinates),chairs:diningChairs(a.title,a.desc)}])).values()].sort((a,b)=>a.price-b.price),reviews);
   const withPhotos=await Promise.all(reviewed.map(ad=>attachPhotoAssessment(ad,photoById.get(ad.id))));
-  const ads=withPhotos.map(ad=>({...ad,conditionAssessment:conditionScore(ad)}));
+  // Apply visual audience exclusions only after fingerprint validation, so a
+  // changed description/gallery cannot inherit an unrelated photo assessment.
+  const ads=withPhotos.filter(ad=>!['فرش','گلیم و جاجیم'].includes(ad.category)||matchesAdultRug(ad.title,ad.desc,ad.productFields,ad.photoAssessment)).map(ad=>({...ad,conditionAssessment:conditionScore(ad)}));
   const partial=status.some(c=>c.coverage!=='complete-24h-source'||c.error);
   const checkedAt=status.every(c=>c.checkedAt)?Math.min(...status.map(c=>c.checkedAt)):null;
   let message='آخرین دریافت: '+(finishedAt?new Intl.DateTimeFormat('fa-IR',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(finishedAt):'هنوز انجام نشده');
@@ -93,6 +99,6 @@ if(!snapshotOnly){
 }
 const result=await writeSnapshot();
 fs.mkdirSync(new URL('../docs/update-plan/',import.meta.url),{recursive:true});
-fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دسته‌ها: ${Object.values(categories).join('، ')}.</p><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. میز غذاخوری حداقل شش نفره؛ تخت فقط دونفره (تک‌نفره، نوجوان، کودک و دوطبقه حذف می‌شوند)؛ گاز فقط رومیزی یا صفحه‌ای. لوازم یدکی، خدمات تعمیر و کالاهای نامرتبط پذیرفته نمی‌شوند. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. فاصله بر پایهٔ نقشهٔ آگهی یا مرکز/نقطهٔ مرجع مستند محله با ذکر مبنا محاسبه می‌شود. گالری در عکس اصلی ورق می‌خورد. هر محصول امتیاز وضعیت تخمینی و شاخص فاصله با نو دارد؛ امتیاز توضیح‌محور از ارزیابی مستند عکس‌ها جداست و شاخص، درصد واقعی استهلاک نیست. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است؛ سلامت فنی وسایل برقی و گاز با عکس تأیید نمی‌شود.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>`);
+fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دسته‌ها: ${Object.values(categories).join('، ')}.</p><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. میز غذاخوری حداقل شش نفره؛ تخت فقط دونفره (تک‌نفره، نوجوان، کودک و دوطبقه حذف می‌شوند)؛ فرش و گلیم فقط طرح بزرگسال و اندازهٔ اسمی حداقل ۴ متری؛ ابعاد اندازه‌گیری‌شده حداقل ۴ مترمربع و کناره با طول و عرض مشخص. طرح کودک/نوجوان، اندازهٔ کوچک‌تر و اندازهٔ تأییدنشده حذف می‌شوند؛ گاز فقط رومیزی یا صفحه‌ای. لوازم یدکی، خدمات تعمیر و کالاهای نامرتبط پذیرفته نمی‌شوند. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. فاصله بر پایهٔ نقشهٔ آگهی یا مرکز/نقطهٔ مرجع مستند محله با ذکر مبنا محاسبه می‌شود. گالری در عکس اصلی ورق می‌خورد. هر محصول امتیاز وضعیت تخمینی و شاخص فاصله با نو دارد؛ امتیاز توضیح‌محور از ارزیابی مستند عکس‌ها جداست و شاخص، درصد واقعی استهلاک نیست. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است؛ سلامت فنی وسایل برقی و گاز با عکس تأیید نمی‌شود.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>`);
 console.log(JSON.stringify({ads:result.ads.length,partial:result.sourceStatus.partial,hadFailures}));
 if(process.env.GITHUB_OUTPUT)fs.appendFileSync(process.env.GITHUB_OUTPUT,'source_failed='+hadFailures+'\n');

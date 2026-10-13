@@ -657,7 +657,7 @@ function syncControls(){
 function chips(){
   const labels={q:'جست‌وجو: '+$('q').value,max:'تا '+fmt($('max').value)+' میلیون',distance:'تا '+fmt($('distance').value)+' کیلومتر',seats:fmt($('seats').value)+' نفر و بیشتر',condition:$('condition').value,kind:$('kind').value,chairs:$('chairs').value,quality:$('quality').selectedOptions[0].textContent};
   const active=filterIds.filter(id=>$(id).value!==filterDefaults[id]);
-  const markup=active.length?active.map(id=>`<button type="button" class="filter-chip" data-clear="${id}" aria-label="حذف فیلتر ${esc(labels[id])}">${esc(labels[id])}${icon('x')}</button>`).join(''):'<span class="filter-hint">۱ تا ۱۵ میلیون تومان · فقط آگهی‌های ۲۴ ساعت اخیر</span>';
+  const markup=active.length?active.map(id=>`<button type="button" class="filter-chip" data-clear="${id}" aria-label="حذف فیلتر ${esc(labels[id])}">${esc(labels[id])}${icon('x')}</button>`).join(''):'<span class="filter-hint">۱ تا ۱۵ میلیون تومان · ۲۴ ساعت اخیر · فرش و گلیم بزرگسال، ۴ متری به بالا</span>';
   if($('activeFilters').innerHTML!==markup)$('activeFilters').innerHTML=markup;
 }
 function render(){

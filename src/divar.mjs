@@ -1,5 +1,6 @@
 import {applianceCategories,matchesAppliance} from './appliances.mjs';
 import {listingDistance,sourceMapPoint} from './locations.mjs';
+import {matchesAdultRug} from './rugs.mjs';
 export {applianceCategories,matchesAppliance} from './appliances.mjs';
 export const categories = {
   furniture:'مبل و کاناپه', 'dining-table':'میز غذاخوری', 'bed-service':'تخت و سرویس خواب',
@@ -216,6 +217,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   const title=p.seo?.webInfo?.title||'',area=p.seo?.webInfo?.district_persian||'نامشخص';
   const desc=(sections.DESCRIPTION||[]).filter(w=>w.dto?.widget_type==='DESCRIPTION_ROW').map(w=>w.dto.data.text||'').join('\n');
   if(!matchesHomeCategory(slug,title,desc))return null;
+  if(['carpet','rugs-woolen-cloth'].includes(slug)&&!matchesAdultRug(title,desc,values))return null;
   if(!matchesAppliance(slug,title,values,desc))return null;
   if(!isTehranCityListing({...locationEvidence(p),area,title,desc}))return null;
   let seats=+(digits(values['تعداد نشیمن']||title).match(/(\d+)\s*نفر/)||[])[1]||0;
@@ -227,7 +229,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   const pics=[...new Set((sections.IMAGE||[]).flatMap(w=>(w.dto?.data.items||[]).map(i=>i.image?.url||i.image_url)).filter(u=>/^https:\/\/[a-z0-9.-]+\.divarcdn\.com\//.test(u)))];
   if(!pics.length)return null;
   const timeTitle=(sections.TITLE||[]).find(w=>w.dto?.widget_type==='EXPANDABLE_SECTION')?.dto.data.title||'';
-  const productFields=Object.fromEntries(['نوع کالا','نوع دستگاه','نوع گاز','نوع اجاق گاز','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','نوع انرژی','تعداد شعله','رنگ'].filter(k=>values[k]).map(k=>[k,values[k]]));
+  const productFields=Object.fromEntries(['ابعاد','نوع کالا','نوع دستگاه','نوع گاز','نوع اجاق گاز','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','نوع انرژی','تعداد شعله','رنگ'].filter(k=>values[k]).map(k=>[k,values[k]]));
   const features=['بافت','ابعاد','نوع کالا','رنگ زمینه',...(Object.hasOwn(applianceCategories,slug)?['نوع دستگاه','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','تعداد شعله','رنگ']:[])].filter(k=>values[k]).map(k=>k+': '+values[k]);
   const chairs=diningChairs(title,desc);
   const locationPoint=sourceMapPoint(sections);
