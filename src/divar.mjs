@@ -147,6 +147,7 @@ export function matchesDiningTable(title,desc,seats){
   return /میز|ست\s*.*(?:ناهار\s*خوری|نهار\s*خوری|غذا\s*خوری)/u.test(text);
 }
 export function matchesFurniture(title){
+  if(/^(?:فروش\s*)?(?:کاور|روکش)\s*(?:مبل|کاناپه)/u.test(locationText(title)))return false;
   const text=locationText(title).replace(/میز\s*(?:وسط|کنار|جلوی?)\s*مبل(?:ی|مان)?|جلوی?\s*مبلی|میز\s*مبلی|میز\s*عسلی|رو\s*مبلی/gu,'');
   return /مبل|کاناپه|آرمچیر|صندلی/u.test(text);
 }

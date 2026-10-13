@@ -22,7 +22,10 @@ const cover=/رو\s*مبلی/u;
 // gaNLmDRV requires an additional payment above its 15 million form price.
 // Gallery evidence: gaN_EhLM is a detached lift/Murphy mechanism frame
 // with mounting tabs and no floor legs.
-const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM']);
+// gaNHO2R3 and gaNjsdvi explicitly sell only loose mattress-support boards.
+// All gallery photos of gaNf9JKj and gaNb91mX show detached mounting frames
+// without floor legs. gaNnthos sells four loose drawers, confirmed by its photo.
+const excludedIds=new Set(['gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
