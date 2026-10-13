@@ -128,9 +128,15 @@ export async function collectHtmlCategory(slug,previous=[],onProgress,options={}
     if(searchApiUnavailable){failures.push('Search continuation unavailable: '+searchApiUnavailable);break;}
     try{
       const r=await request('https://api.divar.ir/v8/postlist/w/search',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json','X-Standard-Divar-Error':'true','X-Render-Type':'CSR','User-Agent':'Mozilla/5.0'},body:JSON.stringify(listBody(slug,page.pagination))});
-      if(!r.ok)throw Error('HTTP '+r.status);
+      if(!r.ok)throw Object.assign(Error('HTTP '+r.status),{status:r.status});
       page=apiPage(await r.json(),slug);
-    }catch(error){searchApiUnavailable=error.cause?.code||error.message;failures.push(failureText('Search continuation',error));break;}
+    }catch(error){
+      // Only a removed endpoint disables continuation across categories.
+      // Timeouts, network errors and temporary HTTP failures remain local;
+      // the request helper still honors the source's 429 retry-after delay.
+      if(error.status===404||error.status===410)searchApiUnavailable=error.message;
+      failures.push(failureText('Search continuation',error));break;
+    }
   }
   const checkedAt=new Date().toISOString();
   const now=Date.now();
