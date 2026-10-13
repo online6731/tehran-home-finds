@@ -44,6 +44,8 @@
 .distance-reference{display:block;color:var(--muted);font-size:.72rem;line-height:1.7;margin-top:3px}.carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:40px;border:1px solid #ffffffcc;border-radius:9px;background:#ffffffe8;box-shadow:0 2px 8px #16264220;font-size:28px;line-height:1;z-index:2}.carousel-prev{left:10px}.carousel-next{right:10px}.hero-wrap{touch-action:pan-y}.condition-score{margin-top:12px;border:1px solid #dfe5f0;border-radius:10px;background:#f8faff;overflow:hidden}.condition-score summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:10px 12px;list-style:none;font-size:.8125rem}.condition-score summary b{font-size:1.05rem;color:var(--accent)}.condition-score summary small{font-size:.75rem;color:var(--muted);font-weight:500}.score-track{height:4px;background:#e4eaf5;direction:ltr}.score-track i{display:block;height:100%;background:#5f83c4}.score-details{padding:4px 12px 10px;font-size:.8125rem;line-height:1.9;color:var(--muted)}.score-details p{margin:6px 0}.score-details ul{padding-inline-start:18px}.cards.hide-gallery .carousel-prev,.cards.hide-gallery .carousel-next{display:none}@media(max-width:600px){.cards.is-list .carousel-prev,.cards.is-list .carousel-next{width:25px;height:32px}.cards.is-list .carousel-prev{left:3px}.cards.is-list .carousel-next{right:3px}}
 
 #moreResults{position:relative;flex-wrap:wrap;min-height:70px}#scrollSentinel{position:absolute;inset-block-end:0;width:1px;height:1px;pointer-events:none}
+
+.photo-dialog{width:calc(100vw - 28px);max-width:1600px;height:calc(100dvh - 28px);max-height:calc(100dvh - 28px);overflow:hidden}.photo-dialog[open]{display:flex;flex-direction:column}.dialog-head{padding:10px 18px;flex-shrink:0;gap:12px}.dialog-head>div{min-width:0}.dialog-head h2{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80vw}.gallery-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 18px;border-bottom:1px solid var(--line);flex-shrink:0}.gallery-tools button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;min-width:38px;border:1px solid var(--line);border-radius:8px;background:white;padding:6px 10px;font-size:.8125rem}.gallery-tools button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent)}#zoomHint{font-size:.75rem;color:var(--muted);margin-inline-start:auto}.dialog-media{position:relative;flex:1;min-height:0;overflow:hidden;padding:0;gap:0;background:#e9edf4}.image-stage{position:relative;flex:1;min-width:0;height:100%;overflow:hidden;direction:ltr;cursor:zoom-in}.dialog-media #dialogImage{display:block;width:100%;height:100%;max-width:none;max-height:none;min-height:0;object-fit:contain;transform-origin:center;user-select:none}.image-stage.is-zoomed{cursor:grab;touch-action:none}.image-stage.is-dragging{cursor:grabbing}#imageMagnifier{position:absolute;right:16px;bottom:16px;width:44px;height:44px;display:grid;place-items:center;border:1px solid #ccd5e5;border-radius:50%;background:#fffffff0;box-shadow:0 2px 8px #10244020}.dialog-nav{position:absolute;z-index:2;top:50%;transform:translateY(-50%);opacity:.95}.dialog-media #dialogPrev{right:10px}.dialog-media #dialogNext{left:10px}.dialog-thumbs{padding:8px 18px;flex-shrink:0;max-height:72px}.dialog-foot{padding:4px 18px 10px;flex-shrink:0}.photo-dialog:fullscreen,.photo-dialog.expanded-view{width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;border:0;border-radius:0}.photo-dialog.expanded-view{position:fixed;inset:0}@media(max-width:680px){.photo-dialog{width:100vw;height:100dvh;max-height:100dvh;max-width:none;margin:0;border:0;border-radius:0}.dialog-head{padding:8px 12px}.gallery-tools{padding:6px 10px;gap:6px}.gallery-tools button{min-height:40px}#zoomHint{width:100%;margin:0;font-size:.6875rem}.dialog-thumbs{padding:6px 12px}.dialog-thumbs button{width:48px;height:42px}.dialog-foot{padding:4px 12px 8px}.dialog-nav{width:34px;height:44px}}
 </style>
 </head>
 <body>
@@ -519,7 +521,7 @@
   <path d="M18 6 6 18" />
   <path d="m6 6 12 12" />
 </svg></span></button></div>
-    <div class="dialog-media"><button id="dialogPrev" type="button" class="dialog-nav" aria-label="عکس قبلی"><span data-icon="chevron-right"><svg aria-hidden="true" focusable="false"
+    <div class="gallery-tools" aria-label="ابزارهای عکس"><button id="zoomIn" type="button" aria-label="بزرگ‌نمایی عکس"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5M7 10.5h7M10.5 7v7"/></svg><span>بزرگ‌نمایی</span></button><button id="zoomOut" type="button" aria-label="کوچک‌نمایی عکس">−</button><button id="zoomReset" type="button" aria-label="بازنشانی بزرگ‌نمایی">۱۰۰٪</button><button id="galleryFullscreen" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>تمام‌صفحه</span></button><span id="zoomHint" role="status">برای بزرگ‌نمایی روی عکس بزنید</span></div><div class="dialog-media"><button id="dialogPrev" type="button" class="dialog-nav" aria-label="عکس قبلی"><span data-icon="chevron-right"><svg aria-hidden="true" focusable="false"
   class="lucide lucide-chevron-right"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
@@ -532,7 +534,7 @@
   stroke-linejoin="round"
 >
   <path d="m9 18 6-6-6-6" />
-</svg></span></button><img id="dialogImage" alt=""><button id="dialogNext" type="button" class="dialog-nav" aria-label="عکس بعدی"><span data-icon="chevron-left"><svg aria-hidden="true" focusable="false"
+</svg></span></button><div id="imageStage" class="image-stage"><img id="dialogImage" alt="" draggable="false"><button id="imageMagnifier" type="button" aria-label="بزرگ‌نمایی عکس"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5M7 10.5h7M10.5 7v7"/></svg></button></div><button id="dialogNext" type="button" class="dialog-nav" aria-label="عکس بعدی"><span data-icon="chevron-left"><svg aria-hidden="true" focusable="false"
   class="lucide lucide-chevron-left"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
@@ -723,7 +725,65 @@ if(!scrollObserver)window.addEventListener('scroll',()=>{
   if($('scrollSentinel').getBoundingClientRect().top<=window.innerHeight+500)queueMore();
 },{passive:true});
 
+let photoZoom=1,photoPan={x:0,y:0},photoDrag=null,ignorePhotoClick=false,galleryFullscreenOwned=false;
+function paintPhotoZoom(){
+  const stage=$('imageStage'),img=$('dialogImage');
+  const ratio=img.naturalWidth/img.naturalHeight||1;
+  const fitWidth=Math.min(stage.clientWidth,stage.clientHeight*ratio),fitHeight=fitWidth/ratio;
+  const maxX=Math.max(0,(fitWidth*photoZoom-stage.clientWidth)/2),maxY=Math.max(0,(fitHeight*photoZoom-stage.clientHeight)/2);
+  photoPan.x=Math.max(-maxX,Math.min(maxX,photoPan.x));photoPan.y=Math.max(-maxY,Math.min(maxY,photoPan.y));
+  img.style.transform='translate('+photoPan.x+'px,'+photoPan.y+'px) scale('+photoZoom+')';
+  stage.classList.toggle('is-zoomed',photoZoom>1);
+  $('zoomReset').textContent=fmt(Math.round(photoZoom*100))+'٪';
+  $('zoomIn').disabled=photoZoom>=4;$('zoomOut').disabled=photoZoom<=1;
+  $('imageMagnifier').setAttribute('aria-label',photoZoom>1?'بازگشت به اندازهٔ کامل عکس':'بزرگ‌نمایی عکس');
+  $('zoomHint').textContent=photoZoom>1?'برای دیدن جزئیات، عکس را بکشید · بازنشانی: ۰':'برای بزرگ‌نمایی روی عکس بزنید';
+}
+function resetPhotoZoom(){photoZoom=1;photoPan={x:0,y:0};photoDrag=null;ignorePhotoClick=false;$('imageStage').classList.remove('is-dragging');paintPhotoZoom()}
+function changePhotoZoom(value){photoZoom=Math.max(1,Math.min(4,value));if(photoZoom===1)photoPan={x:0,y:0};paintPhotoZoom()}
+function togglePhotoZoom(){changePhotoZoom(photoZoom>1?1:2)}
+function syncFullscreen(){
+  const active=galleryFullscreenOwned&&!!document.fullscreenElement||$('photoDialog').classList.contains('expanded-view');
+  $('galleryFullscreen').setAttribute('aria-pressed',String(active));
+  $('galleryFullscreen').querySelector('span').textContent=active?'خروج از تمام‌صفحه':'تمام‌صفحه';
+  paintPhotoZoom();
+}
+async function toggleGalleryFullscreen(){
+  const dialog=$('photoDialog');
+  if(galleryFullscreenOwned&&document.fullscreenElement){await document.exitFullscreen();return}
+  if(dialog.classList.contains('expanded-view')){dialog.classList.remove('expanded-view');syncFullscreen();return}
+  dialog.classList.add('expanded-view');
+  // A <dialog> cannot request native fullscreen; fullscreen its document and
+  // keep the modal in the top layer. Embedded/unsupported browsers keep the
+  // viewport-filling fallback with the same exit control.
+  try{if(!document.documentElement.requestFullscreen||document.fullscreenElement)throw Error('unsupported');galleryFullscreenOwned=true;await document.documentElement.requestFullscreen();}
+  catch{galleryFullscreenOwned=false;}
+  syncFullscreen();
+}
+$('zoomIn').addEventListener('click',()=>changePhotoZoom(photoZoom+.5));
+$('zoomOut').addEventListener('click',()=>changePhotoZoom(photoZoom-.5));
+$('zoomReset').addEventListener('click',resetPhotoZoom);
+$('imageMagnifier').addEventListener('click',e=>{e.stopPropagation();togglePhotoZoom()});
+$('galleryFullscreen').addEventListener('click',toggleGalleryFullscreen);
+$('dialogImage').addEventListener('load',paintPhotoZoom);
+window.addEventListener('resize',()=>{if(galleryAd)paintPhotoZoom()});
+document.addEventListener('fullscreenchange',()=>{if(galleryFullscreenOwned&&!document.fullscreenElement){galleryFullscreenOwned=false;$('photoDialog').classList.remove('expanded-view')}syncFullscreen()});
+$('imageStage').addEventListener('pointerdown',e=>{
+  if(photoZoom<=1||e.target.closest('button')||e.button!==0)return;
+  photoDrag={id:e.pointerId,x:e.clientX,y:e.clientY,startX:photoPan.x,startY:photoPan.y,moved:false};
+  e.currentTarget.setPointerCapture(e.pointerId);e.currentTarget.classList.add('is-dragging');
+});
+$('imageStage').addEventListener('pointermove',e=>{
+  if(!photoDrag||photoDrag.id!==e.pointerId)return;
+  const dx=e.clientX-photoDrag.x,dy=e.clientY-photoDrag.y;
+  photoDrag.moved ||= Math.abs(dx)+Math.abs(dy)>5;photoPan={x:photoDrag.startX+dx,y:photoDrag.startY+dy};paintPhotoZoom();
+});
+function endPhotoDrag(){if(photoDrag)ignorePhotoClick=photoDrag.moved;photoDrag=null;$('imageStage').classList.remove('is-dragging')}
+$('imageStage').addEventListener('pointerup',endPhotoDrag);
+$('imageStage').addEventListener('pointercancel',endPhotoDrag);
+$('imageStage').addEventListener('click',e=>{if(e.target.closest('button'))return;if(ignorePhotoClick){ignorePhotoClick=false;return}togglePhotoZoom()});
 function paintGallery(){
+  resetPhotoZoom();
   if(!galleryAd)return;
   const thumbFocused=$('dialogThumbs').contains(document.activeElement);
   const ad=galleryAd;
@@ -755,9 +815,9 @@ $('cards').addEventListener('click',e=>{
 $('dialogClose').addEventListener('click',()=>$('photoDialog').close());
 $('dialogPrev').addEventListener('click',()=>movePhoto(-1));$('dialogNext').addEventListener('click',()=>movePhoto(1));
 $('dialogThumbs').addEventListener('click',e=>{const b=e.target.closest('[data-photo]');if(b){galleryIndex=Number(b.dataset.photo);paintGallery();$('dialogThumbs').querySelector(`[data-photo="${galleryIndex}"]`).focus()}});
-$('photoDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();movePhoto(e.key==='ArrowLeft'?1:-1)}});
+$('photoDialog').addEventListener('keydown',e=>{if(['+','=','-','0','f','F'].includes(e.key)){e.preventDefault();if(e.key==='0')resetPhotoZoom();else if(e.key==='f'||e.key==='F')toggleGalleryFullscreen();else changePhotoZoom(photoZoom+(e.key==='-'?-.5:.5));return}if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();movePhoto(e.key==='ArrowLeft'?1:-1)}});
 $('photoDialog').addEventListener('click',e=>{if(e.target===$('photoDialog')){const rect=$('photoDialog').getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)$('photoDialog').close()}});
-$('photoDialog').addEventListener('close',()=>{document.body.classList.remove('gallery-open');const key=galleryTrigger?.dataset.focusKey;const target=galleryTrigger?.isConnected?galleryTrigger:[...$('cards').querySelectorAll('[data-focus-key]')].find(e=>e.dataset.focusKey===key);(target||$('results')).focus({preventScroll:true});galleryAd=null});
+$('photoDialog').addEventListener('close',()=>{if(galleryFullscreenOwned&&document.fullscreenElement)document.exitFullscreen().catch(()=>{});galleryFullscreenOwned=false;$('photoDialog').classList.remove('expanded-view');resetPhotoZoom();syncFullscreen();document.body.classList.remove('gallery-open');const key=galleryTrigger?.dataset.focusKey;const target=galleryTrigger?.isConnected?galleryTrigger:[...$('cards').querySelectorAll('[data-focus-key]')].find(e=>e.dataset.focusKey===key);(target||$('results')).focus({preventScroll:true});galleryAd=null});
 $('dialogImage').addEventListener('error',()=>{$('dialogImage').alt='این عکس بارگذاری نشد؛ عکس بعدی یا آگهی اصلی را ببینید.'});
 
 async function loadListings(){
