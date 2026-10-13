@@ -42,6 +42,8 @@
 .quality-review.candidate{border-color:#dae3f5;background:#f4f7ff}.quality-review.candidate summary{color:#365292}.quality-review.candidate .quality-evidence{border-color:#dae3f5}.quality-review.candidate .review-section{color:#506183}
 .card-age,.card-date{display:block}.card-date{font-size:.6875rem}
 .distance-reference{display:block;color:var(--muted);font-size:.72rem;line-height:1.7;margin-top:3px}.carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:40px;border:1px solid #ffffffcc;border-radius:9px;background:#ffffffe8;box-shadow:0 2px 8px #16264220;font-size:28px;line-height:1;z-index:2}.carousel-prev{left:10px}.carousel-next{right:10px}.hero-wrap{touch-action:pan-y}.condition-score{margin-top:12px;border:1px solid #dfe5f0;border-radius:10px;background:#f8faff;overflow:hidden}.condition-score summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:10px 12px;list-style:none;font-size:.8125rem}.condition-score summary b{font-size:1.05rem;color:var(--accent)}.condition-score summary small{font-size:.75rem;color:var(--muted);font-weight:500}.score-track{height:4px;background:#e4eaf5;direction:ltr}.score-track i{display:block;height:100%;background:#5f83c4}.score-details{padding:4px 12px 10px;font-size:.8125rem;line-height:1.9;color:var(--muted)}.score-details p{margin:6px 0}.score-details ul{padding-inline-start:18px}.cards.hide-gallery .carousel-prev,.cards.hide-gallery .carousel-next{display:none}@media(max-width:600px){.cards.is-list .carousel-prev,.cards.is-list .carousel-next{width:25px;height:32px}.cards.is-list .carousel-prev{left:3px}.cards.is-list .carousel-next{right:3px}}
+
+#moreResults{position:relative;flex-wrap:wrap;min-height:70px}#scrollSentinel{position:absolute;inset-block-end:0;width:1px;height:1px;pointer-events:none}
 </style>
 </head>
 <body>
@@ -463,39 +465,13 @@
         <label for="viewMode">حالت نمایش<select id="viewMode"><option value="grid">شبکه‌ای</option><option value="list">فهرستی</option></select></label>
         <label for="columns">تعداد در هر ردیف<select id="columns"><option value="auto">خودکار</option><option value="2">۲ کالا</option><option value="3">۳ کالا</option><option value="4">۴ کالا</option></select></label>
         <label for="density">اندازهٔ کارت<select id="density"><option value="compact">فشرده</option><option value="normal">معمولی</option><option value="roomy">بزرگ</option></select></label>
-        <label for="pageSize">تعداد در صفحه<select id="pageSize"><option value="24">۲۴ مورد</option><option value="48">۴۸ مورد</option><option value="96">۹۶ مورد</option></select></label>
+        <label for="pageSize">تعداد در هر بار نمایش<select id="pageSize"><option value="24">۲۴ مورد</option><option value="48">۴۸ مورد</option><option value="96">۹۶ مورد</option></select></label>
         <label class="toggle" for="showDescription"><input id="showDescription" type="checkbox" checked><span>توضیحات</span></label>
         <label class="toggle" for="showGallery"><input id="showGallery" type="checkbox" checked><span>دکمه‌های ورق‌زدن عکس</span></label>
         <button id="resetView" type="button" class="text-button">بازنشانی نمایش</button>
       </div>
       <div class="cards" id="cards" aria-busy="true"></div>
-      <nav class="pagination" aria-label="صفحه‌بندی نتایج"><button id="prevPage" type="button"><span data-icon="chevron-right"><svg aria-hidden="true" focusable="false"
-  class="lucide lucide-chevron-right"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="m9 18 6-6-6-6" />
-</svg></span>قبلی</button><span id="pageInfo"></span><button id="nextPage" type="button">بعدی<span data-icon="chevron-left"><svg aria-hidden="true" focusable="false"
-  class="lucide lucide-chevron-left"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="m15 18-6-6 6-6" />
-</svg></span></button></nav>
+      <div class="pagination" id="moreResults"><span id="pageInfo" role="status" aria-live="polite"></span><button id="loadMore" type="button">نمایش آگهی‌های بیشتر</button><span id="scrollSentinel" aria-hidden="true"></span></div>
     </section>
     <details class="note"><summary><span data-icon="info"><svg aria-hidden="true" focusable="false"
   class="lucide lucide-info"
@@ -581,7 +557,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const icon=name=>`<span data-icon="${name}">${icons[name]||''}</span>`;
 const normalize=s=>String(s??'').replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/[\u200c\u200e\u200f]/g,' ').replace(/\s+/g,' ').trim();
 const defaults={mode:'grid',cols:'auto',density:'normal',pageSize:24,description:true,gallery:true};
-let prefs={...defaults},ads=[],loaded=false,loadFailed=false,activeCategory='',currentPage=1,totalResults=0;
+let prefs={...defaults},ads=[],loaded=false,loadFailed=false,activeCategory='',visibleCount=prefs.pageSize,totalResults=0;
 let sourceStatus=null;
 const cardPhotos=new Map();
 let lastFilterSignature='',lastMarkup='',loading=false,galleryAd=null,galleryIndex=0,galleryTrigger=null;
@@ -594,6 +570,8 @@ if(!['auto','2','3','4'].includes(prefs.cols))prefs.cols=defaults.cols;
 if(!['compact','normal','roomy'].includes(prefs.density))prefs.density=defaults.density;
 if(![24,48,96].includes(prefs.pageSize))prefs.pageSize=defaults.pageSize;
 for(const key of ['description','gallery'])if(typeof prefs[key]!=='boolean')prefs[key]=defaults[key];
+visibleCount=prefs.pageSize;
+let renderedIds=[],moreFrame=null;
 const tabs=[...document.querySelectorAll('.tab')];
 const filterIds=['q','max','distance','seats','condition','kind','chairs','quality'];
 const filterDefaults={q:'',max:'15',distance:'',seats:'0',condition:'',kind:'',chairs:'',quality:''};
@@ -660,10 +638,10 @@ function chips(){
   const markup=active.length?active.map(id=>`<button type="button" class="filter-chip" data-clear="${id}" aria-label="حذف فیلتر ${esc(labels[id])}">${esc(labels[id])}${icon('x')}</button>`).join(''):'<span class="filter-hint">۱ تا ۱۵ میلیون تومان · ۲۴ ساعت اخیر · فرش و گلیم بزرگسال، ۴ متری به بالا</span>';
   if($('activeFilters').innerHTML!==markup)$('activeFilters').innerHTML=markup;
 }
-function render(){
+function render(append=false){
   const now=Date.now(),q=normalize($('q').value).toLowerCase();
   const signature=[activeCategory,...filterIds.map(id=>$(id).value),$('sort').value].join('|');
-  if(signature!==lastFilterSignature){currentPage=1;lastFilterSignature=signature}
+  if(signature!==lastFilterSignature){visibleCount=prefs.pageSize;lastFilterSignature=signature}
   const valid=ads.filter(a=>a.expiresAt>now);
   document.querySelectorAll('[data-count]').forEach(el=>{el.textContent=fmt(valid.filter(a=>!el.dataset.count||a.category===el.dataset.count).length)});
   let rows=valid.filter(a=>(!activeCategory||a.category===activeCategory)&&(!q||normalize([a.title,a.area,a.desc].join(' ')).toLowerCase().includes(q))&&a.price<=Number($('max').value)*1e6&&(!$('distance').value||(Number.isFinite(a.distanceKm)&&a.distanceKm<=Number($('distance').value)))&&(!Number($('seats').value)||a.seats>=Number($('seats').value))&&(!$('condition').value||a.condition===$('condition').value)&&(!$('kind').value||a.kind===$('kind').value)&&(!$('chairs').value||a.chairs===$('chairs').value));
@@ -672,23 +650,31 @@ function render(){
   const sorts={quality:(a,b)=>(b.conditionAssessment?.score||0)-(a.conditionAssessment?.score||0)||tie(a,b),priceAsc:(a,b)=>a.price-b.price||tie(a,b),priceDesc:(a,b)=>b.price-a.price||tie(a,b),distance:(a,b)=>(a.distanceKm??Infinity)-(b.distanceKm??Infinity)||a.price-b.price||tie(a,b),seats:(a,b)=>(b.seats||0)-(a.seats||0)||a.price-b.price||tie(a,b)};
   rows.sort(sorts[$('sort').value]||sorts.priceAsc);
   totalResults=rows.length;
-  const pages=Math.max(1,Math.ceil(totalResults/prefs.pageSize));currentPage=Math.min(currentPage,pages);
+  visibleCount=Math.max(prefs.pageSize,Math.min(visibleCount,totalResults));
   $('count').textContent=fmt(totalResults)+' آگهی';
   $('resultTitle').textContent=activeCategory||'همهٔ کالاها';
   const root=$('cards');root.setAttribute('aria-busy','false');
-  const markup=rows.length?rows.slice((currentPage-1)*prefs.pageSize,currentPage*prefs.pageSize).map(ad=>card(ad,now)).join(''):emptyState();
-  if(markup!==lastMarkup){
+  const visible=rows.slice(0,visibleCount);
+  const markup=rows.length?visible.map(ad=>card(ad,now)).join(''):emptyState();
+  const canAppend=append===true&&renderedIds.length>0&&renderedIds.every((id,i)=>visible[i]?.id===id);
+  if(canAppend){
+    root.insertAdjacentHTML('beforeend',visible.slice(renderedIds.length).map(ad=>card(ad,now)).join(''));
+    lastMarkup=markup;
+  }else if(markup!==lastMarkup){
     const focusKey=root.contains(document.activeElement)?document.activeElement.dataset.focusKey:null;
     const open=new Set([...root.querySelectorAll('details[open]')].map(d=>d.closest('.card').dataset.id+'-'+d.className));
     root.innerHTML=markup;lastMarkup=markup;
     root.querySelectorAll('details').forEach(d=>{d.open=open.has(d.closest('.card').dataset.id+'-'+d.className)});
     if(focusKey){const focus=[...root.querySelectorAll('[data-focus-key]')].find(e=>e.dataset.focusKey===focusKey);(focus||$('results')).focus({preventScroll:true})}
   }
+  renderedIds=visible.map(ad=>ad.id);
   root.classList.toggle('is-list',prefs.mode==='list');root.classList.toggle('hide-gallery',!prefs.gallery);root.classList.toggle('hide-description',!prefs.description);root.dataset.density=prefs.density;
   if(prefs.cols==='auto')root.style.removeProperty('--grid-cols');else root.style.setProperty('--grid-cols',prefs.cols);
-  const from=totalResults?(currentPage-1)*prefs.pageSize+1:0,to=Math.min(currentPage*prefs.pageSize,totalResults);
-  $('pageInfo').textContent=fmt(from)+' تا '+fmt(to)+' از '+fmt(totalResults);
-  $('prevPage').disabled=currentPage<=1;$('nextPage').disabled=currentPage>=pages;
+  const shown=visible.length,hasMore=shown<totalResults;
+  $('pageInfo').textContent='نمایش '+fmt(shown)+' از '+fmt(totalResults)+' آگهی'+(!hasMore&&shown?' · به انتهای فهرست رسیدید':'');
+  $('moreResults').hidden=!shown;
+  $('loadMore').hidden=!hasMore;
+  if(scrollObserver){scrollObserver.disconnect();if(hasMore)scrollObserver.observe($('scrollSentinel'));}
   syncControls();chips();
 }
 function selectTab(tab,focus=false){
@@ -717,11 +703,25 @@ $('activeFilters').addEventListener('click',e=>{const b=e.target.closest('[data-
 $('viewSettingsButton').addEventListener('click',()=>{const expanded=$('viewSettings').hidden;$('viewSettings').hidden=!expanded;$('viewSettingsButton').setAttribute('aria-expanded',String(expanded))});
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{prefs.mode=b.dataset.mode;savePrefs();render()}));
 for(const [id,key] of [['viewMode','mode'],['columns','cols'],['density','density'],['pageSize','pageSize'],['showDescription','description'],['showGallery','gallery']]){
-  $(id).addEventListener('change',e=>{prefs[key]=e.target.type==='checkbox'?e.target.checked:id==='pageSize'?Number(e.target.value):e.target.value;if(id==='pageSize')currentPage=1;savePrefs();render()});
+  $(id).addEventListener('change',e=>{prefs[key]=e.target.type==='checkbox'?e.target.checked:id==='pageSize'?Number(e.target.value):e.target.value;if(id==='pageSize')visibleCount=prefs.pageSize;savePrefs();render()});
 }
-$('resetView').addEventListener('click',()=>{prefs={...defaults};currentPage=1;savePrefs();render()});
-function pageStep(step){currentPage+=step;render();$('results').focus({preventScroll:true});$('results').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}
-$('prevPage').addEventListener('click',()=>pageStep(-1));$('nextPage').addEventListener('click',()=>pageStep(1));
+$('resetView').addEventListener('click',()=>{prefs={...defaults};visibleCount=prefs.pageSize;savePrefs();render()});
+function showMore(){
+  if(!loaded||visibleCount>=totalResults)return;
+  visibleCount+=prefs.pageSize;render(true);
+}
+function queueMore(){
+  if(moreFrame!==null||document.hidden||galleryAd||!loaded||visibleCount>=totalResults)return;
+  const signature=lastFilterSignature;
+  moreFrame=requestAnimationFrame(()=>{moreFrame=null;if(signature===lastFilterSignature&&!document.hidden&&!galleryAd)showMore()});
+}
+const scrollObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>{
+  if(entries.some(entry=>entry.isIntersecting))queueMore();
+},{rootMargin:'500px 0px'}):null;
+$('loadMore').addEventListener('click',showMore);
+if(!scrollObserver)window.addEventListener('scroll',()=>{
+  if($('scrollSentinel').getBoundingClientRect().top<=window.innerHeight+500)queueMore();
+},{passive:true});
 
 function paintGallery(){
   if(!galleryAd)return;
@@ -782,7 +782,7 @@ async function loadListings(){
 }
 syncControls();chips();
 $('cards').innerHTML=Array.from({length:6},()=>'<article class="card skeleton" aria-hidden="true"><div class="hero-wrap"></div><div class="card-main"><div class="skeleton-line title"></div><div class="skeleton-line price"></div><div class="skeleton-line short"></div><div class="skeleton-line"></div></div></article>').join('');
-$('prevPage').disabled=true;$('nextPage').disabled=true;
+$('moreResults').hidden=true;
 loadListings();setInterval(()=>{if(loaded)render();loadListings()},60000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(loaded)render();loadListings()}});
 </script>
