@@ -34,6 +34,8 @@ const cover=/رو\s*مبلی/u;
 // gaNH08UZ: its 15 million form price buys only the 2-metre rug; the
 // adult-sized 4/9-metre rugs cost 25/45 million according to the description.
 const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
+// All three gallery photos show shop display refrigerators and a pickle counter.
+excludedIds.add('gaOfGnqD');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){

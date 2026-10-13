@@ -2461,5 +2461,53 @@
     "precision": "reference",
     "source": "https://www.openstreetmap.org/node/11204334330",
     "display_name": "بستنی نعمت خانی آباد, تختی, ناحیه ۴, منطقه ۱۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 11987-65116, ایران"
+  },
+  "قلمستان": {
+    "lat": 35.6711738,
+    "lon": 51.3980348,
+    "name": "قلمستان",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867001"
+  },
+  "کوهک": {
+    "lat": 35.7332074,
+    "lon": 51.2440935,
+    "name": "کوهک",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4534541170"
+  },
+  "شهرک پاسداران": {
+    "lat": 35.695091,
+    "lon": 51.2626946,
+    "name": "شهرک پاسداران",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5758690099"
+  },
+  "امام زاده عبدالله": {
+    "lat": 35.6778817,
+    "lon": 51.3492327,
+    "name": "امام زاده عبدالله",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867000"
+  },
+  "جمهوری": {
+    "lat": 35.6970345,
+    "lon": 51.3820294,
+    "name": "جمهوری",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866619"
+  },
+  "زعفرانیه": {
+    "lat": 35.8076813,
+    "lon": 51.4163789,
+    "name": "زعفرانیه",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867580"
   }
 }
