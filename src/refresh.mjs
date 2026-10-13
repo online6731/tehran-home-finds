@@ -6,6 +6,7 @@ import {listingDistance} from './locations.mjs';
 import {conditionScore} from './condition-score.mjs';
 import {attachPhotoAssessment} from './photo-assessment.mjs';
 import {matchesAdultRug} from './rugs.mjs';
+import {matchesAdultProduct} from './audience.mjs';
 const coordinates=JSON.parse(fs.readFileSync(new URL('./area_coordinates.json',import.meta.url),'utf8'));
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
@@ -36,7 +37,7 @@ const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
-  return ad&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
+  return ad&&matchesAdultProduct(ad.title,ad.desc,ad.productFields)&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
     ['کارکرده','در حد نو'].includes(ad.condition)&&isTehranCityListing(ad)&&
     (ad.category!==categories['bed-service']||matchesDoubleBed(ad.title,ad.desc,ad.productFields))&&
@@ -66,7 +67,7 @@ async function writeSnapshot(){
   const withPhotos=await Promise.all(reviewed.map(ad=>attachPhotoAssessment(ad,photoById.get(ad.id))));
   // Apply visual audience exclusions only after fingerprint validation, so a
   // changed description/gallery cannot inherit an unrelated photo assessment.
-  const ads=withPhotos.filter(ad=>!['فرش','گلیم و جاجیم'].includes(ad.category)||matchesAdultRug(ad.title,ad.desc,ad.productFields,ad.photoAssessment)).map(ad=>({...ad,conditionAssessment:conditionScore(ad)}));
+  const ads=withPhotos.filter(ad=>matchesAdultProduct(ad.title,ad.desc,ad.productFields,ad.photoAssessment)).filter(ad=>!['فرش','گلیم و جاجیم'].includes(ad.category)||matchesAdultRug(ad.title,ad.desc,ad.productFields,ad.photoAssessment)).map(ad=>({...ad,conditionAssessment:conditionScore(ad)}));
   const partial=status.some(c=>c.coverage!=='complete-24h-source'||c.error);
   const checkedAt=status.every(c=>c.checkedAt)?Math.min(...status.map(c=>c.checkedAt)):null;
   let message='آخرین دریافت: '+(finishedAt?new Intl.DateTimeFormat('fa-IR',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(finishedAt):'هنوز انجام نشده');
@@ -99,6 +100,6 @@ if(!snapshotOnly){
 }
 const result=await writeSnapshot();
 fs.mkdirSync(new URL('../docs/update-plan/',import.meta.url),{recursive:true});
-fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دسته‌ها: ${Object.values(categories).join('، ')}.</p><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. میز غذاخوری حداقل شش نفره؛ تخت فقط دونفره (تک‌نفره، نوجوان، کودک و دوطبقه حذف می‌شوند)؛ فرش و گلیم فقط طرح بزرگسال و اندازهٔ اسمی حداقل ۴ متری؛ ابعاد اندازه‌گیری‌شده حداقل ۴ مترمربع و کناره با طول و عرض مشخص. طرح کودک/نوجوان، اندازهٔ کوچک‌تر و اندازهٔ تأییدنشده حذف می‌شوند؛ گاز فقط رومیزی یا صفحه‌ای. لوازم یدکی، خدمات تعمیر و کالاهای نامرتبط پذیرفته نمی‌شوند. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. فاصله بر پایهٔ نقشهٔ آگهی یا مرکز/نقطهٔ مرجع مستند محله با ذکر مبنا محاسبه می‌شود. گالری در عکس اصلی ورق می‌خورد. هر محصول امتیاز وضعیت تخمینی و شاخص فاصله با نو دارد؛ امتیاز توضیح‌محور از ارزیابی مستند عکس‌ها جداست و شاخص، درصد واقعی استهلاک نیست. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است؛ سلامت فنی وسایل برقی و گاز با عکس تأیید نمی‌شود.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>`);
+fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دسته‌ها: ${Object.values(categories).join('، ')}.</p><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. در تمام دسته‌ها، آگهی‌های مرتبط با کودک، نوجوان، نوزاد و سیسمونی و طرح‌های کودکانه حذف می‌شوند؛ این قاعده شامل آگهی‌های چندکالایی و لوازم برقی نیز هست. میز غذاخوری حداقل شش نفره؛ تخت فقط دونفره (تک‌نفره، نوجوان، کودک و دوطبقه حذف می‌شوند)؛ فرش و گلیم فقط طرح بزرگسال و اندازهٔ اسمی حداقل ۴ متری؛ ابعاد اندازه‌گیری‌شده حداقل ۴ مترمربع و کناره با طول و عرض مشخص. طرح کودک/نوجوان، اندازهٔ کوچک‌تر و اندازهٔ تأییدنشده حذف می‌شوند؛ گاز فقط رومیزی یا صفحه‌ای. لوازم یدکی، خدمات تعمیر و کالاهای نامرتبط پذیرفته نمی‌شوند. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. فاصله بر پایهٔ نقشهٔ آگهی یا مرکز/نقطهٔ مرجع مستند محله با ذکر مبنا محاسبه می‌شود. گالری در عکس اصلی ورق می‌خورد. هر محصول امتیاز وضعیت تخمینی و شاخص فاصله با نو دارد؛ امتیاز توضیح‌محور از ارزیابی مستند عکس‌ها جداست و شاخص، درصد واقعی استهلاک نیست. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است؛ سلامت فنی وسایل برقی و گاز با عکس تأیید نمی‌شود.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>`);
 console.log(JSON.stringify({ads:result.ads.length,partial:result.sourceStatus.partial,hadFailures}));
 if(process.env.GITHUB_OUTPUT)fs.appendFileSync(process.env.GITHUB_OUTPUT,'source_failed='+hadFailures+'\n');

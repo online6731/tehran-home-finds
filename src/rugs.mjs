@@ -1,3 +1,4 @@
+import {matchesAdultProduct} from './audience.mjs';
 const normalize=value=>String(value||'').replace(/[۰-۹٠-٩]/g,c=>String('۰۱۲۳۴۵۶۷۸۹'.includes(c)?'۰۱۲۳۴۵۶۷۸۹'.indexOf(c):'٠١٢٣٤٥٦٧٨٩'.indexOf(c))).replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[\u200c\u200f]/g,' ').replace(/(\d)[/٫_،](\d)/g,'$1.$2').replace(/\s+/g,' ').trim();
 const words={'یک':1,'دو':2,'سه':3,'چهار':4,'پنج':5,'شش':6,'هفت':7,'هشت':8,'نه':9,'دوازده':12};
 const numbers=value=>normalize(value).replace(/(یک|دو|سه|چهار|پنج|شش|هفت|هشت|نه|دوازده)\s*(?=متر|در|[×x*])/gu,(_,word)=>words[word]);
@@ -21,9 +22,8 @@ function measuredSize(value){
   return length&&width?Number(length[1])*(length[2].startsWith('سانتی')?.01:1)*Number(width[1])*(width[2].startsWith('سانتی')?.01:1):null;
 }
 export function adultRugInfo(title,desc='',fields={},photoAssessment=null){
-  const name=normalize(title),text=normalize(title+' '+desc);
-  const child=/کودک|نوجوان|نو\s*جوان|بچه|نوزاد|سیسمونی|دختر(?:انه)?|پسر(?:انه)?|عروسک|کارتون|انیمیشن|(?:هلو\s*)?کیتی|میکی|مینی\s*موس|مینیون|باب\s*اسفنجی|السا|فروزن|آنا(?:\s|$)|توییتی|تویتی|اسپایدر|اسپایدرمن|مرد\s*عنکبوتی|بتمن|بن\s*تن|مک\s*کوئین|مکویین|توم\s*و\s*جری|تام\s*و\s*جری|پرنسس|شاهزاده\s*خانم|اسنوپی|پو\s*خرسه|طرح\s*(?:ماشین|حیوانات\s*کارتونی)/u;
-  if(child.test(text)||photoAssessment?.audience==='child')return {accepted:false,reason:'child-or-teen-design'};
+  const name=normalize(title);
+  if(!matchesAdultProduct(title,desc,fields,photoAssessment))return {accepted:false,reason:'child-or-teen-design'};
   if(/تابلو\s*فرش|پادری|رو\s*فرشی|فرش\s*راه\s*پله/u.test(name))return {accepted:false,reason:'not-floor-rug'};
   const field=fields['ابعاد']||String(desc).match(/ابعاد:\s*([^|\n]+)/u)?.[1]||'';
   // For runners, “4 metres” usually specifies length, not area. Require width.

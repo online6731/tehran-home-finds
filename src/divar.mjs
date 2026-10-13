@@ -1,6 +1,7 @@
 import {applianceCategories,matchesAppliance} from './appliances.mjs';
 import {listingDistance,sourceMapPoint} from './locations.mjs';
 import {matchesAdultRug} from './rugs.mjs';
+import {matchesAdultProduct} from './audience.mjs';
 export {applianceCategories,matchesAppliance} from './appliances.mjs';
 export const categories = {
   furniture:'مبل و کاناپه', 'dining-table':'میز غذاخوری', 'bed-service':'تخت و سرویس خواب',
@@ -216,7 +217,7 @@ export function parsePost(state,slug,points,now=Date.now()){
   if(!posted||posted<=now-86400000||posted>now+300000)return null;
   const title=p.seo?.webInfo?.title||'',area=p.seo?.webInfo?.district_persian||'نامشخص';
   const desc=(sections.DESCRIPTION||[]).filter(w=>w.dto?.widget_type==='DESCRIPTION_ROW').map(w=>w.dto.data.text||'').join('\n');
-  if(!matchesHomeCategory(slug,title,desc))return null;
+  if(!matchesHomeCategory(slug,title,desc)||!matchesAdultProduct(title,desc,values))return null;
   if(['carpet','rugs-woolen-cloth'].includes(slug)&&!matchesAdultRug(title,desc,values))return null;
   if(!matchesAppliance(slug,title,values,desc))return null;
   if(!isTehranCityListing({...locationEvidence(p),area,title,desc}))return null;
