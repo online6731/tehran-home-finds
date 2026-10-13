@@ -146,7 +146,8 @@ function locationText(value){
 export function matchesDiningTable(title,desc,seats){
   const text=locationText([title,desc].join(' '));
   if(!Number.isFinite(seats)||seats<6||/بدون\s*میز|فقط\s*(?:[۰-۹٠-٩0-9]+\s*(?:عدد\s*)?)?صندلی/u.test(text))return false;
-  return /میز|ست\s*.*(?:ناهار\s*خوری|نهار\s*خوری|غذا\s*خوری)/u.test(text);
+  // "تمیز" in a chairs-only description is not evidence of a table.
+  return /(?:^|[^\p{L}])میز|ست\s*.*(?:ناهار\s*خوری|نهار\s*خوری|غذا\s*خوری)/u.test(text);
 }
 export function matchesFurniture(title){
   if(/^(?:فروش\s*)?(?:کاور|روکش)\s*(?:مبل|کاناپه)/u.test(locationText(title)))return false;

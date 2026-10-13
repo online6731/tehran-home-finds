@@ -2346,5 +2346,120 @@
     "precision": "reference",
     "source": "https://www.openstreetmap.org/node/7779251585",
     "display_name": "ایستگاه ظفر, شریعتی, حسینیه ارشاد - قبا, ناحیه ۵, منطقه ۳ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 19496-13843, ایران"
+  },
+  "مطهری": {
+    "lat": 35.649898,
+    "lon": 51.4414624,
+    "name": "مطهری",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866603"
+  },
+  "تهرانسر غربی": {
+    "lat": 35.6922667,
+    "lon": 51.2478056,
+    "name": "تهرانسر غربی",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5758690097"
+  },
+  "آذربایجان": {
+    "lat": 35.6917364,
+    "lon": 51.3979422,
+    "name": "آذربایجان",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866844"
+  },
+  "جردن": {
+    "lat": 35.7810654,
+    "lon": 51.4163299,
+    "name": "جردن - پارک ملت",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867676",
+    "alias": "جردن"
+  },
+  "فردوسی": {
+    "lat": 35.6936206,
+    "lon": 51.4181347,
+    "name": "فردوسی",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867545"
+  },
+  "شهرک بعثت": {
+    "lat": 35.6382089,
+    "lon": 51.4307583,
+    "name": "شهرک بعثت",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867578"
+  },
+  "دهکده المپیک": {
+    "lat": 35.7668514,
+    "lon": 51.2524869,
+    "name": "دهکده المپیک",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867613"
+  },
+  "حصار بوعلی": {
+    "lat": 35.8051681,
+    "lon": 51.4680166,
+    "name": "حصار بوعلی",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4534746767"
+  },
+  "لویزان": {
+    "lat": 35.7770552,
+    "lon": 51.5021499,
+    "name": "لویزان - شیان",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867525",
+    "alias": "لویزان"
+  },
+  "سازمان آب": {
+    "lat": 35.7390313,
+    "lon": 51.2892731,
+    "name": "سازمان آب",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867579"
+  },
+  "جی": {
+    "lat": 35.6757456,
+    "lon": 51.3570027,
+    "name": "جی",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637865681"
+  },
+  "شهرک آزادی": {
+    "lat": 35.7115332,
+    "lon": 51.2737387,
+    "name": "شهرک آزادی",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867691"
+  },
+  "کن": {
+    "lat": 35.7632162,
+    "lon": 51.2790505,
+    "name": "کن",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867283"
+  },
+  "خانی‌آباد": {
+    "lat": 35.6605993,
+    "lon": 51.4119888,
+    "name": "بستنی نعمت خانی آباد",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/node/11204334330",
+    "display_name": "بستنی نعمت خانی آباد, تختی, ناحیه ۴, منطقه ۱۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 11987-65116, ایران"
   }
 }

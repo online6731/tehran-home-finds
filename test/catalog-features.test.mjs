@@ -1,10 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {matchesDoubleBed} from '../src/divar.mjs';
+import {matchesDoubleBed,matchesDiningTable} from '../src/divar.mjs';
+import {matchesAppliance} from '../src/appliances.mjs';
 import {conditionScore} from '../src/condition-score.mjs';
 import {listingDistance,sourceMapPoint} from '../src/locations.mjs';
 import {attachPhotoAssessment} from '../src/photo-assessment.mjs';
 import {reviewFingerprint} from '../src/quality.mjs';
+test('Clean chairs and refrigerator stands are not complete requested products',()=>{
+  assert(!matchesDiningTable('صندلی ناهارخوری','۶عدد سالم وتمیز درحد نو',6));
+  assert(matchesDiningTable('میز ناهارخوری','شش نفره سالم و تمیز',6));
+  assert(!matchesAppliance('refrigerator-freezer','وسایل یخچال',{},'زیر یخچالی سالم'));
+  assert(matchesAppliance('refrigerator-freezer','یخچال فریزر',{},'همراه وسایل یخچال'));
+});
 test('Only double beds enter the catalog even when a source form is mislabelled',()=>{
   assert(matchesDoubleBed('تخت دونفره','نوع کالا: تخت دو نفره'));
   assert(matchesDoubleBed('سرویس خواب','',{'نوع کالا':'سرویس خواب دو نفره'}));
