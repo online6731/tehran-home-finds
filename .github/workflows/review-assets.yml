@@ -1,0 +1,31 @@
+name: Download selected listing review photos
+on:
+  workflow_dispatch:
+    inputs:
+      listing_ids:
+        description: 'Comma-separated catalog listing IDs (maximum 10)'
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download selected public galleries
+        env:
+          LISTING_IDS: ${{ inputs.listing_ids }}
+        run: node src/review-assets.mjs
+      - name: Upload review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-assets
+          path: artifacts/review-assets/
+          if-no-files-found: warn
+          retention-days: 3

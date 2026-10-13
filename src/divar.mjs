@@ -152,10 +152,15 @@ export function matchesFurniture(title){
 }
 export function matchesHomeCategory(slug,title,desc=''){
   const name=locationText(title),text=locationText([title,desc].join(' '));
+  // A buyer advertisement is outside every household product category.
+  if(/^خریدار/u.test(name))return false;
+  if(slug==='dining-table'&&/^(?:فروش\s*)?شیشه\s*میز/u.test(name))return false;
+  if(slug==='bed-service'&&/^(?:فروش\s*)?(?:یراق|جک)(?:\s|$).*تخت/u.test(name))return false;
   if(slug==='dining-table'&&/میز\s*(?:کار|اداری|جلسات|کنفرانس)/u.test(name)&&!/(?:ناهار|نهار|غذا)\s*خوری/u.test(text))return false;
   if(slug==='bed-service'&&/تخت\s*(?:اپ[یی]?لا?سیون|اپلاسیون|ماساژ|معاینه|بیمارستانی|آرایشگاه)/u.test(text))return false;
   if(slug==='shoe-rack-drawer'&&/(?:تعدادی|فقط|چند\s*(?:عدد)?)\s*(?:درب|درهای?|کشوهای?)\s*کمد/u.test(text))return false;
   if(slug==='shoe-rack-drawer'&&/^(?:فروش\s*)?درب?\s*کمد/u.test(name))return false;
+  if(slug==='shoe-rack-drawer'&&/چوب\s*لباسی|جا\s*لباسی/u.test(name)&&!/کمد|جا\s*کفشی|دراور/u.test(name))return false;
   // A household entrance door can be mislabelled as a wardrobe in the form.
   if(slug==='shoe-rack-drawer'&&(/^(?:فروش\s*)?درب?\s*(?:خانه|منزل|ورودی|اتاق)/u.test(name)||/درب?\s*(?:چوبی\s*)?ورودی\s*(?:خانه|منزل)/u.test(text)))return false;
   if(slug==='furniture'){
