@@ -1,7 +1,11 @@
 import fs from 'node:fs';
 import {categories,collectHtmlCategory} from './source.mjs';
-import {isTehranCityListing,matchesAppliance,matchesDiningTable,matchesFurniture,matchesHomeCategory,diningChairs,storedPostingTime,preservePostingTime} from './divar.mjs';
+import {isTehranCityListing,matchesAppliance,matchesDiningTable,matchesFurniture,matchesHomeCategory,matchesDoubleBed,diningChairs,storedPostingTime,preservePostingTime} from './divar.mjs';
 import {attachReviews} from './quality.mjs';
+import {listingDistance} from './locations.mjs';
+import {conditionScore} from './condition-score.mjs';
+import {attachPhotoAssessment} from './photo-assessment.mjs';
+const coordinates=JSON.parse(fs.readFileSync(new URL('./area_coordinates.json',import.meta.url),'utf8'));
 
 const target=new URL('../docs/api/listings.json',import.meta.url);
 let prior={ads:[],categories:[]};
@@ -32,6 +36,7 @@ export function eligible(ad,time=now()){
   return ad&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
     ['کارکرده','در حد نو'].includes(ad.condition)&&isTehranCityListing(ad)&&
+    (ad.category!==categories['bed-service']||matchesDoubleBed(ad.title,ad.desc,ad.productFields))&&
     !outside.test([ad.area,ad.title,ad.desc].join(' '))&&
     (ad.category!==categories.furniture||matchesFurniture(ad.title))&&
     !(ad.category===categories.furniture&&cover.test(ad.title.replace(/\u200c/g,'')))&&
@@ -48,9 +53,14 @@ let finishedAt=prior.sourceStatus?.lastFinishedAt||null;
 let hadFailures=false;
 let reviews=[];
 try{reviews=JSON.parse(fs.readFileSync(new URL('../data/quality-reviews.json',import.meta.url),'utf8'));}catch{}
+let photoAssessments=[];
+try{photoAssessments=JSON.parse(fs.readFileSync(new URL('../data/photo-assessments.json',import.meta.url),'utf8'));}catch{}
+const photoById=new Map(photoAssessments.map(a=>[a.id,a]));
 async function writeSnapshot(){
   const status=Object.values(rows);
-  const ads=await attachReviews([...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,{...storedPostingTime(a),chairs:diningChairs(a.title,a.desc)}])).values()].sort((a,b)=>a.price-b.price),reviews);
+  const reviewed=await attachReviews([...new Map(status.flatMap(c=>c.ads).filter(a=>eligible(a)).map(a=>[a.id,{...storedPostingTime(a),...listingDistance(a,coordinates),chairs:diningChairs(a.title,a.desc)}])).values()].sort((a,b)=>a.price-b.price),reviews);
+  const withPhotos=await Promise.all(reviewed.map(ad=>attachPhotoAssessment(ad,photoById.get(ad.id))));
+  const ads=withPhotos.map(ad=>({...ad,conditionAssessment:conditionScore(ad)}));
   const partial=status.some(c=>c.coverage!=='complete-24h-source'||c.error);
   const checkedAt=status.every(c=>c.checkedAt)?Math.min(...status.map(c=>c.checkedAt)):null;
   let message='آخرین دریافت: '+(finishedAt?new Intl.DateTimeFormat('fa-IR',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(finishedAt):'هنوز انجام نشده');
@@ -83,6 +93,6 @@ if(!snapshotOnly){
 }
 const result=await writeSnapshot();
 fs.mkdirSync(new URL('../docs/update-plan/',import.meta.url),{recursive:true});
-fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دسته‌ها: ${Object.values(categories).join('، ')}.</p><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. میز غذاخوری حداقل شش نفره؛ گاز فقط رومیزی یا صفحه‌ای. لوازم یدکی، خدمات تعمیر و کالاهای نامرتبط پذیرفته نمی‌شوند. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است؛ سلامت فنی وسایل برقی و گاز با عکس تأیید نمی‌شود.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>`);
+fs.writeFileSync(new URL('../docs/update-plan/index.html',import.meta.url),`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>برنامهٔ دریافت آگهی</title><body><h1>برنامهٔ دریافت آگهی</h1><p>دسته‌ها: ${Object.values(categories).join('، ')}.</p><p>دریافت خودکار توسط GitHub Actions هر ۴ ساعت، فقط شهر تهران، کارکرده یا در حد نو، انتشار در ۲۴ ساعت اخیر، قیمت ۱ تا ۱۵ میلیون تومان، همهٔ عکس‌ها و فاصلهٔ هوایی تقریبی محله تا مترو هفت‌تیر. میز غذاخوری حداقل شش نفره؛ تخت فقط دونفره (تک‌نفره، نوجوان، کودک و دوطبقه حذف می‌شوند)؛ گاز فقط رومیزی یا صفحه‌ای. لوازم یدکی، خدمات تعمیر و کالاهای نامرتبط پذیرفته نمی‌شوند. ممکن است منبع دریافت را محدود کند؛ پوشش و خطاها در api/listings.json ثبت می‌شود. دادهٔ معتبر پیشین فقط تا زمان انقضا حفظ می‌شود. زمان‌بندی GitHub ممکن است تأخیر داشته باشد. فاصله بر پایهٔ نقشهٔ آگهی یا مرکز/نقطهٔ مرجع مستند محله با ذکر مبنا محاسبه می‌شود. گالری در عکس اصلی ورق می‌خورد. هر محصول امتیاز وضعیت تخمینی و شاخص فاصله با نو دارد؛ امتیاز توضیح‌محور از ارزیابی مستند عکس‌ها جداست و شاخص، درصد واقعی استهلاک نیست. تگ کیفیت تنها با بررسی مستند عکس‌ها مجاز است؛ سلامت فنی وسایل برقی و گاز با عکس تأیید نمی‌شود.</p><p><a href="../">فهرست آگهی‌ها</a></p></body></html>`);
 console.log(JSON.stringify({ads:result.ads.length,partial:result.sourceStatus.partial,hadFailures}));
 if(process.env.GITHUB_OUTPUT)fs.appendFileSync(process.env.GITHUB_OUTPUT,'source_failed='+hadFailures+'\n');

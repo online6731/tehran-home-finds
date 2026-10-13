@@ -1,300 +1,254 @@
 {
+  "آبشار تهران (دریاچه)": {
+    "lat": 35.7613561,
+    "lon": 51.2274338,
+    "name": "آبشار تهران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4534095681",
+    "precision": "neighbourhood"
+  },
+  "آرارات": {
+    "lat": 35.7740052,
+    "lon": 51.3986464,
+    "name": "آرارات",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867548",
+    "precision": "neighbourhood"
+  },
+  "آرژانتین": {
+    "lat": 35.7370943,
+    "lon": 51.4154114,
+    "name": "میدان آرژانتین",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/444252865",
+    "display_name": "میدان آرژانتین, ناحیه ۵, منطقه ۶ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "آزادشهر": {
+    "lat": 35.7350461,
+    "lon": 51.1903299,
+    "name": "سرو آزاد",
+    "type": "administrative",
+    "osm_id": 8321770,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321770",
+    "precision": "neighbourhood",
+    "display_name": "سرو آزاد, ناحیه ۳, منطقه ۲۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "آسمان": {
+    "lat": 35.7781358,
+    "lon": 51.3530071,
+    "name": "آسمان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866618",
+    "precision": "neighbourhood"
+  },
+  "آشتیانی": {
+    "lat": 35.7163745,
+    "lon": 51.5050552,
+    "name": "آشتیانی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866587",
+    "precision": "neighbourhood"
+  },
+  "آهنگ": {
+    "lat": 35.6634373,
+    "lon": 51.476794,
+    "name": "آهنگ",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866926",
+    "precision": "neighbourhood"
+  },
+  "آهنگران (سراسیاب دولاب)": {
+    "lat": 35.6768013,
+    "lon": 51.4597555,
+    "name": "آهنگران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867693",
+    "precision": "neighbourhood"
+  },
+  "ائمه اطهار": {
+    "lat": 35.6779103,
+    "lon": 51.4842671,
+    "precision": "sampled-map-point",
+    "name": "ائمه اطهار",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaNbeOUb"
+  },
+  "اباذر": {
+    "lat": 35.7308741,
+    "lon": 51.3302859,
+    "name": "اباذر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866921",
+    "precision": "neighbourhood"
+  },
+  "ابوذر": {
+    "lat": 35.6811427,
+    "lon": 51.4897808,
+    "name": "ابوذر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866012",
+    "precision": "neighbourhood"
+  },
+  "اتابک": {
+    "lat": 35.6480563,
+    "lon": 51.462443,
+    "name": "اتابک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867532",
+    "precision": "neighbourhood"
+  },
   "اختیاریه": {
     "lat": 35.7863456,
     "lon": 51.4611775,
     "name": "اختیاریه",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321848,
-    "score": 26
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867680",
+    "precision": "neighbourhood"
+  },
+  "ارامنه": {
+    "lat": 35.7203155,
+    "lon": 51.4566669,
+    "name": "ارامنه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866712",
+    "precision": "neighbourhood"
+  },
+  "ارم": {
+    "lat": 35.7290819,
+    "lon": 51.2881123,
+    "name": "ارم",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867682",
+    "precision": "neighbourhood"
+  },
+  "ازگل": {
+    "lat": 35.7886946,
+    "lon": 51.5131214,
+    "name": "ازگل",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867599",
+    "precision": "neighbourhood"
+  },
+  "استاد معین": {
+    "lat": 35.6965676,
+    "lon": 51.3424727,
+    "name": "استاد معین",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867019",
+    "precision": "neighbourhood"
+  },
+  "استخر": {
+    "lat": 35.7572103,
+    "lon": 51.5631124,
+    "name": "استخر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867530",
+    "precision": "neighbourhood"
+  },
+  "استقلال": {
+    "lat": 35.7620314,
+    "lon": 51.5444166,
+    "name": "مجید آباد - استقلال",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867668",
+    "precision": "neighbourhood",
+    "alias": "استقلال"
+  },
+  "اسفندیاری": {
+    "lat": 35.6276316,
+    "lon": 51.38571,
+    "name": "اسفندیاری و بستان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867671",
+    "precision": "neighbourhood",
+    "alias": "اسفندیاری"
+  },
+  "اسکندری": {
+    "lat": 35.6886157,
+    "lon": 51.3813448,
+    "name": "اسکندری",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866072",
+    "precision": "neighbourhood"
+  },
+  "افسریه جنوبی": {
+    "lat": 35.6453003,
+    "lon": 51.490345,
+    "name": "افسریه جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/6172363360",
+    "precision": "neighbourhood"
   },
   "افسریه شمالی": {
     "lat": 35.6523159,
     "lon": 51.4930224,
     "name": "افسریه شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867639",
+    "precision": "neighbourhood"
+  },
+  "اقدسیه": {
+    "lat": 35.7940221,
+    "lon": 51.4867849,
+    "name": "اقدسیه",
     "type": "administrative",
+    "osm_id": 8321854,
     "osm_type": "relation",
-    "osm_id": 8321756,
-    "score": 26
+    "source": "https://www.openstreetmap.org/relation/8321854",
+    "precision": "neighbourhood",
+    "display_name": "اقدسیه, ناحیه ۹, منطقه ۱ شهر تهران, تجریش, شهر تهران, بخش رودبار قصران, شهرستان شمیرانات, استان تهران, ایران"
+  },
+  "المهدی": {
+    "lat": 35.7741347,
+    "lon": 51.3279763,
+    "name": "المهدی - سیمون بولیوار",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867282",
+    "precision": "neighbourhood",
+    "alias": "المهدی"
+  },
+  "الهیه": {
+    "lat": 35.7898612,
+    "lon": 51.4262023,
+    "name": "الهیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867009",
+    "precision": "neighbourhood"
+  },
+  "امام حسین": {
+    "lat": 35.7021593,
+    "lon": 51.4481018,
+    "name": "میدان امام حسین (ع)",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/node/9546674611",
+    "display_name": "میدان امام حسین (ع), نظام آباد, ناحیه ۱, منطقه ۷ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 11516-74634, ایران"
+  },
+  "امام زاده حسن": {
+    "lat": 35.6655992,
+    "lon": 51.3604306,
+    "name": "امام زاده حسن",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867290",
+    "precision": "neighbourhood"
   },
   "امامت": {
-    "lat": 35.636524,
-    "lon": 51.3341627,
+    "lat": 35.7133845,
+    "lon": 51.4910729,
     "name": "امامت",
-    "type": "footway",
-    "osm_type": "way",
-    "osm_id": 451341916,
-    "score": 21
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867588",
+    "precision": "neighbourhood"
   },
-  "اوقاف": {
-    "lat": 35.7506521,
-    "lon": 51.5133048,
-    "name": "اوقاف",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321875,
-    "score": 26
-  },
-  "بریانک": {
-    "lat": 35.6752015,
-    "lon": 51.3769458,
-    "name": "بریانک",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321741,
-    "score": 26
-  },
-  "بلورسازی": {
-    "lat": 35.662873,
-    "lon": 51.3784,
-    "name": "بلورسازی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321648,
-    "score": 26
-  },
-  "تهرانسر شرقی": {
-    "lat": 35.6900106,
-    "lon": 51.2589076,
-    "name": "تهرانسر شرقی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 9167401,
-    "score": 26
-  },
-  "تهرانسر غربی": {
-    "lat": 35.6922667,
-    "lon": 51.2478056,
-    "name": "تهرانسر غربی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 9167403,
-    "score": 26
-  },
-  "تهرانپارس شرقی": {
-    "lat": 35.7411037,
-    "lon": 51.5466151,
-    "name": "تهرانپارس شرقی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 9167439,
-    "score": 26
-  },
-  "تهرانپارس غربی": {
-    "lat": 35.7425353,
-    "lon": 51.532288,
-    "name": "تهرانپارس غربی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 9167438,
-    "score": 26
-  },
-  "جردن": {
+  "امانیه": {
     "lat": 35.7810654,
     "lon": 51.4163299,
     "name": "جردن - پارک ملت",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321843,
-    "score": 11
-  },
-  "جنت‌آباد جنوبی": {
-    "lat": 35.716784,
-    "lon": 51.3310658,
-    "name": "جنت‌آباد جنوبی",
-    "type": "bus_stop",
-    "osm_type": "node",
-    "osm_id": 13997095438,
-    "score": 21
-  },
-  "جوادیه": {
-    "lat": 35.6594089,
-    "lon": 51.3878098,
-    "name": "جوادیه",
-    "type": "station",
-    "osm_type": "way",
-    "osm_id": 1041344025,
-    "score": 22
-  },
-  "حکیمیه": {
-    "lat": 35.7447946,
-    "lon": 51.5788013,
-    "name": "حکیمیه",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321884,
-    "score": 26
-  },
-  "خلیج فارس": {
-    "lat": 35.6688025,
-    "lon": 51.2566545,
-    "name": "خلیج فارس",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321782,
-    "score": 26
-  },
-  "دستغیب": {
-    "lat": 35.6863225,
-    "lon": 51.3479507,
-    "name": "دستغیب",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321654,
-    "score": 26
-  },
-  "دهقان": {
-    "lat": 35.6942552,
-    "lon": 51.4779022,
-    "name": "دهقان",
-    "type": "tertiary",
-    "osm_type": "way",
-    "osm_id": 47198979,
-    "score": 13
-  },
-  "دژکام": {
-    "lat": 35.6785653,
-    "lon": 51.452172,
-    "name": "دژکام",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321575,
-    "score": 26
-  },
-  "زیبادشت": {
-    "lat": 35.7523909,
-    "lon": 51.2613119,
-    "name": "زیبادشت",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321558,
-    "score": 26
-  },
-  "سلسبیل جنوبی": {
-    "lat": 35.6860699,
-    "lon": 51.3751364,
-    "name": "سلسبیل جنوبی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 9167416,
-    "score": 26
-  },
-  "شارق": {
-    "lat": 35.7095905,
-    "lon": 51.4602552,
-    "name": "شارق غربی",
     "type": "neighbourhood",
-    "osm_type": "node",
-    "osm_id": 4557460174,
-    "score": 21
-  },
-  "شهرآرا": {
-    "lat": 35.714958,
-    "lon": 51.3711604,
-    "name": "شهرآرا",
-    "type": "secondary",
-    "osm_type": "way",
-    "osm_id": 618430974,
-    "score": 13
-  },
-  "شهران شمالی": {
-    "lat": 35.7733591,
-    "lon": 51.2882503,
-    "name": "شهران شمالی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321775,
-    "score": 26
-  },
-  "قیطریه": {
-    "lat": 35.7913613,
-    "lon": 51.4426875,
-    "name": "قیطریه",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321846,
-    "score": 26
-  },
-  "مهران": {
-    "lat": 35.7487797,
-    "lon": 51.4565244,
-    "name": "مهران",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321836,
-    "score": 26
-  },
-  "میرداماد": {
-    "lat": 35.759387,
-    "lon": 51.43502,
-    "name": "میرداماد",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321835,
-    "score": 26
-  },
-  "نارمک": {
-    "lat": 35.7363694,
-    "lon": 51.5041892,
-    "name": "نارمک",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321872,
-    "score": 26
-  },
-  "هاشمی": {
-    "lat": 35.6846963,
-    "lon": 51.3593942,
-    "name": "هاشمی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321655,
-    "score": 26
-  },
-  "هروی": {
-    "lat": 35.7712377,
-    "lon": 51.4789648,
-    "name": "هروی - حسین آباد",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321850,
-    "score": 11
-  },
-  "وردآورد": {
-    "lat": 35.736939,
-    "lon": 51.1259936,
-    "name": "وردآورد",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321795,
-    "score": 26
-  },
-  "پرستار": {
-    "lat": 35.6883581,
-    "lon": 51.4837882,
-    "name": "پرستار",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321582,
-    "score": 26
-  },
-  "کاشانک": {
-    "lat": 35.8150678,
-    "lon": 51.4815151,
-    "name": "کاشانک",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321862,
-    "score": 26
-  },
-  "یافت آباد جنوبی": {
-    "lat": 35.641029,
-    "lon": 51.3041649,
-    "name": "یافت آباد جنوبی",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321724,
-    "score": 26
+    "source": "https://www.openstreetmap.org/node/5637867676",
+    "precision": "neighbourhood"
   },
   "امیر بهادر": {
     "lat": 35.6714755,
@@ -303,213 +257,2094 @@
     "type": "administrative",
     "osm_type": "relation",
     "osm_id": 8321604,
-    "score": 0
+    "score": 0,
+    "source": "OpenStreetMap Nominatim",
+    "precision": "neighbourhood"
+  },
+  "امیریه": {
+    "lat": 35.6781799,
+    "lon": 51.400731,
+    "name": "امیریه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866585",
+    "precision": "neighbourhood"
+  },
+  "امین حضور": {
+    "lat": 35.6838542,
+    "lon": 51.4368391,
+    "name": "سه راه امین حضور",
+    "type": "locality",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4766609823",
+    "display_name": "سه راه امین حضور, آبشار, ناحیه ۵, منطقه ۱۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 11187-76487, ایران"
+  },
+  "اوقاف": {
+    "lat": 35.7506521,
+    "lon": 51.5133048,
+    "name": "اوقاف",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867609",
+    "precision": "neighbourhood"
+  },
+  "اکباتان": {
+    "lat": 35.7069661,
+    "lon": 51.3056201,
+    "name": "اکباتان",
+    "type": "administrative",
+    "osm_id": 8321722,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321722",
+    "precision": "neighbourhood",
+    "display_name": "اکباتان, ناحیه ۶, منطقه ۵ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "ایران": {
+    "lat": 35.6877195,
+    "lon": 51.4396385,
+    "name": "ایران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866927",
+    "precision": "neighbourhood"
+  },
+  "ایرانشهر": {
+    "lat": 35.7083993,
+    "lon": 51.4224119,
+    "name": "ایرانشهر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867603",
+    "precision": "neighbourhood"
+  },
+  "باشگاه نفت": {
+    "lat": 35.6998987,
+    "lon": 51.2529902,
+    "name": "باشگاه نفت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4822500498",
+    "precision": "neighbourhood"
+  },
+  "باغ خزانه": {
+    "lat": 35.6640407,
+    "lon": 51.3707078,
+    "name": "باغ خزانه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866843",
+    "precision": "neighbourhood"
+  },
+  "باغ فیض": {
+    "lat": 35.7443658,
+    "lon": 51.3223888,
+    "name": "باغ فیض",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867606",
+    "precision": "neighbourhood"
+  },
+  "بریانک": {
+    "lat": 35.6752015,
+    "lon": 51.3769458,
+    "name": "بریانک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867678",
+    "precision": "neighbourhood"
+  },
+  "بلوار کشاورز": {
+    "lat": 35.7113555,
+    "lon": 51.3965617,
+    "name": "کشاورز - پارک لاله",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867703",
+    "precision": "neighbourhood",
+    "alias": "بلوار کشاورز"
+  },
+  "بلورسازی": {
+    "lat": 35.662873,
+    "lon": 51.3784,
+    "name": "بلورسازی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637865682",
+    "precision": "neighbourhood"
+  },
+  "بنی‌هاشم": {
+    "lat": 35.7499131,
+    "lon": 51.4696899,
+    "name": "کاظم آباد - بنی هاشم",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866227",
+    "precision": "neighbourhood",
+    "alias": "بنی‌هاشم"
+  },
+  "بهار": {
+    "lat": 35.7102335,
+    "lon": 51.4333621,
+    "name": "بهار",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867667",
+    "precision": "neighbourhood"
+  },
+  "بهجت‌آباد": {
+    "lat": 35.7202902,
+    "lon": 51.4118604,
+    "name": "بهجت‌آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867298",
+    "precision": "neighbourhood"
+  },
+  "بهداشت": {
+    "lat": 35.6569395,
+    "lon": 51.3381393,
+    "name": "بهداشت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867575",
+    "precision": "neighbourhood"
+  },
+  "بهمن یار": {
+    "lat": 35.6257676,
+    "lon": 51.3981352,
+    "name": "بهمنیار",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867612",
+    "precision": "neighbourhood",
+    "alias": "بهمن یار"
+  },
+  "بوستان ولایت": {
+    "lat": 35.6460009,
+    "lon": 51.3813237,
+    "name": "بوستان ولایت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867702",
+    "precision": "neighbourhood"
+  },
+  "بوستان چیتگر": {
+    "lat": 35.7315309,
+    "lon": 51.2059589,
+    "name": "بوستان جنگلی چیتگر",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/99887137",
+    "display_name": "بوستان جنگلی چیتگر, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "بیسیم": {
+    "lat": 35.6532338,
+    "lon": 51.449976,
+    "name": "ولیعصر - بیسیم",
+    "type": "administrative",
+    "osm_id": 8321600,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321600",
+    "precision": "neighbourhood",
+    "display_name": "ولیعصر - بیسیم, ناحیه ۱, منطقه ۱۵ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "جنت‌آباد شمالی": {
+    "lat": 35.7722271,
+    "lon": 51.3066147,
+    "name": "جنت‌ آباد شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4534545070",
+    "precision": "neighbourhood"
+  },
+  "زاهد گیلانی": {
+    "lat": 35.6946445,
+    "lon": 51.4603643,
+    "name": "زاهد گیلانی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867704",
+    "precision": "neighbourhood"
+  },
+  "شمس‌آباد": {
+    "lat": 35.7479947,
+    "lon": 51.4770365,
+    "name": "شمس آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866961",
+    "precision": "neighbourhood"
+  },
+  "پرستار": {
+    "lat": 35.6883581,
+    "lon": 51.4837882,
+    "name": "پرستار",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867583",
+    "precision": "neighbourhood"
+  },
+  "چیتگر شمالی": {
+    "lat": 35.725729,
+    "lon": 51.1859122,
+    "name": "چیتگر شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4534479817",
+    "precision": "neighbourhood"
+  },
+  "کوثر": {
+    "lat": 35.6637145,
+    "lon": 51.4382344,
+    "name": "کوثر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867540",
+    "precision": "neighbourhood"
+  },
+  "تهرانپارس غربی": {
+    "lat": 35.7425353,
+    "lon": 51.532288,
+    "name": "تهرانپارس غربی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4430827760",
+    "precision": "neighbourhood"
+  },
+  "ولنجک": {
+    "lat": 35.8066647,
+    "lon": 51.4013931,
+    "name": "ولنجک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866825",
+    "precision": "neighbourhood"
+  },
+  "مینای شمالی (مخبر)": {
+    "lat": 35.6744913,
+    "lon": 51.4533754,
+    "name": "مینای شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637865683",
+    "precision": "neighbourhood"
+  },
+  "جنت‌آباد جنوبی": {
+    "lat": 35.7459811,
+    "lon": 51.3053102,
+    "name": "جنت‌ آباد جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4545400185",
+    "precision": "neighbourhood"
+  },
+  "مسعودیه": {
+    "lat": 35.6311765,
+    "lon": 51.4943903,
+    "name": "مسعودیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866018",
+    "precision": "neighbourhood"
+  },
+  "پونک": {
+    "lat": 35.7645272,
+    "lon": 51.3332026,
+    "name": "پونک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866713",
+    "precision": "neighbourhood"
+  },
+  "تولید دارو": {
+    "lat": 35.663724,
+    "lon": 51.3378347,
+    "name": "تولید دارو",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867642",
+    "precision": "neighbourhood"
+  },
+  "جهاد": {
+    "lat": 35.7233161,
+    "lon": 51.4032265,
+    "name": "جهاد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4549498998",
+    "precision": "neighbourhood"
+  },
+  "تسلیحات": {
+    "lat": 35.7195274,
+    "lon": 51.4727538,
+    "name": "تسلیحات",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867281",
+    "precision": "neighbourhood"
+  },
+  "پرواز": {
+    "lat": 35.7900825,
+    "lon": 51.3536692,
+    "name": "پرواز",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867582",
+    "precision": "neighbourhood"
+  },
+  "چوب تراش": {
+    "lat": 35.7146682,
+    "lon": 51.343581,
+    "name": "چوب تراش",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867534",
+    "precision": "neighbourhood"
+  },
+  "سجاد": {
+    "lat": 35.6545351,
+    "lon": 51.3575642,
+    "name": "سجاد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866232",
+    "precision": "neighbourhood"
+  },
+  "گرگان": {
+    "lat": 35.7115394,
+    "lon": 51.4528651,
+    "name": "گرگان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867605",
+    "precision": "neighbourhood"
+  },
+  "شهرک ولیعصر شمالی": {
+    "lat": 35.6510598,
+    "lon": 51.3401072,
+    "name": "شهرک ولیعصر شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5728720876",
+    "precision": "neighbourhood"
+  },
+  "طیب": {
+    "lat": 35.6603775,
+    "lon": 51.4503436,
+    "name": "طیب",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867296",
+    "precision": "neighbourhood"
+  },
+  "کوی بیمه": {
+    "lat": 35.7053748,
+    "lon": 51.3181886,
+    "name": "کوی بیمه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4171717189",
+    "precision": "neighbourhood"
+  },
+  "توحید": {
+    "lat": 35.7057244,
+    "lon": 51.3739811,
+    "name": "توحید",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867294",
+    "precision": "neighbourhood"
+  },
+  "زیبادشت": {
+    "lat": 35.7523909,
+    "lon": 51.2613119,
+    "name": "زیبادشت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866074",
+    "precision": "neighbourhood"
+  },
+  "حافظیه": {
+    "lat": 35.7020505,
+    "lon": 51.496111,
+    "name": "حافظیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867565",
+    "precision": "neighbourhood"
+  },
+  "قصر فیروزه ۱": {
+    "lat": 35.6718227,
+    "lon": 51.49672,
+    "name": "قصر فیروزه ۱",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5759152243",
+    "precision": "neighbourhood"
+  },
+  "دروس": {
+    "lat": 35.7727353,
+    "lon": 51.4566868,
+    "name": "دروس",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866615",
+    "precision": "neighbourhood"
+  },
+  "دستغیب": {
+    "lat": 35.6863225,
+    "lon": 51.3479507,
+    "name": "دستغیب",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867655",
+    "precision": "neighbourhood"
+  },
+  "والفجر (افسریه)": {
+    "lat": 35.7487695,
+    "lon": 51.3960161,
+    "name": "والفجر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4537152802",
+    "precision": "neighbourhood"
+  },
+  "چهارصد دستگاه": {
+    "lat": 35.6883928,
+    "lon": 51.4571362,
+    "name": "چهارصد دستگاه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867571",
+    "precision": "neighbourhood"
+  },
+  "یافت آباد جنوبی": {
+    "lat": 35.641029,
+    "lon": 51.3041649,
+    "name": "یافت آباد جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4822624309",
+    "precision": "neighbourhood"
+  },
+  "جوادیه": {
+    "lat": 35.653443,
+    "lon": 51.3923433,
+    "name": "جوادیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867289",
+    "precision": "neighbourhood"
+  },
+  "قیطریه": {
+    "lat": 35.7913613,
+    "lon": 51.4426875,
+    "name": "قیطریه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/13534059600",
+    "precision": "neighbourhood"
+  },
+  "شهران جنوبی": {
+    "lat": 35.7588307,
+    "lon": 51.2909507,
+    "name": "شهران جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4534545069",
+    "precision": "neighbourhood"
+  },
+  "یوسف‌آباد": {
+    "lat": 35.7346597,
+    "lon": 51.4045663,
+    "name": "یوسف آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867653",
+    "precision": "neighbourhood"
+  },
+  "شهر زیبا": {
+    "lat": 35.7478326,
+    "lon": 51.291355,
+    "name": "شهر زیبا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867013",
+    "precision": "neighbourhood"
+  },
+  "چیذر": {
+    "lat": 35.7963477,
+    "lon": 51.454676,
+    "name": "چیذر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867017",
+    "precision": "neighbourhood"
+  },
+  "مرزداران": {
+    "lat": 35.7327101,
+    "lon": 51.3406203,
+    "name": "مرزداران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867546",
+    "precision": "neighbourhood"
   },
   "حبیب الله": {
     "lat": 35.7141027,
     "lon": 51.3583605,
     "name": "حبیب الله",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321687,
-    "score": 0
-  },
-  "خانی آباد نو شمالی": {
-    "lat": 35.614825,
-    "lon": 51.3971663,
-    "name": "خانی آباد نو",
-    "type": "bus_stop",
-    "osm_type": "node",
-    "osm_id": 11891086534,
-    "score": 0
-  },
-  "خواجه نظام الملک": {
-    "lat": 35.7135374,
-    "lon": 51.4478501,
-    "name": "خواجه نظام الملک",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321784,
-    "score": 0
-  },
-  "شاهین": {
-    "lat": 35.7615514,
-    "lon": 51.3148597,
-    "name": "شاهین - مخبری",
     "type": "neighbourhood",
-    "osm_type": "relation",
-    "osm_id": 8321814
+    "source": "https://www.openstreetmap.org/node/5637867301",
+    "precision": "neighbourhood"
   },
-  "ملک‌آباد": {
-    "lat": 35.6201865,
-    "lon": 51.4295339,
-    "name": "ملک آباد",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 15261395,
-    "score": 0
+  "شهرک ولیعصر جنوبی": {
+    "lat": 35.6465878,
+    "lon": 51.3426169,
+    "name": "شهرک ولیعصر جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867276",
+    "precision": "neighbourhood"
   },
-  "مهران (سیدخندان)": {
-    "lat": 35.7420774,
-    "lon": 51.4466076,
-    "name": "سیدخندان",
-    "type": "bus_stop",
-    "osm_type": "node",
-    "osm_id": 7133798568,
-    "score": 0
+  "سازمان برنامه جنوبی": {
+    "lat": 35.7277108,
+    "lon": 51.3014315,
+    "name": "سازمان برنامه جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866710",
+    "precision": "neighbourhood"
   },
-  "هفت حوض": {
-    "lat": 35.7284069,
-    "lon": 51.4894177,
-    "name": "هفت حوض",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321808,
-    "score": 0
+  "گلستان (شهرک راه آهن)": {
+    "lat": 35.7540425,
+    "lon": 51.2465582,
+    "name": "گلستان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866604",
+    "precision": "neighbourhood"
   },
-  "یاخجی آباد": {
-    "lat": 35.631777,
-    "lon": 51.403082,
-    "name": "الف",
-    "type": "tertiary",
-    "osm_type": "way",
-    "osm_id": 36606271,
-    "score": 0
-  },
-  "آسمان": {
-    "lat": 35.7781358,
-    "lon": 51.3530071,
-    "name": "آسمان",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321823,
-    "score": 0
-  },
-  "اتابک": {
-    "lat": 35.6480563,
-    "lon": 51.462443,
-    "name": "اتابک",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321613,
-    "score": 0
-  },
-  "تقی آباد": {
-    "lat": 35.580065,
-    "lon": 51.463847,
-    "name": "تقی آباد",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321615,
-    "score": 0
-  },
-  "زرگنده": {
-    "lat": 35.7732674,
-    "lon": 51.4329527,
-    "name": "زرگنده",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 8321842,
-    "score": 0
-  },
-  "زمزم": {
-    "lat": 35.6483866,
-    "lon": 51.367811,
-    "name": "زمزم",
-    "type": "administrative",
-    "osm_type": "relation",
-    "osm_id": 17407535,
-    "score": 0
-  },
-  "سعادت‌آباد": {
-    "lat": 35.7858311,
-    "lon": 51.3723999,
-    "name": "استخر ارم سعادت‌آباد",
-    "type": "swimming_pool",
-    "osm_type": "node",
-    "osm_id": 11142986718,
-    "score": 0
-  },
-  "سلیمانی": {
-    "lat": 35.7408069,
-    "lon": 51.324406,
-    "name": "سلیمانی",
-    "type": "residential",
-    "osm_type": "way",
-    "osm_id": 492164359,
-    "score": 0
+  "فدک": {
+    "lat": 35.728378,
+    "lon": 51.4805111,
+    "name": "فدک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867300",
+    "precision": "neighbourhood"
   },
   "شادآباد": {
     "lat": 35.6564232,
     "lon": 51.2968555,
     "name": "شادآباد",
     "type": "neighbourhood",
-    "osm_type": "node",
-    "osm_id": 5637867004,
-    "score": 0
-  },
-  "ایرانشهر": {
-    "lat": 35.7083993,
-    "lon": 51.4224119,
-    "name": "ایرانشهر",
-    "type": "administrative",
-    "osm_id": 8321672,
-    "osm_type": "relation"
-  },
-  "علی‌آباد": {
-    "lat": 35.629067,
-    "lon": 51.4225246,
-    "name": "علی آباد",
-    "type": "administrative",
-    "osm_id": 8321760,
-    "osm_type": "relation"
-  },
-  "مرزداران": {
-    "lat": 35.738556,
-    "lon": 51.3392797,
-    "name": "مرزداران",
-    "type": "administrative",
-    "osm_id": 8321694,
-    "osm_type": "relation"
-  },
-  "مشیریه": {
-    "lat": 35.624493,
-    "lon": 51.4796751,
-    "name": "مشیریه",
-    "type": "administrative",
-    "osm_id": 8321764,
-    "osm_type": "relation"
+    "source": "https://www.openstreetmap.org/node/5637867004",
+    "precision": "neighbourhood"
   },
   "وحیدیه": {
     "lat": 35.7150203,
     "lon": 51.4707557,
     "name": "وحیدیه",
-    "type": "administrative",
-    "osm_id": 8321794,
-    "osm_type": "relation"
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866406",
+    "precision": "neighbourhood"
   },
-  "پونک": {
-    "lat": 35.7579873,
-    "lon": 51.324842,
-    "name": "پونک",
-    "type": "administrative",
-    "osm_id": 8321816,
-    "osm_type": "relation"
+  "قلهک": {
+    "lat": 35.7731769,
+    "lon": 51.4442124,
+    "name": "قلهک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867589",
+    "precision": "neighbourhood"
   },
-  "گرگان": {
-    "lat": 35.7115394,
-    "lon": 51.4528651,
-    "name": "گرگان",
-    "type": "administrative",
-    "osm_id": 8321595,
-    "osm_type": "relation"
+  "شهرک گلها (تهرانسر)": {
+    "lat": 35.804269,
+    "lon": 51.4980481,
+    "name": "شهرک گلها",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867701",
+    "precision": "neighbourhood"
+  },
+  "مشیریه": {
+    "lat": 35.624493,
+    "lon": 51.4796751,
+    "name": "مشیریه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867641",
+    "precision": "neighbourhood"
+  },
+  "زنجان جنوبی": {
+    "lat": 35.6948656,
+    "lon": 51.3596154,
+    "name": "زنجان جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867654",
+    "precision": "neighbourhood"
+  },
+  "مجیدیه": {
+    "lat": 35.7357141,
+    "lon": 51.4656043,
+    "name": "مجیدیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/6172365019",
+    "precision": "neighbourhood"
+  },
+  "شکیبا": {
+    "lat": 35.674485,
+    "lon": 51.4683786,
+    "name": "شکیبا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867537",
+    "precision": "neighbourhood"
+  },
+  "طرشت": {
+    "lat": 35.7063729,
+    "lon": 51.3432389,
+    "name": "طرشت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866617",
+    "precision": "neighbourhood"
+  },
+  "قنات‌کوثر": {
+    "lat": 35.7580869,
+    "lon": 51.5303546,
+    "name": "قنات کوثر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866970",
+    "precision": "neighbourhood"
+  },
+  "ستارخان": {
+    "lat": 35.7246873,
+    "lon": 51.3585026,
+    "name": "ستارخان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867541",
+    "precision": "neighbourhood"
+  },
+  "شهرک استقلال": {
+    "lat": 35.6968443,
+    "lon": 51.2437265,
+    "name": "شهرک استقلال",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867529",
+    "precision": "neighbourhood"
+  },
+  "شهرک شهید باقری": {
+    "lat": 35.7610799,
+    "lon": 51.2005506,
+    "name": "شهرک شهید باقری",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866602",
+    "precision": "neighbourhood"
+  },
+  "صاحب الزمان": {
+    "lat": 35.6489866,
+    "lon": 51.3227187,
+    "name": "صاحب الزمان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867669",
+    "precision": "neighbourhood"
+  },
+  "تهرانسر مرکزی": {
+    "lat": 35.6964679,
+    "lon": 51.2572253,
+    "name": "تهرانسر مرکزی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5758690098",
+    "precision": "neighbourhood"
   },
   "گیشا": {
     "lat": 35.7358464,
     "lon": 51.3763769,
     "name": "گیشا",
     "type": "neighbourhood",
-    "osm_id": 8565700082,
-    "osm_type": "node"
+    "source": "https://www.openstreetmap.org/node/8565700082",
+    "precision": "neighbourhood"
+  },
+  "علی‌آباد": {
+    "lat": 35.629067,
+    "lon": 51.4225246,
+    "name": "علی آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866823",
+    "precision": "neighbourhood"
+  },
+  "تاکسیرانی": {
+    "lat": 35.6723157,
+    "lon": 51.4827902,
+    "name": "تاکسیرانی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866611",
+    "precision": "neighbourhood"
+  },
+  "فلاح": {
+    "lat": 35.6542843,
+    "lon": 51.3647609,
+    "name": "فلاح",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/7140849061",
+    "precision": "neighbourhood"
+  },
+  "تهرانپارس شرقی": {
+    "lat": 35.7411037,
+    "lon": 51.5466151,
+    "name": "تهرانپارس شرقی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4535949535",
+    "precision": "neighbourhood"
+  },
+  "نارمک": {
+    "lat": 35.7363694,
+    "lon": 51.5041892,
+    "name": "نارمک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867302",
+    "precision": "neighbourhood"
+  },
+  "عبدل‌آباد": {
+    "lat": 35.6358973,
+    "lon": 51.3645157,
+    "name": "عبدل آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4962762580",
+    "precision": "neighbourhood"
+  },
+  "زرکش": {
+    "lat": 35.7162761,
+    "lon": 51.479839,
+    "name": "زرکش",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867648",
+    "precision": "neighbourhood"
+  },
+  "شهرک زینبیه": {
+    "lat": 35.7094899,
+    "lon": 51.5105416,
+    "name": "شهرک زینبیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867710",
+    "precision": "neighbourhood"
+  },
+  "جلیلی": {
+    "lat": 35.6501483,
+    "lon": 51.3622362,
+    "name": "جلیلی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866966",
+    "precision": "neighbourhood"
+  },
+  "شهرک نفت": {
+    "lat": 35.788054,
+    "lon": 51.3364011,
+    "name": "شهرک نفت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867554",
+    "precision": "neighbourhood"
+  },
+  "صادقیه": {
+    "lat": 35.7211465,
+    "lon": 51.3451691,
+    "name": "صادقیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866400",
+    "precision": "neighbourhood"
+  },
+  "وصفنارد": {
+    "lat": 35.6466778,
+    "lon": 51.3550758,
+    "name": "وصفنارد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4858126475",
+    "precision": "neighbourhood"
+  },
+  "کرمان": {
+    "lat": 35.7330259,
+    "lon": 51.4739299,
+    "name": "کرمان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866851",
+    "precision": "neighbourhood"
+  },
+  "مخصوص": {
+    "lat": 35.6781781,
+    "lon": 51.3892558,
+    "name": "مخصوص",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867539",
+    "precision": "neighbourhood"
+  },
+  "تختی": {
+    "lat": 35.6629344,
+    "lon": 51.4103079,
+    "name": "تختی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867592",
+    "precision": "neighbourhood"
+  },
+  "حر": {
+    "lat": 35.6874344,
+    "lon": 51.3899265,
+    "name": "حر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867663",
+    "precision": "neighbourhood"
+  },
+  "هفده شهریور": {
+    "lat": 35.6691903,
+    "lon": 51.2940212,
+    "name": "هفده شهریور",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866011",
+    "precision": "neighbourhood"
+  },
+  "گمرک": {
+    "lat": 35.6659599,
+    "lon": 51.3954428,
+    "name": "گمرک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4962762577",
+    "precision": "neighbourhood"
+  },
+  "نازی‌آباد": {
+    "lat": 35.6415378,
+    "lon": 51.4024937,
+    "name": "نازی آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867012",
+    "precision": "neighbourhood"
+  },
+  "خلیج فارس": {
+    "lat": 35.6688025,
+    "lon": 51.2566545,
+    "name": "خلیج فارس",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866586",
+    "precision": "neighbourhood"
+  },
+  "سعادت‌آباد": {
+    "lat": 35.7860955,
+    "lon": 51.3781445,
+    "name": "سعادت آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866962",
+    "precision": "neighbourhood"
+  },
+  "سازمان برنامه شمالی": {
+    "lat": 35.7368383,
+    "lon": 51.3022459,
+    "name": "سازمان برنامه شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4535004826",
+    "precision": "neighbourhood"
+  },
+  "تهرانسر شرقی": {
+    "lat": 35.6900106,
+    "lon": 51.2589076,
+    "name": "تهرانسر شرقی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5758690101",
+    "precision": "neighbourhood"
+  },
+  "نعمت‌آباد": {
+    "lat": 35.6304144,
+    "lon": 51.3526489,
+    "name": "نعمت آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866224",
+    "precision": "neighbourhood"
+  },
+  "شهرک مخابرات": {
+    "lat": 35.7934739,
+    "lon": 51.3584928,
+    "name": "شهرک مخابرات",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866716",
+    "precision": "neighbourhood"
+  },
+  "نیکنام": {
+    "lat": 35.6831374,
+    "lon": 51.4580758,
+    "name": "نیکنام",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867700",
+    "precision": "neighbourhood"
+  },
+  "حشمتیه": {
+    "lat": 35.7264682,
+    "lon": 51.4502086,
+    "name": "حشمتیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866620",
+    "precision": "neighbourhood"
+  },
+  "نارمک جنوبی": {
+    "lat": 35.7178984,
+    "lon": 51.4905671,
+    "name": "نارمک جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4552607474",
+    "precision": "neighbourhood"
+  },
+  "فردوس": {
+    "lat": 35.7214166,
+    "lon": 51.3215349,
+    "name": "فردوس",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867020",
+    "precision": "neighbourhood"
+  },
+  "شوش (باغ آذری)": {
+    "lat": 35.6584694,
+    "lon": 51.4392135,
+    "name": "شوش",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867274",
+    "precision": "neighbourhood"
+  },
+  "خواجه نظام الملک": {
+    "lat": 35.7135374,
+    "lon": 51.4478501,
+    "name": "خواجه نظام الملک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867011",
+    "precision": "neighbourhood"
+  },
+  "حکیمیه": {
+    "lat": 35.7447946,
+    "lon": 51.5788013,
+    "name": "حکیمیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867677",
+    "precision": "neighbourhood"
+  },
+  "شیوا": {
+    "lat": 35.6805413,
+    "lon": 51.4688149,
+    "name": "شیوا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867587",
+    "precision": "neighbourhood"
+  },
+  "شهید رجایی": {
+    "lat": 35.6327794,
+    "lon": 51.3293646,
+    "name": "شهید رجایی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867523",
+    "precision": "neighbourhood"
+  },
+  "دژکام": {
+    "lat": 35.6785653,
+    "lon": 51.452172,
+    "name": "دژکام",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867640",
+    "precision": "neighbourhood"
+  },
+  "خرمشهر": {
+    "lat": 35.6764746,
+    "lon": 51.3836292,
+    "name": "خرمشهر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867707",
+    "precision": "neighbourhood"
+  },
+  "شهرک محلاتی": {
+    "lat": 35.8035965,
+    "lon": 51.5165779,
+    "name": "شهرک محلاتی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866822",
+    "precision": "neighbourhood"
+  },
+  "جمال‌زاده": {
+    "lat": 35.7077937,
+    "lon": 51.3854151,
+    "name": "جمال‌زاده",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866013",
+    "precision": "neighbourhood"
+  },
+  "دروازه شمیران": {
+    "lat": 35.6960953,
+    "lon": 51.4413754,
+    "name": "دروازه شمیران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867544",
+    "precision": "neighbourhood"
+  },
+  "سنائی": {
+    "lat": 35.7219064,
+    "lon": 51.4208351,
+    "name": "سنائی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867526",
+    "precision": "neighbourhood"
+  },
+  "زهتابی": {
+    "lat": 35.6418495,
+    "lon": 51.3608203,
+    "name": "زهتابی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867586",
+    "precision": "neighbourhood"
+  },
+  "ولی آباد": {
+    "lat": 35.5849859,
+    "lon": 51.430472,
+    "name": "ولی آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866593",
+    "precision": "neighbourhood"
+  },
+  "درکه": {
+    "lat": 35.8043457,
+    "lon": 51.3827097,
+    "name": "درکه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867672",
+    "precision": "neighbourhood"
+  },
+  "کاج": {
+    "lat": 35.7147334,
+    "lon": 51.4425331,
+    "name": "کاج",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867593",
+    "precision": "neighbourhood"
+  },
+  "شهران شمالی": {
+    "lat": 35.7733591,
+    "lon": 51.2882503,
+    "name": "شهران شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866847",
+    "precision": "neighbourhood"
+  },
+  "شهرک امید": {
+    "lat": 35.7621845,
+    "lon": 51.5321231,
+    "name": "شهرک امید",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/11870907255",
+    "precision": "neighbourhood"
+  },
+  "مهرآباد جنوبی": {
+    "lat": 35.6775321,
+    "lon": 51.3381183,
+    "name": "مهرآباد جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867559",
+    "precision": "neighbourhood"
+  },
+  "خاک سفید": {
+    "lat": 35.7427428,
+    "lon": 51.563555,
+    "name": "گلشن",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866402",
+    "precision": "neighbourhood"
+  },
+  "شکوفه (عبدل آباد)": {
+    "lat": 35.6268753,
+    "lon": 51.3683183,
+    "name": "شکوفه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867008",
+    "precision": "neighbourhood"
+  },
+  "شهرک چیتگر": {
+    "lat": 35.7490232,
+    "lon": 51.1867372,
+    "name": "شهرک چیتگر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5868374839",
+    "precision": "neighbourhood"
+  },
+  "گلچین": {
+    "lat": 35.6535839,
+    "lon": 51.3672088,
+    "name": "گلچین",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867299",
+    "precision": "neighbourhood"
+  },
+  "مدائن": {
+    "lat": 35.7277237,
+    "lon": 51.4968439,
+    "name": "مدائن",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867617",
+    "precision": "neighbourhood"
+  },
+  "شمیران‌نو": {
+    "lat": 35.7533133,
+    "lon": 51.4996451,
+    "name": "شمیران نو",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867003",
+    "precision": "neighbourhood"
+  },
+  "علم و صنعت": {
+    "lat": 35.7412446,
+    "lon": 51.5092195,
+    "name": "علم و صنعت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867675",
+    "precision": "neighbourhood"
+  },
+  "خزانه": {
+    "lat": 35.6407457,
+    "lon": 51.4204924,
+    "name": "خزانه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867557",
+    "precision": "neighbourhood"
+  },
+  "دولاب": {
+    "lat": 35.6650426,
+    "lon": 51.4612874,
+    "name": "دولاب",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867528",
+    "precision": "neighbourhood"
+  },
+  "هرندی": {
+    "lat": 35.6642764,
+    "lon": 51.4249229,
+    "name": "هرندی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866924",
+    "precision": "neighbourhood"
+  },
+  "عباسی": {
+    "lat": 35.6640464,
+    "lon": 51.3852464,
+    "name": "عباسی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867288",
+    "precision": "neighbourhood"
+  },
+  "مینای جنوبی": {
+    "lat": 35.6702841,
+    "lon": 51.4505624,
+    "name": "مینای جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/6172363535",
+    "precision": "neighbourhood"
+  },
+  "سلسبیل شمالی": {
+    "lat": 35.6961197,
+    "lon": 51.37395,
+    "name": "سلسبیل شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867644",
+    "precision": "neighbourhood"
+  },
+  "دبستان": {
+    "lat": 35.7380458,
+    "lon": 51.4523418,
+    "name": "دبستان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866601",
+    "precision": "neighbourhood"
+  },
+  "شهرک رضویه": {
+    "lat": 35.6116661,
+    "lon": 51.4950776,
+    "name": "شهرک رضویه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867553",
+    "precision": "neighbourhood"
+  },
+  "مهران": {
+    "lat": 35.7487797,
+    "lon": 51.4565244,
+    "name": "مهران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866616",
+    "precision": "neighbourhood"
+  },
+  "شهرک آزمایش": {
+    "lat": 35.7312129,
+    "lon": 51.3588693,
+    "name": "شهرک آزمایش",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867696",
+    "precision": "neighbourhood"
+  },
+  "حکمت": {
+    "lat": 35.8006552,
+    "lon": 51.4452029,
+    "name": "حکمت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866605",
+    "precision": "neighbourhood"
+  },
+  "شهرک دانشگاه": {
+    "lat": 35.7761072,
+    "lon": 51.3169605,
+    "name": "شهرک دانشگاه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/3465753599",
+    "precision": "neighbourhood"
+  },
+  "تهران‌نو": {
+    "lat": 35.7094244,
+    "lon": 51.489291,
+    "name": "تهران نو",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4552652711",
+    "precision": "neighbourhood"
+  },
+  "درب دوم": {
+    "lat": 35.7830666,
+    "lon": 51.4386271,
+    "name": "درب دوم",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867292",
+    "precision": "neighbourhood"
+  },
+  "هفت حوض": {
+    "lat": 35.7284069,
+    "lon": 51.4894177,
+    "name": "هفت حوض",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867679",
+    "precision": "neighbourhood"
+  },
+  "وردآورد": {
+    "lat": 35.736939,
+    "lon": 51.1259936,
+    "name": "وردآورد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867658",
+    "precision": "neighbourhood"
+  },
+  "شهرک صادقیه": {
+    "lat": 35.6375846,
+    "lon": 51.3504511,
+    "name": "شهرک صادقیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866588",
+    "precision": "neighbourhood"
+  },
+  "شیخ هادی": {
+    "lat": 35.6939072,
+    "lon": 51.4077661,
+    "name": "شیخ هادی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866065",
+    "precision": "neighbourhood"
+  },
+  "شوش": {
+    "lat": 35.6584694,
+    "lon": 51.4392135,
+    "name": "شوش",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867274",
+    "precision": "neighbourhood"
+  },
+  "شکوفه": {
+    "lat": 35.6268753,
+    "lon": 51.3683183,
+    "name": "شکوفه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867008",
+    "precision": "neighbourhood"
+  },
+  "شهرک ابوذر": {
+    "lat": 35.7967655,
+    "lon": 51.5207317,
+    "name": "شهرک ابوذر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/7662987488",
+    "precision": "neighbourhood"
+  },
+  "فرودگاه مهرآباد": {
+    "lat": 35.6880754,
+    "lon": 51.3136278,
+    "name": "فرودگاه مهرآباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637865686",
+    "precision": "neighbourhood"
+  },
+  "یافت آباد شمالی": {
+    "lat": 35.6569637,
+    "lon": 51.3493296,
+    "name": "یافت آباد شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867285",
+    "precision": "neighbourhood"
+  },
+  "نظام‌آباد": {
+    "lat": 35.7070564,
+    "lon": 51.4533421,
+    "name": "نظام آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867600",
+    "precision": "neighbourhood"
+  },
+  "شهرک دریا": {
+    "lat": 35.6846653,
+    "lon": 51.2398239,
+    "name": "شهرک دریا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5773619933",
+    "precision": "neighbourhood"
+  },
+  "صد دستگاه": {
+    "lat": 35.6894879,
+    "lon": 51.4746357,
+    "name": "صد دستگاه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867560",
+    "precision": "neighbourhood"
+  },
+  "پردیسان": {
+    "lat": 35.7427274,
+    "lon": 51.3565306,
+    "name": "پردیسان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866614",
+    "precision": "neighbourhood"
+  },
+  "منیریه": {
+    "lat": 35.6840724,
+    "lon": 51.4016337,
+    "name": "منیریه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867651",
+    "precision": "neighbourhood"
+  },
+  "سلسبیل جنوبی": {
+    "lat": 35.6860699,
+    "lon": 51.3751364,
+    "name": "سلسبیل جنوبی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4770989141",
+    "precision": "neighbourhood"
+  },
+  "حسین‌آباد": {
+    "lat": 35.5992213,
+    "lon": 51.320369,
+    "name": "حسین آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/7179062851",
+    "precision": "neighbourhood"
+  },
+  "قیام": {
+    "lat": 35.6699777,
+    "lon": 51.4411377,
+    "name": "قیام",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867572",
+    "precision": "neighbourhood"
+  },
+  "دریا": {
+    "lat": 35.772187,
+    "lon": 51.372317,
+    "name": "دریا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/6172361696",
+    "precision": "neighbourhood"
+  },
+  "دهم فروردین": {
+    "lat": 35.6864915,
+    "lon": 51.4663074,
+    "name": "دهم فروردین",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867610",
+    "precision": "neighbourhood"
+  },
+  "نیلوفر": {
+    "lat": 35.7351761,
+    "lon": 51.4331917,
+    "name": "نیلوفر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866017",
+    "precision": "neighbourhood"
+  },
+  "هاشمی": {
+    "lat": 35.6846963,
+    "lon": 51.3593942,
+    "name": "هاشمی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867524",
+    "precision": "neighbourhood"
+  },
+  "ونک": {
+    "lat": 35.764663,
+    "lon": 51.4058606,
+    "name": "ونک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867002",
+    "precision": "neighbourhood"
+  },
+  "شهرک دانشگاه شریف": {
+    "lat": 35.7519956,
+    "lon": 51.1354235,
+    "name": "شهرک دانشگاه شریف",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867576",
+    "precision": "neighbourhood"
+  },
+  "جوادیه تهرانپارس": {
+    "lat": 35.7334516,
+    "lon": 51.5483454,
+    "name": "جوادیه تهرانپارس",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866066",
+    "precision": "neighbourhood"
+  },
+  "شمشیری": {
+    "lat": 35.6722911,
+    "lon": 51.3398874,
+    "name": "شمشیری",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867683",
+    "precision": "neighbourhood"
+  },
+  "شهرک گلها": {
+    "lat": 35.804269,
+    "lon": 51.4980481,
+    "name": "شهرک گلها",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867701",
+    "precision": "neighbourhood"
+  },
+  "محمودیه": {
+    "lat": 35.7964156,
+    "lon": 51.4126953,
+    "name": "محمودیه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866228",
+    "precision": "neighbourhood"
+  },
+  "نبی اکرم": {
+    "lat": 35.6825981,
+    "lon": 51.4762394,
+    "name": "نبی اکرم",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867614",
+    "precision": "neighbourhood"
+  },
+  "دردشت": {
+    "lat": 35.7277074,
+    "lon": 51.5076081,
+    "name": "دردشت",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867536",
+    "precision": "neighbourhood"
+  },
+  "شادمان": {
+    "lat": 35.7088209,
+    "lon": 51.3638642,
+    "name": "شادمان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867568",
+    "precision": "neighbourhood"
+  },
+  "درختی": {
+    "lat": 35.7692068,
+    "lon": 51.3556698,
+    "name": "درختی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866708",
+    "precision": "neighbourhood"
+  },
+  "نیاوران": {
+    "lat": 35.8160561,
+    "lon": 51.4709472,
+    "name": "نیاوران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867018",
+    "precision": "neighbourhood"
+  },
+  "شهرک صدرا": {
+    "lat": 35.7430553,
+    "lon": 51.2584305,
+    "name": "شهرک صدرا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/7065482358",
+    "precision": "neighbourhood"
+  },
+  "شاهین": {
+    "lat": 35.6710985,
+    "lon": 51.4593335,
+    "name": "شاهین",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867016",
+    "precision": "neighbourhood"
+  },
+  "شهرک کوهسار": {
+    "lat": 35.7820353,
+    "lon": 51.3327372,
+    "name": "شهرک کوهسار",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867010",
+    "precision": "neighbourhood"
+  },
+  "تهرانسر شمالی": {
+    "lat": 35.7024416,
+    "lon": 51.2611955,
+    "name": "تهرانسر شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4822608667",
+    "precision": "neighbourhood"
+  },
+  "دزاشیب": {
+    "lat": 35.8091055,
+    "lon": 51.4553023,
+    "name": "دزاشیب",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/10296699960",
+    "precision": "neighbourhood"
+  },
+  "مقدم": {
+    "lat": 35.6562978,
+    "lon": 51.374727,
+    "name": "مقدم",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866230",
+    "precision": "neighbourhood"
+  },
+  "نگین غرب": {
+    "lat": 35.7481193,
+    "lon": 51.1574623,
+    "name": "نگین غرب",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/11223110100",
+    "precision": "neighbourhood"
+  },
+  "تهران‌ویلا": {
+    "lat": 35.7227387,
+    "lon": 51.3656641,
+    "name": "تهران ویلا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867670",
+    "precision": "neighbourhood"
+  },
+  "جابری": {
+    "lat": 35.6844602,
+    "lon": 51.4536852,
+    "name": "جابری",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866968",
+    "precision": "neighbourhood"
+  },
+  "هفت چنار": {
+    "lat": 35.675202,
+    "lon": 51.3690586,
+    "name": "هفت چنار",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867607",
+    "precision": "neighbourhood"
+  },
+  "خاوران": {
+    "lat": 35.6651028,
+    "lon": 51.452874,
+    "name": "خاوران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867563",
+    "precision": "neighbourhood"
+  },
+  "هاشم‌آباد": {
+    "lat": 35.6439769,
+    "lon": 51.4729129,
+    "name": "هاشم آباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866405",
+    "precision": "neighbourhood"
+  },
+  "کاشانک": {
+    "lat": 35.8150678,
+    "lon": 51.4815151,
+    "name": "کاشانک",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867521",
+    "precision": "neighbourhood"
+  },
+  "دولتخواه شمالی": {
+    "lat": 35.6270239,
+    "lon": 51.3424586,
+    "name": "دولتخواه شمالی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/6172362824",
+    "precision": "neighbourhood"
+  },
+  "ورزشگاه آزادی": {
+    "lat": 35.7295765,
+    "lon": 51.2711515,
+    "name": "ورزشگاه آزادی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867706",
+    "precision": "neighbourhood"
+  },
+  "هلال احمر": {
+    "lat": 35.6709446,
+    "lon": 51.389084,
+    "name": "هلال احمر",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866233",
+    "precision": "neighbourhood"
+  },
+  "شهید اسدی": {
+    "lat": 35.7019609,
+    "lon": 51.4548464,
+    "name": "شهید اسدی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867566",
+    "precision": "neighbourhood"
+  },
+  "فرحزاد": {
+    "lat": 35.7859783,
+    "lon": 51.3460372,
+    "name": "فرحزاد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866070",
+    "precision": "neighbourhood"
+  },
+  "مظاهری": {
+    "lat": 35.6553477,
+    "lon": 51.4374983,
+    "name": "مظاهری",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867005",
+    "precision": "neighbourhood"
+  },
+  "شهرک طالقانی": {
+    "lat": 35.5793278,
+    "lon": 51.2279782,
+    "name": "شهرک طالقانی",
+    "type": "suburb",
+    "source": "https://www.openstreetmap.org/node/5746318388",
+    "precision": "neighbourhood"
+  },
+  "زرگنده": {
+    "lat": 35.7732674,
+    "lon": 51.4329527,
+    "name": "زرگنده",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867577",
+    "precision": "neighbourhood"
+  },
+  "تجریش": {
+    "lat": 35.804937,
+    "lon": 51.4409634,
+    "name": "تجریش",
+    "type": "suburb",
+    "source": "https://www.openstreetmap.org/node/8919837928",
+    "precision": "neighbourhood"
+  },
+  "زمزم": {
+    "lat": 35.6483866,
+    "lon": 51.367811,
+    "name": "زمزم",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/11774269308",
+    "precision": "neighbourhood"
+  },
+  "میرداماد": {
+    "lat": 35.759387,
+    "lon": 51.43502,
+    "name": "میرداماد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867618",
+    "precision": "neighbourhood"
+  },
+  "تهرانپارس جنوبی": {
+    "lat": 35.721624811489,
+    "lon": 51.508929440597,
+    "precision": "sampled-map-point",
+    "name": "تهرانپارس جنوبی",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaNTFnGF"
+  },
+  "جنت‌آباد مرکزی": {
+    "lat": 35.7570996,
+    "lon": 51.3074683,
+    "name": "جنت آباد مرکزی",
+    "type": "administrative",
+    "osm_id": 8321815,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321815",
+    "precision": "neighbourhood",
+    "display_name": "جنت آباد مرکزی, ناحیه ۷, منطقه ۵ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "جوانمردان (اندیشه)": {
+    "lat": 35.7468205,
+    "lon": 51.2776891,
+    "name": "اندیشه - جوانمردان",
+    "type": "administrative",
+    "osm_id": 8321559,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321559",
+    "precision": "neighbourhood",
+    "display_name": "اندیشه - جوانمردان, ناحیه ۲, منطقه ۵ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 14836-86856, ایران"
+  },
+  "خانی آباد نو جنوبی": {
+    "lat": 35.6205262,
+    "lon": 51.3939825,
+    "name": "خانی آباد جنوبی",
+    "type": "administrative",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/8321711",
+    "display_name": "خانی آباد جنوبی, ناحیه ۱, منطقه ۱۹ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "خانی آباد نو شمالی": {
+    "lat": 35.6328357,
+    "lon": 51.3894905,
+    "name": "خانی آباد شمالی",
+    "type": "administrative",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/9167424",
+    "display_name": "خانی آباد شمالی, ناحیه ۱, منطقه ۱۹ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "دارآباد": {
+    "lat": 35.8114488,
+    "lon": 51.4895599,
+    "name": "داراباد",
+    "type": "administrative",
+    "osm_id": 8321866,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321866",
+    "precision": "neighbourhood",
+    "display_name": "داراباد, ناحیه ۵, منطقه ۱ شهر تهران, تجریش, شهر تهران, بخش رودبار قصران, شهرستان شمیرانات, استان تهران, 19568-43975, ایران"
+  },
+  "دهقان": {
+    "lat": 35.6966261,
+    "lon": 51.4763861,
+    "name": "دهقان - کوکاکولا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867594",
+    "precision": "neighbourhood",
+    "alias": "دهقان"
+  },
+  "ده‌ونک": {
+    "lat": 35.7681568,
+    "lon": 51.3944022,
+    "name": "ده ونک",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/553439976",
+    "display_name": "ده ونک, ونک, ناحیه ۱, منطقه ۳ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 19958-13151, ایران"
+  },
+  "دولتخواه جنوبی": {
+    "lat": 35.6168338,
+    "lon": 51.3438589,
+    "name": "دولتخواه جنوبی",
+    "type": "administrative",
+    "osm_id": 8321627,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321627",
+    "precision": "neighbourhood",
+    "display_name": "دولتخواه جنوبی, ناحیه ۳, منطقه ۱۹ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "راه آهن": {
+    "lat": 35.6607049,
+    "lon": 51.4002695,
+    "name": "راه آهن",
+    "type": "administrative",
+    "osm_id": 8321602,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321602",
+    "precision": "neighbourhood",
+    "display_name": "راه آهن, ناحیه ۴, منطقه ۱۱ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "سلیمانی": {
+    "lat": 35.6730745,
+    "lon": 51.3641776,
+    "name": "سلیمانی تیموری",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866399",
+    "precision": "neighbourhood",
+    "alias": "سلیمانی"
+  },
+  "سهروردی": {
+    "lat": 35.7207549,
+    "lon": 51.4343364,
+    "name": "سهروردی - باغ صبا",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866969",
+    "precision": "neighbourhood",
+    "alias": "سهروردی"
+  },
+  "شارق": {
+    "lat": 35.7095905,
+    "lon": 51.4602552,
+    "name": "شارق غربی",
+    "type": "neighbourhood",
+    "osm_type": "node",
+    "osm_id": 4557460174,
+    "score": 21,
+    "source": "OpenStreetMap Nominatim",
+    "precision": "neighbourhood"
+  },
+  "شهرآرا": {
+    "lat": 35.717269,
+    "lon": 51.3739168,
+    "name": "شهرآرا - پاتریس",
+    "type": "administrative",
+    "osm_id": 8321685,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321685",
+    "precision": "neighbourhood",
+    "display_name": "شهرآرا - پاتریس, ناحیه ۳, منطقه ۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "شهرک الهیه غرب": {
+    "lat": 35.7544596,
+    "lon": 51.1467708,
+    "name": "شهرک الهیه غرب",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/690927445",
+    "display_name": "شهرک الهیه غرب, ناحیه ۳, منطقه ۲۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "شهرک شریعتی": {
+    "lat": 35.6288106,
+    "lon": 51.3785368,
+    "name": "شهرک شریعتی",
+    "type": "administrative",
+    "osm_id": 8321713,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321713",
+    "precision": "neighbourhood",
+    "display_name": "شهرک شریعتی, ناحیه ۲, منطقه ۱۹ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "شهرک غرب": {
+    "lat": 35.7590609,
+    "lon": 51.3760422,
+    "name": "شهرک قدس",
+    "type": "administrative",
+    "osm_id": 8321819,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321819",
+    "precision": "neighbourhood",
+    "display_name": "شهرک قدس, ناحیه ۷, منطقه ۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "شهید فکوری": {
+    "lat": 35.7034759,
+    "lon": 51.3276261,
+    "name": "شهرک شهید فکوری",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4174122589",
+    "precision": "neighbourhood",
+    "alias": "شهید فکوری"
+  },
+  "عباس‌آباد": {
+    "lat": 35.72796,
+    "lon": 51.4337174,
+    "name": "عباس آباد - اندیشه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866720",
+    "precision": "neighbourhood",
+    "alias": "عباس‌آباد"
+  },
+  "فاطمی": {
+    "lat": 35.7184219,
+    "lon": 51.3895614,
+    "name": "دکتر شهید سیدحسین فاطمی",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866401",
+    "precision": "neighbourhood",
+    "alias": "فاطمی"
+  },
+  "فلسطین (میدان انقلاب)": {
+    "lat": 35.6984557,
+    "lon": 51.398143,
+    "name": "فلسطین - انقلاب",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866594",
+    "precision": "neighbourhood",
+    "alias": "فلسطین (میدان انقلاب)"
+  },
+  "قاسم‌آباد": {
+    "lat": 35.7629807,
+    "lon": 51.525604,
+    "name": "قاسم آباد شیان",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866848",
+    "precision": "neighbourhood",
+    "alias": "قاسم‌آباد"
+  },
+  "قبا": {
+    "lat": 35.7602852,
+    "lon": 51.4489949,
+    "name": "حسینیه ارشاد - قبا",
+    "type": "administrative",
+    "osm_id": 8321838,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321838",
+    "precision": "neighbourhood",
+    "display_name": "حسینیه ارشاد - قبا, ناحیه ۵, منطقه ۳ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "مجیدآباد": {
+    "lat": 35.7620314,
+    "lon": 51.5444166,
+    "name": "مجید آباد - استقلال",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867668",
+    "precision": "neighbourhood",
+    "alias": "مجیدآباد"
+  },
+  "مختاری": {
+    "lat": 35.662762298512,
+    "lon": 51.402081048763,
+    "precision": "sampled-map-point",
+    "name": "مختاری",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaMntoF3"
+  },
+  "مهرآباد": {
+    "lat": 35.6880754,
+    "lon": 51.3136278,
+    "name": "فرودگاه مهرآباد",
+    "type": "administrative",
+    "osm_id": 8321778,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321778",
+    "precision": "neighbourhood",
+    "display_name": "فرودگاه مهرآباد, ناحیه ۲, منطقه ۹ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "میدان ولیعصر": {
+    "lat": 35.7112215,
+    "lon": 51.4072299,
+    "name": "میدان ولیعصر",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/1232395301",
+    "display_name": "میدان ولیعصر, ولیعصر, ناحیه ۱, منطقه ۶ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 15937-33393, ایران"
+  },
+  "مینی‌سیتی (شهرک نفت)": {
+    "lat": 35.7974941,
+    "lon": 51.5080624,
+    "name": "چهارراه مینی سیتی",
+    "type": "locality",
+    "osm_id": 6128920575,
+    "osm_type": "node",
+    "source": "https://www.openstreetmap.org/node/6128920575",
+    "precision": "neighbourhood",
+    "display_name": "چهارراه مینی سیتی, ناحیه ۹, منطقه ۱ شهر تهران, تجریش, شهر تهران, بخش رودبار قصران, شهرستان شمیرانات, استان تهران, 19359-33150, ایران"
+  },
+  "نجات اللهی": {
+    "lat": 35.7101345,
+    "lon": 51.4150342,
+    "name": "استاد نجات اللهی",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/157934984",
+    "display_name": "استاد نجات اللهی, ولیعصر, ناحیه ۱, منطقه ۶ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 15989-54414, ایران"
+  },
+  "نیروی هوایی (پیروزی)": {
+    "lat": 35.7011938,
+    "lon": 51.468456,
+    "name": "نیروی هوایی",
+    "type": "administrative",
+    "osm_id": 8321787,
+    "osm_type": "relation",
+    "source": "https://www.openstreetmap.org/relation/8321787",
+    "precision": "neighbourhood",
+    "display_name": "نیروی هوایی, ناحیه ۲, منطقه ۱۳ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 17348-63311, ایران"
+  },
+  "هروی": {
+    "lat": 35.7712377,
+    "lon": 51.4789648,
+    "name": "هروی - حسین آباد",
+    "type": "administrative",
+    "osm_type": "relation",
+    "osm_id": 8321850,
+    "score": 11,
+    "source": "OpenStreetMap Nominatim",
+    "precision": "neighbourhood"
+  },
+  "پاسداران": {
+    "lat": 35.7729088,
+    "lon": 51.4675513,
+    "name": "پاسداران - ضرابخانه",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866015",
+    "precision": "neighbourhood",
+    "alias": "پاسداران"
+  },
+  "کیانشهر": {
+    "lat": 35.6378201,
+    "lon": 51.44931485,
+    "name": "کیانشهر",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867601 https://www.openstreetmap.org/node/6172363359"
+  },
+  "یاخجی آباد": {
+    "lat": 35.6290587,
+    "lon": 51.4043606,
+    "precision": "sampled-map-point",
+    "name": "یاخجی آباد",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaN3gxsQ"
+  },
+  "یافت‌آباد": {
+    "lat": 35.6619126,
+    "lon": 51.3465035,
+    "name": "یافت آباد",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/1026966393",
+    "display_name": "یافت آباد, یافت آباد شمالی, ناحیه ۱, منطقه ۱۷ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 13618-13939, ایران"
+  },
+  "سید خندان (جلفا)": {
+    "lat": 35.743102998655,
+    "lon": 51.445959751971,
+    "precision": "sampled-map-point",
+    "name": "سید خندان (جلفا)",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaNTysNT"
+  },
+  "سبلان (لشگر)": {
+    "lat": 35.726252279862,
+    "lon": 51.46487616324,
+    "precision": "sampled-map-point",
+    "name": "سبلان (لشگر)",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaML9uqK"
+  },
+  "سردارجنگل": {
+    "lat": 35.766244959221,
+    "lon": 51.326185056399,
+    "precision": "sampled-map-point",
+    "name": "سردارجنگل",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaNbwqtq"
+  },
+  "مینابی": {
+    "lat": 35.656508244981,
+    "lon": 51.457144466939,
+    "precision": "sampled-map-point",
+    "name": "مینابی",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaN3LKl3"
+  },
+  "شهرک فردوس (حسینی)": {
+    "lat": 35.66557382791,
+    "lon": 51.322287140402,
+    "precision": "sampled-map-point",
+    "name": "شهرک فردوس (حسینی)",
+    "type": "reference",
+    "source": "https://divar.ir/v/-/gaMvtrvT"
+  },
+  "اتحاد": {
+    "lat": 35.7261542,
+    "lon": 51.5553556,
+    "name": "اتحاد",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/node/5308549924",
+    "display_name": "اتحاد, خیابان دماوند, جوادیه تهرانپارس, ناحیه ۶, منطقه ۴ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 16586-95311, ایران"
+  },
+  "جیحون": {
+    "lat": 35.6909259,
+    "lon": 51.3638567,
+    "name": "جیحون",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/833141460",
+    "display_name": "جیحون, زنجان جنوبی, ناحیه ۳, منطقه ۱۰ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 13476-14531, ایران"
+  },
+  "خلازیر": {
+    "lat": 35.6315604,
+    "lon": 51.3496665,
+    "name": "سهیل",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/605549961",
+    "display_name": "سهیل, نعمت آباد, ناحیه ۳, منطقه ۱۹ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 18957-76996, ایران"
+  },
+  "شیراز": {
+    "lat": 35.7594922,
+    "lon": 51.4001599,
+    "name": "عباس شیرازی",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/1075463051",
+    "display_name": "عباس شیرازی, ونک, ناحیه ۱, منطقه ۳ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 19916-14851, ایران"
+  },
+  "مولوی": {
+    "lat": 35.6692388,
+    "lon": 51.4288234,
+    "name": "ایستگاه مترو مولوی",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/node/14071125007",
+    "display_name": "ایستگاه مترو مولوی, مولوی, بازار, ناحیه ۳, منطقه ۱۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 11678-18417, ایران"
+  },
+  "نصرت": {
+    "lat": 35.7054818,
+    "lon": 51.3869318,
+    "name": "نصرت",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/467491536",
+    "display_name": "نصرت, جمال‌زاده, ناحیه ۲, منطقه ۶ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 14188-93841, ایران"
+  },
+  "سیمای ایران": {
+    "lat": 35.7521533,
+    "lon": 51.3603056,
+    "name": "سیمای ایران",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/way/4297014",
+    "display_name": "سیمای ایران, ایوانک, ناحیه ۷, منطقه ۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 14676-86883, ایران"
+  },
+  "ظفر": {
+    "lat": 35.7647724,
+    "lon": 51.4434896,
+    "name": "ایستگاه ظفر",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/node/7779251585",
+    "display_name": "ایستگاه ظفر, شریعتی, حسینیه ارشاد - قبا, ناحیه ۵, منطقه ۳ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 19496-13843, ایران"
   }
 }

@@ -6,12 +6,12 @@ export function aerialDistance(lat,lon){
 export function usablePoint(p){return p&&Number.isFinite(p.lat)&&Number.isFinite(p.lon)&&p.lat>=35.55&&p.lat<=35.86&&p.lon>=51.08&&p.lon<=51.63;}
 export function neighbourhoodPoint(area,points){
   const p=points[area]||Object.entries(points).find(([name])=>normalize(name)===normalize(area))?.[1];
-  return usablePoint(p)&&['administrative','neighbourhood','suburb','quarter','locality'].includes(p.type)?p:null;
+  return usablePoint(p)&&['administrative','neighbourhood','suburb','quarter','locality','reference'].includes(p.type)?p:null;
 }
 export function listingDistance(ad,points){
   if(usablePoint(ad.locationPoint))return {distanceKm:aerialDistance(ad.locationPoint.lat,ad.locationPoint.lon),distanceSource:'divar-map',distanceReference:ad.locationPoint.precision==='EXACT'?'نقطهٔ نقشهٔ آگهی':'موقعیت تقریبی نقشهٔ آگهی'};
   const p=neighbourhoodPoint(ad.area,points);
-  return p?{distanceKm:aerialDistance(p.lat,p.lon),distanceSource:p.source||'OpenStreetMap',distanceReference:'مرکز تقریبی محلهٔ '+ad.area}:{distanceKm:null,distanceSource:null,distanceReference:null};
+  return p?{distanceKm:aerialDistance(p.lat,p.lon),distanceSource:p.source||'OpenStreetMap',distanceReference:(p.precision==='sampled-map-point'?'نقطهٔ نمونه در محلهٔ ':p.precision==='reference'?'نقطهٔ مرجع در محدودهٔ ':'مرکز تقریبی محلهٔ ')+ad.area}:{distanceKm:null,distanceSource:null,distanceReference:null};
 }
 export function sourceMapPoint(sections){
   for(const w of sections.MAP||[]){

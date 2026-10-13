@@ -1,4 +1,5 @@
 import {applianceCategories,matchesAppliance} from './appliances.mjs';
+import {listingDistance,sourceMapPoint} from './locations.mjs';
 export {applianceCategories,matchesAppliance} from './appliances.mjs';
 export const categories = {
   furniture:'مبل و کاناپه', 'dining-table':'میز غذاخوری', 'bed-service':'تخت و سرویس خواب',
@@ -119,12 +120,11 @@ export function preservePostingTime(ad,previous){
   }
   return ad;
 }
-function distance(area,points){
-  const p=points[area];
-  if(!p||!['administrative','neighbourhood','suburb','locality'].includes(p.type))return null;
-  const rad=n=>n*Math.PI/180,lat=rad(p.lat),st=rad(35.7155645),dl=rad(p.lon-51.4260941);
-  const a=Math.sin((lat-st)/2)**2+Math.cos(lat)*Math.cos(st)*Math.sin(dl/2)**2;
-  return Math.round(2*6371.0088*Math.asin(Math.sqrt(a))*2)/2;
+export function matchesDoubleBed(title,desc='',fields={}){
+  const name=locationText(title),text=locationText([title,desc,fields['نوع کالا']||''].join(' '));
+  if(/نوجوان|نو\s*جوان|نوزاد|کودک|سیسمونی|دو\s*طبقه|تک\s*نفره|یک\s*نفره|[۱1]\s*نفره|یک\s*و\s*نیم|[۱1]\s*[./_٫]\s*[۵5]\s*نفره|کاناپه|مبل/u.test(text))return false;
+  // Retain only explicit double-bed evidence; an unspecified bed is insufficient.
+  return /دو\s*نفره|[۲2]\s*نفره/u.test(text)&&/تخت|سرویس\s*خواب/u.test(name);
 }
 
 // Divar's city field is useful for selecting Tehran, but it also covers
@@ -136,8 +136,8 @@ const outsideTehran = /(?:^|[^\p{L}\p{N}])(?:شهر\s*ری|اسلام\s*شهر|�
 // IDs observed in the public detail responses used by this updater. Keep the
 // list evidence-backed: unknown IDs are left to the explicit text gate below
 // rather than risking exclusion of a Tehran neighbourhood.
-const reyDistrictIds = new Set(['4042','4043','4044','4045','4047','4049','4051','4052','4055','4056','4220','4221','4223','4224','4226','4232']);
-const reyAreas = new Set(['جوانمرد قصاب','دولت آباد (شهرری)','دولت‌آباد','فیروزآبادی','صفاییه (چشمه علی)','ظهیرآباد','منصوریه منگل','شهادت','دیلمان','امین آباد','علایین','حمزه‌آباد','سیزده آبان'].map(locationText));
+const reyDistrictIds = new Set(['4042','4043','4044','4045','4047','4049','4051','4052','4055','4056','4220','4221','4223','4224','4226','4230','4232']);
+const reyAreas = new Set(['جوانمرد قصاب','دولت آباد (شهرری)','دولت‌آباد','فیروزآبادی','صفاییه (چشمه علی)','ظهیرآباد','منصوریه منگل','شهادت','دیلمان','امین آباد','علایین','حمزه‌آباد','سیزده آبان','شهرک نظامی'].map(locationText));
 function locationText(value){
   return String(value||'').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[\u200c\u200f]/g,'').replace(/[ـ]/g,'').replace(/\s+/g,' ').trim();
 }
@@ -223,14 +223,15 @@ export function parsePost(state,slug,points,now=Date.now()){
   if(slug==='dining-table'&&!matchesDiningTable(title,desc,seats))return null;
   if(slug==='furniture'&&!matchesFurniture(title))return null;
   if(slug==='furniture'&&/کاور|روکش|شستشو|تعمیر|جلومبلی|جلو مبلی|میز عسلی/.test(title)&&!/مبل|کاناپه|آرمچیر|صندلی/.test(title.replace(/جلومبلی|جلو مبلی|رو مبلی|میز عسلی/g,'')))return null;
-  if(slug==='bed-service'&&!/تخت|سرویس خواب/.test(title))return null;
+  if(slug==='bed-service'&&!matchesDoubleBed(title,desc,values))return null;
   const pics=[...new Set((sections.IMAGE||[]).flatMap(w=>(w.dto?.data.items||[]).map(i=>i.image?.url||i.image_url)).filter(u=>/^https:\/\/[a-z0-9.-]+\.divarcdn\.com\//.test(u)))];
   if(!pics.length)return null;
   const timeTitle=(sections.TITLE||[]).find(w=>w.dto?.widget_type==='EXPANDABLE_SECTION')?.dto.data.title||'';
   const productFields=Object.fromEntries(['نوع کالا','نوع دستگاه','نوع گاز','نوع اجاق گاز','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','نوع انرژی','تعداد شعله','رنگ'].filter(k=>values[k]).map(k=>[k,values[k]]));
   const features=['بافت','ابعاد','نوع کالا','رنگ زمینه',...(Object.hasOwn(applianceCategories,slug)?['نوع دستگاه','سازنده','برند','ظرفیت','نوع مخزن','جنس صفحه','نوع انرژی (اجاق/فر توکار)','تعداد شعله','رنگ']:[])].filter(k=>values[k]).map(k=>k+': '+values[k]);
   const chairs=diningChairs(title,desc);
-  return {id:p.token,url:'https://divar.ir/v/'+encodeURIComponent(title.replace(/\s+/g,'-'))+'/'+p.token,title,price,area,condition,seats:slug==='furniture'||slug==='dining-table'?seats:0,category:categories[slug],kind:slug==='shoe-rack-drawer'||Object.hasOwn(applianceCategories,slug)?(values['نوع دستگاه']||values['نوع کالا']||''):'',...(Object.hasOwn(applianceCategories,slug)?{productFields}:{}),chairs,desc:features.join(' | ')+(features.length?'\n':'')+desc,issues:[],pics,distanceKm:distance(area,points),age:timeTitle.split(' در ')[0],...postingTime,expiresAt:posted+86400000,verifiedAt:now,checkedAt:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(now),...locationEvidence(p)};
+  const locationPoint=sourceMapPoint(sections);
+  return {id:p.token,url:'https://divar.ir/v/'+encodeURIComponent(title.replace(/\s+/g,'-'))+'/'+p.token,title,price,area,condition,seats:slug==='furniture'||slug==='dining-table'?seats:0,category:categories[slug],kind:slug==='shoe-rack-drawer'||Object.hasOwn(applianceCategories,slug)?(values['نوع دستگاه']||values['نوع کالا']||''):'',productFields,chairs,desc:features.join(' | ')+(features.length?'\n':'')+desc,issues:[],pics,locationPoint,...listingDistance({area,locationPoint},points),age:timeTitle.split(' در ')[0],...postingTime,expiresAt:posted+86400000,verifiedAt:now,checkedAt:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(now),...locationEvidence(p)};
 }
 export async function collectCategory(slug,points,cursor,cached=[]){
   if(!categories[slug])throw Error('Invalid category');
