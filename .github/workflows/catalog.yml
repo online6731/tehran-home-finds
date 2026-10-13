@@ -48,6 +48,8 @@ jobs:
           git add docs/api/listings.json docs/update-plan/index.html
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh verified public listings'
+            # UI changes may reach main while the source refresh is running.
+            git pull --rebase origin main
             git push
           fi
       - uses: actions/configure-pages@v5
