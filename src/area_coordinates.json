@@ -2573,5 +2573,55 @@
     "type": "administrative",
     "precision": "neighbourhood",
     "source": "https://www.openstreetmap.org/relation/8321657"
+  },
+  "آذری": {
+    "lat": 35.6671035,
+    "lon": 51.3507428,
+    "name": "آذری",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866998"
+  },
+  "صفا": {
+    "lat": 35.6947891,
+    "lon": 51.4521546,
+    "name": "صفا",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866612"
+  },
+  "نیروی دریایی": {
+    "lat": 35.7424324,
+    "lon": 51.4887775,
+    "name": "نیروی دریایی",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866842"
+  },
+  "شهرک پرواز": {
+    "lat": 35.7264743,
+    "lon": 51.3070824,
+    "name": "شهرک پرواز",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866600"
+  },
+  "دانشگاه شریف": {
+    "lat": 35.7027174,
+    "lon": 51.35172,
+    "name": "دانشگاه صنعتی شریف",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/relation/14738965",
+    "note": "نقطهٔ مرجع دانشگاه در محدودهٔ محله، نه شهرک دانشگاه شریف در غرب تهران."
+  },
+  "مهستان": {
+    "lat": 35.763563957117,
+    "lon": 51.168662326547,
+    "name": "نقطهٔ نمونهٔ نقشهٔ عمومی در مهستان تهران",
+    "type": "reference",
+    "precision": "sampled-map-point",
+    "source": "https://divar.ir/v/فروش-آپارتمان/gaK7I1gD",
+    "note": "نقطهٔ نمونه از دادهٔ GeoCoordinates آگهی عمومی در فهرست https://divar.ir/s/tehran/mahestan در ۲۰۲۶-۱۰-۱۴؛ مرکز محله یا محل آگهی کالا نیست. با شهرک مهستان باغستان اشتباه نشود."
   }
 }

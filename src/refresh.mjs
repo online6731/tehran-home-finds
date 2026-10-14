@@ -44,6 +44,8 @@ excludedIds.add('gaOLpMZ_');
 // gaP_HOXZ: "استفاده نشده با کارتن"; gaP3HrRO: "اصلا استفاده نشده".
 excludedIds.add('gaP_HOXZ');
 excludedIds.add('gaP3HrRO');
+// Seller requires all four rugs together for 55 million, outside the budget.
+excludedIds.add('gaPvNvbZ');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){

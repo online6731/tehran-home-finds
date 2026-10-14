@@ -35,6 +35,9 @@ export function adultRugInfo(title,desc='',fields={},photoAssessment=null){
     const area=measuredSize(name)??(width&&length?Number(length[1])*Number(width[1])*(widthInCm?.01:1):measuredSize(field));
     return {accepted:Number.isFinite(area)&&area>=4,areaSquareMetres:area,sizeBasis:'runner-dimensions',reason:Number.isFinite(area)?area>=4?null:'under-four-square-metres':'size-unverified'};
   }
+  // A bundle explicitly containing undersized rugs is outside the size rule.
+  const titleSizes=[...numbers(title).matchAll(new RegExp(number+'\\s*متر(?:ی|\\s*مربع)(?![\\p{L}])','gu'))].map(m=>Number(m[1]));
+  if(titleSizes.some(area=>area<4))return {accepted:false,reason:'under-four-square-metres'};
   // Divar's standard 4/6/9/12 metre sizes are nominal area classes.
   // Do not reinterpret their parenthesized standard dimensions as a conflict.
   // Explicit seller measurements override nominal labels; omit copied form text.

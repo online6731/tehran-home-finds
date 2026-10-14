@@ -49,3 +49,8 @@ test('A primary-photo score is invalidated by edited descriptions or gallery con
   assert(conditionScore(matched).score<conditionScore(ad).score);
   for(const changed of [{...matched,desc:'توضیح عوض شده'},{...matched,pics:['one','three']}])assert.equal((await attachPhotoAssessment(changed,assessment)).photoAssessment,undefined);
 });
+
+test('Misspelled standalone washing-machine motors are spare parts',()=>{
+  assert(!matchesAppliance('washing-machines','متور لباسشویی سطلی',{},'متور لباسشویی سطلی سالم'));
+  assert(matchesAppliance('washing-machines','ماشین لباسشویی سطلی',{},'متور سالم است'));
+});
