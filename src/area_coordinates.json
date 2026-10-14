@@ -2509,5 +2509,13 @@
     "type": "neighbourhood",
     "precision": "neighbourhood",
     "source": "https://www.openstreetmap.org/node/5637867580"
+  },
+  "دریاچه شهدای خلیج فارس": {
+    "lat": 35.7451443,
+    "lon": 51.2140589,
+    "name": "دریاچه شهدای خلیج فارس",
+    "type": "reference",
+    "precision": "reference",
+    "source": "https://www.openstreetmap.org/relation/8128152"
   }
 }

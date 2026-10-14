@@ -37,6 +37,10 @@ export function adultRugInfo(title,desc='',fields={},photoAssessment=null){
   }
   // Divar's standard 4/6/9/12 metre sizes are nominal area classes.
   // Do not reinterpret their parenthesized standard dimensions as a conflict.
+  // Explicit seller measurements override nominal labels; omit copied form text.
+  const sellerDesc=String(desc).split('\n').filter(line=>!/ابعاد:/u.test(line)).join(' ');
+  const measuredArea=measuredSize(name)??measuredSize(sellerDesc);
+  if(measuredArea!==null&&measuredArea<4)return {accepted:false,areaSquareMetres:measuredArea,sizeBasis:'seller-dimensions',reason:'under-four-square-metres'};
   const titleArea=nominalSize(name)??measuredSize(name);
   const fieldArea=nominalSize(field)??measuredSize(field);
   if(titleArea!==null&&titleArea<4||fieldArea!==null&&fieldArea<4)return {accepted:false,reason:'under-four-square-metres'};

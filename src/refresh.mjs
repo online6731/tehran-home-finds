@@ -36,6 +36,10 @@ const cover=/رو\s*مبلی/u;
 const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
 // All three gallery photos show shop display refrigerators and a pickle counter.
 excludedIds.add('gaOfGnqD');
+// gaOj4I4y requires buying both rugs for 22 million; per-rug form price is 11m.
+// gaOLpMZ_ sells specialised optician display drawers, outside household goods.
+excludedIds.add('gaOj4I4y');
+excludedIds.add('gaOLpMZ_');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
