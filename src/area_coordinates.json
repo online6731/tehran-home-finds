@@ -2517,5 +2517,21 @@
     "type": "reference",
     "precision": "reference",
     "source": "https://www.openstreetmap.org/relation/8128152"
+  },
+  "جماران (نیاوران)": {
+    "lat": 35.8198534,
+    "lon": 51.4583088,
+    "name": "جماران",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/8321860"
+  },
+  "مهران (سیدخندان)": {
+    "lat": 35.7487797,
+    "lon": 51.4565244,
+    "name": "مهران",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866616",
+    "precision": "neighbourhood"
   }
 }

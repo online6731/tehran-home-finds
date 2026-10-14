@@ -11,6 +11,8 @@ test('Clean chairs and refrigerator stands are not complete requested products',
   assert(matchesDiningTable('میز ناهارخوری','شش نفره سالم و تمیز',6));
   assert(!matchesAppliance('refrigerator-freezer','وسایل یخچال',{},'زیر یخچالی سالم'));
   assert(matchesAppliance('refrigerator-freezer','یخچال فریزر',{},'همراه وسایل یخچال'));
+  assert(!matchesAppliance('dishwasher','لوازم ماشین ظرفشویی موریس لوازم',{},'تمامی لوازم موجود است فقط لوازم'));
+  assert(!matchesAppliance('dishwasher','ماشین ظرفشویی',{},'فقط لوازم'));
 });
 test('Only double beds enter the catalog even when a source form is mislabelled',()=>{
   assert(matchesDoubleBed('تخت دونفره','نوع کالا: تخت دو نفره'));

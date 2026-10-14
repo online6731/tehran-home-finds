@@ -23,7 +23,8 @@ export function matchesAppliance(slug,title,values={},desc=''){
   if(!Object.hasOwn(applianceCategories,slug))return true;
   const name=normalize(title),description=normalize(desc);
   // Accessory listings may say "وسایل یخچال" and describe only its stand.
-  if(/^(?:وسایل|لوازم)\s*(?:یخچال|فریزر|لباس\s*شویی|ظرف\s*شویی)|زیر\s*یخچالی/u.test(name))return false;
+  if(/^(?:وسایل|لوازم)\s*(?:ماشین\s*)?(?:یخچال|فریزر|لباس\s*شویی|ظرف\s*شویی)|زیر\s*یخچالی/u.test(name))return false;
+  if(/(?:^|\s)فقط\s*(?:لوازم|قطعات)(?:\s|$)/u.test(description))return false;
   const fields=Object.fromEntries(Object.entries(values||{}).map(([k,v])=>[normalize(k),normalize(v)]));
   const type=[fields['نوع کالا'],fields['نوع دستگاه'],fields['نوع گاز'],fields['نوع اجاق گاز']].filter(Boolean).join(' ');
   // Product titles mentioning accessories, buying, services or broken items
