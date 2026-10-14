@@ -2557,5 +2557,21 @@
     "type": "neighbourhood",
     "precision": "neighbourhood",
     "source": "https://www.openstreetmap.org/node/5637867584"
+  },
+  "شهرک خرازی": {
+    "lat": 35.7555905,
+    "lon": 51.1617411,
+    "name": "شهرک خرازی",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4235180089"
+  },
+  "دکتر هوشیار": {
+    "lat": 35.6943854,
+    "lon": 51.3509136,
+    "name": "دکتر هوشیار",
+    "type": "administrative",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/8321657"
   }
 }
