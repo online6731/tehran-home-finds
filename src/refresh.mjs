@@ -40,6 +40,10 @@ excludedIds.add('gaOfGnqD');
 // gaOLpMZ_ sells specialised optician display drawers, outside household goods.
 excludedIds.add('gaOj4I4y');
 excludedIds.add('gaOLpMZ_');
+// Seller descriptions explicitly offer unused goods, outside used/like-new scope.
+// gaP_HOXZ: "استفاده نشده با کارتن"; gaP3HrRO: "اصلا استفاده نشده".
+excludedIds.add('gaP_HOXZ');
+excludedIds.add('gaP3HrRO');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
