@@ -30,6 +30,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # A queued publish must include source snapshots committed meanwhile.
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -52,6 +55,8 @@ jobs:
             git pull --rebase origin main
             git push
           fi
+      - name: Apply current reviews and expire old listings before publishing
+        run: node src/refresh.mjs --snapshot-only
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
