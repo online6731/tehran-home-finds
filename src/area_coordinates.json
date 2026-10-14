@@ -2533,5 +2533,29 @@
     "type": "neighbourhood",
     "source": "https://www.openstreetmap.org/node/5637866616",
     "precision": "neighbourhood"
+  },
+  "بهارستان": {
+    "lat": 35.6940698,
+    "lon": 51.4284143,
+    "name": "بهارستان",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637866828"
+  },
+  "انبار نفت": {
+    "lat": 35.6629658,
+    "lon": 51.3912122,
+    "name": "انبار نفت",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867293"
+  },
+  "آبشار": {
+    "lat": 35.6788932,
+    "lon": 51.441906,
+    "name": "آبشار",
+    "type": "neighbourhood",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867584"
   }
 }

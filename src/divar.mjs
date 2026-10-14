@@ -124,7 +124,7 @@ export function preservePostingTime(ad,previous){
 }
 export function matchesDoubleBed(title,desc='',fields={}){
   const name=locationText(title),text=locationText([title,desc,fields['نوع کالا']||''].join(' '));
-  if(/نوجوان|نو\s*جوان|نوزاد|کودک|سیسمونی|دو\s*طبقه|تک\s*نفره|یک\s*نفره|[۱1]\s*نفره|یک\s*و\s*نیم|[۱1]\s*[./_٫]\s*[۵5]\s*نفره|کاناپه|مبل/u.test(text))return false;
+  if(/نوجوان|نو\s*جوان|نوزاد|کودک|سیسمونی|دو\s*طبقه|تک\s*نفره|یک\s*نفره|[۱1]\s*نفره|یک\s*و\s*نیم|[۱1]\s*[./_٫]\s*[۵5]\s*نفره|(?:یک|تک|[۱1])\s*و\s*(?:دو|[۲2])\s*نفره|(?:سه|چهار|[۳3۴4])\s*نفره|کاناپه|مبل/u.test(text))return false;
   // Retain only explicit double-bed evidence; an unspecified bed is insufficient.
   return /دو\s*نفره|[۲2]\s*نفره/u.test(text)&&/تخت|سرویس\s*خواب/u.test(name);
 }

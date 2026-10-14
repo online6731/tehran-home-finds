@@ -17,7 +17,7 @@ test('Clean chairs and refrigerator stands are not complete requested products',
 test('Only double beds enter the catalog even when a source form is mislabelled',()=>{
   assert(matchesDoubleBed('تخت دونفره','نوع کالا: تخت دو نفره'));
   assert(matchesDoubleBed('سرویس خواب','',{'نوع کالا':'سرویس خواب دو نفره'}));
-  for(const title of ['تخت نوجوان دو نفره','تخت ۱/۵نفره','تخت ۱_۵نفره','تخت دو طبقه','تخت یک نفره','دو عدد تخت تک نفره','تخت کودک','کاناپه تختخوابشو'])assert(!matchesDoubleBed(title,'نوع کالا: تخت دو نفره'),title);
+  for(const title of ['تخت نوجوان دو نفره','تخت ۱/۵نفره','تخت ۱_۵نفره','تخت دو طبقه','تخت یک نفره','دو عدد تخت تک نفره','تخت کودک','کاناپه تختخوابشو','تخت یک و دونفره','تخت چوبی چهار نفره'])assert(!matchesDoubleBed(title,'نوع کالا: تخت دو نفره'),title);
   assert(!matchesDoubleBed('تخت خواب',''));
   assert(matchesDoubleBed('تخت خواب','نوع کالا: تخت دو نفره'));
 });
