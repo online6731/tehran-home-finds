@@ -34,6 +34,11 @@ const cover=/رو\s*مبلی/u;
 // gaNH08UZ: its 15 million form price buys only the 2-metre rug; the
 // adult-sized 4/9-metre rugs cost 25/45 million according to the description.
 const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
+// Full gallery review 2026-10-15 21:10: detached mattress support, clothes
+// stand, hospital bedside cabinet, and lots with unverified bed/table sizes.
+for(const id of ['gaRXj_iJ','gaRLzA95','gaR_CAGl','gaRnCyIk','gaR_yjJI'])excludedIds.add(id);
+// gaRHDf0Q includes a cartoon rug in photo 2; the fingerprinted child audience
+// evidence in quality-reviews.json excludes the entire mixed listing.
 // All three gallery photos show shop display refrigerators and a pickle counter.
 excludedIds.add('gaOfGnqD');
 // gaOj4I4y requires buying both rugs for 22 million; per-rug form price is 11m.
