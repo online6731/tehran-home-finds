@@ -51,6 +51,10 @@ excludedIds.add('gaQTwF3A');
 excludedIds.add('gaP7OFFS');
 // Both six-metre rugs must be purchased together for 27 million toman.
 excludedIds.add('gaP3etwu');
+// Seller explicitly says this blanket washer is unused, only unwrapped.
+excludedIds.add('gaQnVBs6');
+// Seller requires the two nominal four-metre rugs together with two doormats.
+excludedIds.add('gaQvk7ds');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){

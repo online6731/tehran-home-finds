@@ -9,7 +9,9 @@ function nominalSize(value){
   return match?Number(match[1]):null;
 }
 function measuredSize(value){
-  const text=numbers(value).replace(/(\d+(?:\.\d+)?)\s*و\s*نیم/gu,(_,n)=>String(Number(n)+.5));
+  const text=numbers(value).replace(/(\d+(?:\.\d+)?)\s*و\s*نیم/gu,(_,n)=>String(Number(n)+.5))
+    .replace(/(\d+)\s*متر\s*و\s*(\d+)\s*(?:سانتی\s*متر|سانت|س)(?![\p{L}])/gu,(_,m,cm)=>String(Number(m)+Number(cm)/100)+' متر')
+    .replace(/(\d+)\s*(?:سانت|س)(?![\p{L}])/gu,'$1 سانتی متر');
   const pair=text.match(new RegExp(number+'\\s*(?:متر|سانتی\\s*متر)?\\s*(?:در|×|x|\\*|به)\\s*'+number+'\\s*(?:متر|سانتی\\s*متر)?','iu'));
   if(pair){
     const a=Number(pair[1]),b=Number(pair[2]);

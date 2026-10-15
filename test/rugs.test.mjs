@@ -13,6 +13,8 @@ test('Adult rugs require confirmed nominal size or measured area of at least fou
   assert(!matchesAdultRug('فرش ۴ متری شگی ابعاد ۱_۵ در ۲_۳۰','ابعاد ۱/۵ در ۲/۳۰',{'ابعاد':'سایر ابعاد'}));
   assert(!matchesAdultRug('فرش ۴متری','ابعاد: ۴ متری (۲ در ۲ متر)\nاندازه واقعی ۱٫۵ در ۲٫۳ متر'));
   assert(matchesAdultRug('فرش ۴متری','ابعاد: ۴ متری (۱٫۵ در ۲٫۲۵ متر)\nبدون پارگی'));
+  assert(!matchesAdultRug('فرش نمدی','ابعاد: ۴ متری (۲ در ۲ متر)\nفرش نمدی . ابعاد ۲متر و ۲۰ س  *  ۱۴۳ س'));
+  assert.equal(adultRugInfo('فرش','ابعاد ۲متر و ۲۰ سانت * ۲۰۰ سانت',{'ابعاد':'۴ متری'}).accepted,true);
 });
 test('Child and teen designs are rejected even when large and incorrectly labelled',()=>{
   for(const title of ['فرش کودک ۶متری','فرش نوجوان ۹متری','فرش طرح کیتی ۴متری','گلیم دخترانه ۶متری','فرش طرح ماشین ۴متری','فرش ۴متری السا و آنا','فرش بن تن ۶متری'])assert(!matchesAdultRug(title,''),title);
