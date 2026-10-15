@@ -8,9 +8,9 @@ can delay publication; incomplete coverage is retained in `summary.json`.
 The synchronizer uses the existing AIRA bot and forum category IDs. It edits
 tracked messages, sends only new IDs, preserves the complete photo slideshow,
 and caches Telegram photo file IDs for later edits. Absolute Divar timestamps
-are embedded as native relative `tg-time` elements, so supported Telegram
-clients advance the displayed age while viewing the message. Client language
-controls the relative time label.
+are displayed as a fixed Persian weekday, Solar Hijri date and time in the
+Asia/Tehran timezone. The original publication instant is preserved; relative
+age labels are not used in Telegram messages.
 
 Price, location, time and estimated condition are visible in a compact card.
 Seller text, observations, confidence, distance references and limitations are

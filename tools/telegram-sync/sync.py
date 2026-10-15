@@ -24,7 +24,7 @@ SOURCE = 'https://online6731.github.io/tehran-home-finds/api/listings.json'
 CHAT = -1003897574347
 BOT = 'AIR_AIRA_bot'
 GROUP = 'آگهی‌های وسایل خانه تهران'
-VERSION = 2
+VERSION = 3
 
 
 def save(path, value):
@@ -57,12 +57,35 @@ def stamp(ad):
     return int(value / 1000)
 
 
+def publication_date(posted):
+    """Persian calendar date and weekday from Divar's instant in Tehran."""
+    local = datetime.fromtimestamp(posted, ZoneInfo('Asia/Tehran'))
+    gy, gm, gd = local.year, local.month, local.day
+    offsets = (0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
+    adjusted = gy + int(gm > 2)
+    days = (355666 + 365 * gy + (adjusted + 3) // 4
+            - (adjusted + 99) // 100 + (adjusted + 399) // 400
+            + gd + offsets[gm - 1])
+    jy = -1595 + 33 * (days // 12053)
+    days %= 12053
+    jy += 4 * (days // 1461)
+    days %= 1461
+    if days > 365:
+        jy += (days - 1) // 365
+        days = (days - 1) % 365
+    jm, jd = ((1 + days // 31, 1 + days % 31) if days < 186
+              else (7 + (days - 186) // 30, 1 + (days - 186) % 30))
+    weekdays = ('دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه', 'یکشنبه')
+    months = ('فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+              'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند')
+    return weekdays[local.weekday()] + ' ' + fa(jd) + ' ' + months[jm - 1] + ' ' + fa(jy) + '، ساعت ' + fa(local.strftime('%H:%M'))
+
+
 def render(ad, status, emojis):
     def emoji(char):
         return ('<tg-emoji emoji-id="' + emojis[char] + '">' + char + '</tg-emoji>') if char in emojis else char
     posted = stamp(ad)
-    date = datetime.fromtimestamp(posted, ZoneInfo('Asia/Tehran')).strftime('%Y/%m/%d %H:%M')
-    age = '<tg-time unix="' + str(posted) + '" format="r">' + fa(date) + '</tg-time>'
+    date = publication_date(posted)
     assessment = ad.get('conditionAssessment') or {}
     score = assessment.get('score')
     score_text = fa(score) + '/۱۰۰' if score is not None else 'بررسی‌نشده'
@@ -74,7 +97,7 @@ def render(ad, status, emojis):
     if status != 'active':
         label = 'پایان بازهٔ ۲۴ ساعت' if status == 'expired' else 'خارج از فهرست فعلی؛ فروش‌رفتن تأیید نشده'
         blocks.append('<p><b>' + emoji('⚠️') + ' ' + label + '</b></p>')
-    blocks.append('<p>' + emoji('📍') + ' ' + esc(ad.get('area', 'تهران')) + ' · تا هفت‌تیر ≈ ' + distance + '<br>' + emoji('🕒') + ' ثبت دیوار: ' + age + '<br>' + emoji('🔎') + ' وضعیت تخمینی <b>' + score_text + '</b> · ' + basis + '</p>')
+    blocks.append('<p>' + emoji('📍') + ' ' + esc(ad.get('area', 'تهران')) + ' · تا هفت‌تیر ≈ ' + distance + '<br>' + emoji('🕒') + ' ثبت دیوار: ' + date + ' (تهران)' + ('؛ تقریبی' if ad.get('postedAtIsApproximate') else '') + '<br>' + emoji('🔎') + ' وضعیت تخمینی <b>' + score_text + '</b> · ' + basis + '</p>')
     images = ''.join('<img src="tg://photo?id=p' + str(n) + '"/>' for n in range(1, len(ad['pics']) + 1))
     blocks.append('<tg-slideshow>' + images + '</tg-slideshow>')
     details = ['<p>انتشار مطلق دیوار: ' + fa(date) + ' (تهران)' + ('؛ تقریبی' if ad.get('postedAtIsApproximate') else '') + '<br>مبنای فاصله: ' + esc(ad.get('distanceReference', 'نقشهٔ آگهی')) + '</p>']

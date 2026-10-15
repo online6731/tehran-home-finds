@@ -4,9 +4,10 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from unittest.mock import patch
 
-from sync import Sync, photo_ids, render, save
+from sync import Sync, photo_ids, publication_date, render, save
 
 
 AD = {'id': 'fixture1', 'title': 'کمد آزمایشی', 'price': 2500000,
@@ -33,12 +34,25 @@ class SyncTests(unittest.TestCase):
         self.sync.state['items'][AD['id']] = {'message_id': 188, 'thread': 5,
             'ad': copy.deepcopy(AD), 'file_ids': ['cached-photo']}
 
-    def test_relative_time_uses_original_absolute_timestamp(self):
+    def test_fixed_persian_date_uses_original_absolute_timestamp(self):
         text = render(AD, 'active', {})
-        self.assertIn('unix="1792000800" format="r"', text)
+        self.assertIn(publication_date(AD['postedAt'] / 1000), text)
+        self.assertNotIn('<tg-time', text)
+        self.assertNotIn('پیش', text)
         self.assertIn('عکس بررسی‌نشده', text)
         self.assertIn('&lt;متن فروشنده&gt;', text)
         self.assertEqual(text.count('<img '), len(AD['pics']))
+
+    def test_persian_calendar_and_tehran_midnight(self):
+        cases = {
+            '2026-10-15T17:56:00+00:00': 'پنج‌شنبه ۲۳ مهر ۱۴۰۵، ساعت ۲۱:۲۶',
+            '2026-10-15T21:00:00+00:00': 'جمعه ۲۴ مهر ۱۴۰۵، ساعت ۰۰:۳۰',
+            '2025-03-20T12:00:00+00:00': 'پنج‌شنبه ۳۰ اسفند ۱۴۰۳، ساعت ۱۵:۳۰',
+            '2025-03-21T12:00:00+00:00': 'جمعه ۱ فروردین ۱۴۰۴، ساعت ۱۵:۳۰',
+            '2026-03-21T12:00:00+00:00': 'شنبه ۱ فروردین ۱۴۰۵، ساعت ۱۵:۳۰',
+        }
+        for instant, expected in cases.items():
+            self.assertEqual(publication_date(datetime.fromisoformat(instant).timestamp()), expected)
 
     def test_missing_timestamp_rejected(self):
         with self.assertRaises(ValueError):
