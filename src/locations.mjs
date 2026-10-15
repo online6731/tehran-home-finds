@@ -15,7 +15,7 @@ export function listingDistance(ad,points){
 }
 export function sourceMapPoint(sections){
   for(const w of sections.MAP||[]){
-    const location=w.dto?.data?.location,point=location?.exact_data?.point||location?.approximate_data?.point;
+    const location=w.dto?.data?.location,point=location?.exact_data?.point||location?.approximate_data?.point||location?.fuzzy_data?.point;
     const p={lat:point?.latitude,lon:point?.longitude,precision:location?.type};
     if(usablePoint(p))return p;
   }

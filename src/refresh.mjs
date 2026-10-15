@@ -76,6 +76,16 @@ excludedIds.add('gaQPpAW8');
 excludedIds.add('gaQPZ1Iu');
 // Despite its vacuum title, the photo shows a steam mop, outside vacuum scope.
 excludedIds.add('gaQ_Y1vD');
+// Seller requires a phone call for the actual price; one million is a placeholder.
+excludedIds.add('gaQ_qMk-');
+// Gallery/text show a separate support grid, footstool, coat stand, or vanity only.
+for(const id of ['gaQHrbkN','gaQraU4G','gaQ761t3','gaQnbNih'])excludedIds.add(id);
+// Mixed rug lots contain doormats/small rugs or runners without both dimensions.
+for(const id of ['gaQzbQX2','gaQzrPTy'])excludedIds.add(id);
+// Seller explicitly includes unused products, outside the used/like-new scope.
+for(const id of ['gaQ3bAQg','gaQj6ojR','gaQ7bQIt','gaQ7KiiH'])excludedIds.add(id);
+// Seller explicitly locates the antique rug outside Tehran and offers shipping.
+excludedIds.add('gaQ3KUvM');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){

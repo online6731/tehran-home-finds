@@ -29,6 +29,14 @@ test('Child evidence from a secondary gallery image expires with its fingerprint
  assert.equal(await matchReview({...ad,pics:['one','other']},r),null);
  assert.equal(await matchReview(ad,{...r,audiencePhotoIndices:[3]}),null);
 });
+test('Divar fuzzy map points are preserved as approximate listing coordinates',()=>{
+ const p=sourceMapPoint({MAP:[{dto:{data:{location:{type:'FUZZY',fuzzy_data:{point:{latitude:35.624952410646,longitude:51.338136756066},radius:500}}}}}]});
+ assert.deepEqual(p,{lat:35.624952410646,lon:51.338136756066,precision:'FUZZY'});
+ const d=listingDistance({locationPoint:p},{});
+ assert.equal(d.distanceSource,'divar-map');
+ assert.equal(d.distanceReference,'موقعیت تقریبی نقشهٔ آگهی');
+ assert(Number.isFinite(d.distanceKm));
+});
 test('Only double beds enter the catalog even when a source form is mislabelled',()=>{
   assert(matchesDoubleBed('تخت دونفره','نوع کالا: تخت دو نفره'));
   assert(matchesDoubleBed('سرویس خواب','',{'نوع کالا':'سرویس خواب دو نفره'}));
