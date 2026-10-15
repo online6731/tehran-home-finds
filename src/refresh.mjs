@@ -97,6 +97,14 @@ for(const id of ['gaQz82Nb','gaQDd5TC'])excludedIds.add(id);
 excludedIds.add('gaQvNsR1');
 // Seller explicitly includes unused goods, outside the used/like-new scope.
 for(const id of ['gaQ7bFmn','gaQbtBqh'])excludedIds.add(id);
+// Full gallery review 2026-10-15 18:11: unconfirmed used commercial stock,
+// covers/support boards, ambiguous washer lot, non-household cabinets,
+// outside-Tehran goods, and a bundle with a four-seat dining table.
+for(const id of ['gaQTeNNB','gaQHf3r4','gaQju3UV','gaQf_HyH','gaQXffmQ','gaRPAvZ9','gaQfOWmo','gaQzvddm','gaQfuyPU','gaQ_PlE0','gaRjgykV','gaQH-X5K'])excludedIds.add(id);
+// Explicit measured dimensions are below 4m2, despite nominal four-metre titles.
+for(const id of ['gaQf_7z6','gaQDd8Dv'])excludedIds.add(id);
+// Baby washer and mixed-lot stroller/crib are removed by fingerprinted audience
+// evidence in quality-reviews.json after review validation below.
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
