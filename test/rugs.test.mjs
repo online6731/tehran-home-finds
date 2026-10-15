@@ -25,4 +25,5 @@ test('Child and teen designs are rejected even when large and incorrectly labell
 test('Rug bundles cannot include explicitly undersized rugs',()=>{
   assert(!matchesAdultRug('یک تخته فرش ۹متری___ دو تا ۳ متری','قیمت هر سه تخته',{'ابعاد':'۹ متری (۲٫۵ در ۳٫۵ متر)'}));
   assert(matchesAdultRug('دو تخته فرش ۹ متری و ۶ متری'));
+  assert(!matchesAdultRug('فرش ۶ متری','ابعاد: ۶ متری (۲ در ۳ متر)\nفرش ۶ متری به همراه فرش گرد ۱ متری',{'ابعاد':'۶ متری (۲ در ۳ متر)'}));
 });

@@ -55,6 +55,10 @@ excludedIds.add('gaP3etwu');
 excludedIds.add('gaQnVBs6');
 // Seller requires the two nominal four-metre rugs together with two doormats.
 excludedIds.add('gaQvk7ds');
+// Seller offers industrial lockers and filing cabinets; not household storage.
+excludedIds.add('gaQfGk-K');
+// Seller explicitly says the two rugs have never been used.
+excludedIds.add('gaQPmh9r');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){

@@ -44,6 +44,8 @@ export function adultRugInfo(title,desc='',fields={},photoAssessment=null){
   // Do not reinterpret their parenthesized standard dimensions as a conflict.
   // Explicit seller measurements override nominal labels; omit copied form text.
   const sellerDesc=String(desc).split('\n').filter(line=>!/ابعاد:/u.test(line)).join(' ');
+  const sellerSizes=[...numbers(sellerDesc).matchAll(new RegExp(number+'\\s*متر(?:ی|\\s*مربع)(?![\\p{L}])','gu'))].map(m=>Number(m[1]));
+  if(sellerSizes.some(area=>area<4))return {accepted:false,reason:'under-four-square-metres'};
   const measuredArea=measuredSize(name)??measuredSize(sellerDesc);
   if(measuredArea!==null&&measuredArea<4)return {accepted:false,areaSquareMetres:measuredArea,sizeBasis:'seller-dimensions',reason:'under-four-square-metres'};
   const titleArea=nominalSize(name)??measuredSize(name);
