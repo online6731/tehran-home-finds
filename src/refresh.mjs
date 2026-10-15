@@ -86,6 +86,17 @@ for(const id of ['gaQzbQX2','gaQzrPTy'])excludedIds.add(id);
 for(const id of ['gaQ3bAQg','gaQj6ojR','gaQ7bQIt','gaQ7KiiH'])excludedIds.add(id);
 // Seller explicitly locates the antique rug outside Tehran and offers shipping.
 excludedIds.add('gaQ3KUvM');
+// Full gallery/text review on 2026-10-15: measured rugs below 4m2 and
+// bundles containing undersized rugs or rugs without confirmed dimensions.
+for(const id of ['gaQntudH','gaQ_r3KF','gaQjM-yO','gaQftU3n','gaQf8YtX','gaQ_LUin'])excludedIds.add(id);
+// Seller states delivery in Fardis, beyond Tehran city.
+excludedIds.add('gaQncF99');
+// Kitchen cabinetry miscategorised as a wardrobe; dining set has only 3 chairs.
+for(const id of ['gaQz82Nb','gaQDd5TC'])excludedIds.add(id);
+// Actual price requires contacting seller; form price is not confirmed.
+excludedIds.add('gaQvNsR1');
+// Seller explicitly includes unused goods, outside the used/like-new scope.
+for(const id of ['gaQ7bFmn','gaQbtBqh'])excludedIds.add(id);
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
