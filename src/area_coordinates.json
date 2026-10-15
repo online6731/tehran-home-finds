@@ -2647,5 +2647,14 @@
     "type": "administrative",
     "precision": "neighbourhood",
     "source": "https://www.openstreetmap.org/relation/8321830"
+  },
+  "مرادآباد": {
+    "lat": 35.7854654,
+    "lon": 51.3260007,
+    "name": "مرادآباد",
+    "type": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/5637867522",
+    "precision": "neighbourhood",
+    "display_name": "مرادآباد, ناحیه ۳, منطقه ۵ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 14776-37875, ایران"
   }
 }
