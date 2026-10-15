@@ -1,0 +1,11 @@
+[Unit]
+Description=Hourly Telegram catalog synchronization
+
+[Timer]
+OnCalendar=*-*-* *:55:00 UTC
+Persistent=true
+RandomizedDelaySec=30
+Unit=tehran-home-sync.service
+
+[Install]
+WantedBy=timers.target
