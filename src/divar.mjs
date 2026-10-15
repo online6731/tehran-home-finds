@@ -5,7 +5,7 @@ import {matchesAdultProduct} from './audience.mjs';
 export {applianceCategories,matchesAppliance} from './appliances.mjs';
 export const categories = {
   furniture:'مبل و کاناپه', 'dining-table':'میز غذاخوری', 'bed-service':'تخت و سرویس خواب',
-  'shoe-rack-drawer':'کمد و جاکفشی', carpet:'فرش', 'rugs-woolen-cloth':'گلیم و جاجیم',
+  'shoe-rack-drawer':'کمد و جاکفشی', mirror:'آینه', carpet:'فرش', 'rugs-woolen-cloth':'گلیم و جاجیم',
   ...applianceCategories
 };
 const digits=s=>String(s||'').replace(/[۰-۹٠-٩]/g,c=>String('۰۱۲۳۴۵۶۷۸۹'.includes(c)?'۰۱۲۳۴۵۶۷۸۹'.indexOf(c):'٠١٢٣٤٥٦٧٨٩'.indexOf(c)));
@@ -160,6 +160,10 @@ export function matchesHomeCategory(slug,title,desc=''){
   const name=locationText(title),text=locationText([title,desc].join(' '));
   // A buyer advertisement is outside every household product category.
   if(/^خریدار/u.test(name))return false;
+  if(slug==='mirror'){
+    if(!/(?:آ|ا)ی(?:ی)?نه/u.test(name))return false;
+    if(/(?:ساخت|نصب|تعمیر|برش|ابزار|قاب\s*خالی|بدون\s*(?:آ|ا)ی(?:ی)?نه)|(?:آ|ا)ی(?:ی)?نه\s*(?:خودرو|ماشین|موتور|بغل)/u.test(name))return false;
+  }
   if(slug==='dining-table'&&/^(?:فروش\s*)?شیشه\s*میز/u.test(name))return false;
   if(slug==='bed-service'&&/^(?:فروش\s*)?(?:یراق|جک)(?:\s|$).*تخت/u.test(name))return false;
   if(slug==='dining-table'&&/میز\s*(?:کار|اداری|جلسات|کنفرانس)/u.test(name)&&!/(?:ناهار|نهار|غذا)\s*خوری/u.test(text))return false;

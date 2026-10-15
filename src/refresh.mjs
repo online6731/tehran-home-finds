@@ -34,6 +34,9 @@ const cover=/رو\s*مبلی/u;
 // gaNH08UZ: its 15 million form price buys only the 2-metre rug; the
 // adult-sized 4/9-metre rugs cost 25/45 million according to the description.
 const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
+// Mirror gallery/text review: incomplete broken mirror lot with an ambiguous
+// bundle price, and an empty metal frame whose mirror is explicitly broken.
+for(const id of ['gaQT3PZs','gaQHHLoj'])excludedIds.add(id);
 // Full gallery review 2026-10-15 23:11: a placeholder-price furniture lot,
 // a free refrigerator with only a stock image, and table frames without a top.
 for(const id of ['gaRDU2QJ','gaR_jvop','gaRzU_gr'])excludedIds.add(id);
