@@ -12,13 +12,15 @@ export function validReview(review,ad,now=Date.now()){
       (review.verdict!=='promising'||review.observations.length>=2):
     review?.method==='seller-text'&&review.verdict==='candidate'&&review.photoCount===0&&textList(review.observations)&&review.observations.length===0&&textList(review.sellerClaims,1);
   return !!ad&&review?.version===1&&evidence&&
+    (!review.audience||['adult','child','teen','unclear'].includes(review.audience))&&
+    (!['child','teen'].includes(review.audience)||review.method==='photos-and-description'&&Array.isArray(review.audiencePhotoIndices)&&review.audiencePhotoIndices.length>0&&review.audiencePhotoIndices.every(i=>Number.isInteger(i)&&i>=1&&i<=ad.pics.length))&&
     /^[a-f0-9]{64}$/.test(review.fingerprint||'')&&
     Number.isFinite(review.reviewedAt)&&review.reviewedAt>=ad.postedAt&&review.reviewedAt<=now&&
     textList(review.cautions)&&textList(review.sellerClaims);
 }
 export async function matchReview(ad,review,now=Date.now()){
   if(ad.expiresAt<=now||!validReview(review,ad,now)||review.fingerprint!==await reviewFingerprint(ad))return null;
-  return {version:1,method:review.method,verdict:review.verdict,reviewedAt:review.reviewedAt,photoCount:review.photoCount,observations:review.observations,cautions:review.cautions,sellerClaims:review.sellerClaims};
+  return {version:1,method:review.method,verdict:review.verdict,reviewedAt:review.reviewedAt,photoCount:review.photoCount,observations:review.observations,cautions:review.cautions,sellerClaims:review.sellerClaims,...(review.audience?{audience:review.audience,audiencePhotoIndices:review.audiencePhotoIndices}: {})};
 }
 export async function attachReviews(ads,reviews,now=Date.now()){
   const map=new Map(reviews.map(review=>[review.id,review]));

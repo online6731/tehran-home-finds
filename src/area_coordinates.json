@@ -2692,5 +2692,41 @@
     "precision": "reference",
     "source": "https://www.openstreetmap.org/way/429920487",
     "display_name": "بوستان جنگلی لویزان, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 16878-76466, ایران"
+  },
+  "امیرآباد": {
+    "lat": 35.7333629,
+    "lon": 51.3901628,
+    "type": "administrative",
+    "name": "امیرآباد",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/8321682",
+    "display_name": "امیرآباد, ناحیه ۴, منطقه ۶ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
+  },
+  "کوی فراز": {
+    "lat": 35.7923723,
+    "lon": 51.3725123,
+    "type": "administrative",
+    "name": "کوی فراز",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/20189544",
+    "display_name": "کوی فراز, ناحیه ۹, منطقه ۲ شهر تهران, شهر تهران, بخش رودبار قصران, شهرستان شمیرانات, استان تهران, ایران"
+  },
+  "هوانیروز": {
+    "lat": 35.7441854,
+    "lon": 51.2429285,
+    "type": "neighbourhood",
+    "name": "شهرک هوانیروز",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/node/4534541172",
+    "display_name": "شهرک هوانیروز, ناحیه ۲, منطقه ۲۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, 14939-67343, ایران"
+  },
+  "بازار": {
+    "lat": 35.6727861,
+    "lon": 51.4263323,
+    "type": "administrative",
+    "name": "بازار",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/8321748",
+    "display_name": "بازار, ناحیه ۳, منطقه ۱۲ شهر تهران, شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران"
   }
 }

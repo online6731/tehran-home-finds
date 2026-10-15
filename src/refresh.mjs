@@ -62,6 +62,20 @@ excludedIds.add('gaQPmh9r');
 // Seller includes a small rug of unverified size in the six-metre rug bundle;
 // both are visible in the gallery, so the bundle does not meet the size rule.
 excludedIds.add('gaQjHreb');
+// Gallery shows loose support boards and a headboard, not a complete bed.
+excludedIds.add('gaQ34ROg');
+// Bundles include undersized rugs or doormats (or rugs of unconfirmed size).
+for(const id of ['gaQX66rL','gaQ3Ycgg','gaQjpatW','gaQbZ6uh','gaQ74_H4'])excludedIds.add(id);
+// A four-seat dining set in the bundle is below the requested six-seat minimum.
+excludedIds.add('gaQ_okhM');
+// A bed bundled with a vanity has no confirmed double-bed size/type.
+excludedIds.add('gaQn5ECk');
+// Bundle explicitly includes unused oven/vacuum products, outside used scope.
+excludedIds.add('gaQPpAW8');
+// Photos show two detached bed-support boards, no assembled bed frame.
+excludedIds.add('gaQPZ1Iu');
+// Despite its vacuum title, the photo shows a steam mop, outside vacuum scope.
+excludedIds.add('gaQ_Y1vD');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
@@ -95,7 +109,7 @@ async function writeSnapshot(){
   const withPhotos=await Promise.all(reviewed.map(ad=>attachPhotoAssessment(ad,photoById.get(ad.id))));
   // Apply visual audience exclusions only after fingerprint validation, so a
   // changed description/gallery cannot inherit an unrelated photo assessment.
-  const ads=withPhotos.filter(ad=>matchesAdultProduct(ad.title,ad.desc,ad.productFields,ad.photoAssessment)).filter(ad=>!['فرش','گلیم و جاجیم'].includes(ad.category)||matchesAdultRug(ad.title,ad.desc,ad.productFields,ad.photoAssessment)).map(ad=>({...ad,conditionAssessment:conditionScore(ad)}));
+  const ads=withPhotos.filter(ad=>matchesAdultProduct(ad.title,ad.desc,ad.productFields,ad.photoAssessment)&&matchesAdultProduct(ad.title,ad.desc,ad.productFields,ad.quality)).filter(ad=>!['فرش','گلیم و جاجیم'].includes(ad.category)||matchesAdultRug(ad.title,ad.desc,ad.productFields,ad.photoAssessment)).map(ad=>({...ad,conditionAssessment:conditionScore(ad)}));
   const partial=status.some(c=>c.coverage!=='complete-24h-source'||c.error);
   const checkedAt=status.every(c=>c.checkedAt)?Math.min(...status.map(c=>c.checkedAt)):null;
   let message='آخرین دریافت: '+(finishedAt?new Intl.DateTimeFormat('fa-IR',{timeZone:'Asia/Tehran',dateStyle:'short',timeStyle:'short'}).format(finishedAt):'هنوز انجام نشده');

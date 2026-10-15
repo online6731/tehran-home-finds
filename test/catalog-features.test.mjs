@@ -1,18 +1,33 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {matchesDoubleBed,matchesDiningTable} from '../src/divar.mjs';
+import {matchesDoubleBed,matchesDiningTable,matchesFurniture} from '../src/divar.mjs';
 import {matchesAppliance} from '../src/appliances.mjs';
 import {conditionScore} from '../src/condition-score.mjs';
 import {listingDistance,sourceMapPoint} from '../src/locations.mjs';
 import {attachPhotoAssessment} from '../src/photo-assessment.mjs';
-import {reviewFingerprint} from '../src/quality.mjs';
+import {reviewFingerprint,matchReview} from '../src/quality.mjs';
 test('Clean chairs and refrigerator stands are not complete requested products',()=>{
   assert(!matchesDiningTable('صندلی ناهارخوری','۶عدد سالم وتمیز درحد نو',6));
+  assert(!matchesDiningTable('۸ عدد صندلی میز نهارخوری','صندلی میز نهار خوری ۸ عدد',8));
   assert(matchesDiningTable('میز ناهارخوری','شش نفره سالم و تمیز',6));
   assert(!matchesAppliance('refrigerator-freezer','وسایل یخچال',{},'زیر یخچالی سالم'));
   assert(matchesAppliance('refrigerator-freezer','یخچال فریزر',{},'همراه وسایل یخچال'));
   assert(!matchesAppliance('dishwasher','لوازم ماشین ظرفشویی موریس لوازم',{},'تمامی لوازم موجود است فقط لوازم'));
   assert(!matchesAppliance('dishwasher','ماشین ظرفشویی',{},'فقط لوازم'));
+});
+
+test('Cushion covers and sofa covers with intervening words are accessories',()=>{
+  assert(!matchesFurniture('کاور کوسن مخمل کاور مبل کشی خارجی'));
+  assert(!matchesFurniture('روکش و کاور پارچه ای مبل'));
+  assert(matchesFurniture('مبل به همراه روکش'));
+});
+
+test('Child evidence from a secondary gallery image expires with its fingerprint',async()=>{
+ const ad={id:'secondary',category:'فرش',title:'فرش ۴ متری',desc:'دو فرش',condition:'کارکرده',pics:['one','two'],postedAt:Date.now()-1000,expiresAt:Date.now()+60000};
+ const r={version:1,id:ad.id,method:'photos-and-description',verdict:'caution',photoCount:2,observations:['در عکس دوم طرح کارتونی روی خود فرش است.'],sellerClaims:[],cautions:[],audience:'child',audiencePhotoIndices:[2],reviewedAt:Date.now(),fingerprint:await reviewFingerprint(ad)};
+ assert.equal((await matchReview(ad,r)).audience,'child');
+ assert.equal(await matchReview({...ad,pics:['one','other']},r),null);
+ assert.equal(await matchReview(ad,{...r,audiencePhotoIndices:[3]}),null);
 });
 test('Only double beds enter the catalog even when a source form is mislabelled',()=>{
   assert(matchesDoubleBed('تخت دونفره','نوع کالا: تخت دو نفره'));

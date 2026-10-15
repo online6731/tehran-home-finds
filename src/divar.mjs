@@ -144,13 +144,15 @@ function locationText(value){
   return String(value||'').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[\u200c\u200f]/g,'').replace(/[ـ]/g,'').replace(/\s+/g,' ').trim();
 }
 export function matchesDiningTable(title,desc,seats){
-  const text=locationText([title,desc].join(' '));
+  const name=locationText(title),text=locationText([title,desc].join(' '));
+  // "۸ عدد صندلی میز نهارخوری" names chairs, with table as their purpose.
+  if(/^(?:فروش\s*)?(?:[۰-۹٠-٩0-9]+\s*(?:عدد\s*)?)?صندلی/u.test(name)&&!/(?:همراه|و)\s*میز/u.test(name))return false;
   if(!Number.isFinite(seats)||seats<6||/بدون\s*میز|فقط\s*(?:[۰-۹٠-٩0-9]+\s*(?:عدد\s*)?)?صندلی/u.test(text))return false;
   // "تمیز" in a chairs-only description is not evidence of a table.
   return /(?:^|[^\p{L}])میز|ست\s*.*(?:ناهار\s*خوری|نهار\s*خوری|غذا\s*خوری)/u.test(text);
 }
 export function matchesFurniture(title){
-  if(/^(?:فروش\s*)?(?:کاور|روکش)\s*(?:مبل|کاناپه)/u.test(locationText(title)))return false;
+  if(/^(?:فروش\s*)?(?:کاور|روکش)(?:\s|$)/u.test(locationText(title)))return false;
   const text=locationText(title).replace(/میز\s*(?:وسط|کنار|جلوی?)\s*مبل(?:ی|مان)?|جلوی?\s*مبلی|میز\s*مبلی|میز\s*عسلی|رو\s*مبلی/gu,'');
   return /مبل|کاناپه|آرمچیر|صندلی/u.test(text);
 }

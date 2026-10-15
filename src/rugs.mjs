@@ -32,13 +32,14 @@ export function adultRugInfo(title,desc='',fields={},photoAssessment=null){
   if(!matchesAdultProduct(title,desc,fields,photoAssessment))return {accepted:false,reason:'child-or-teen-design'};
   if(/تابلو\s*فرش|پادری|رو\s*فرشی|فرش\s*راه\s*پله/u.test(name))return {accepted:false,reason:'not-floor-rug'};
   const field=fields['ابعاد']||String(desc).match(/ابعاد:\s*([^|\n]+)/u)?.[1]||'';
+  const sellerDesc=String(desc).split('\n').filter(line=>!/ابعاد:/u.test(line)).join(' ');
   // For runners, “4 metres” usually specifies length, not area. Require width.
   if(/کناره/u.test(name)){
-    const runnerText=numbers(title+' '+desc);
+    const runnerText=numbers(title+' '+sellerDesc);
     const width=runnerText.match(new RegExp('عرض\\s*'+number+'\\s*(سانتی\\s*متر|متر)?','u'));
     const length=runnerText.match(new RegExp(number+'\\s*متر(?:ی)?','u'));
     const widthInCm=width&&(width[2]?.startsWith('سانتی')||!width[2]&&Number(width[1])>20);
-    const area=measuredSize(name)??(width&&length?Number(length[1])*Number(width[1])*(widthInCm?.01:1):measuredSize(field));
+    const area=measuredSize(name)??measuredSize(sellerDesc)??(width&&length?Number(length[1])*Number(width[1])*(widthInCm?.01:1):null);
     return {accepted:Number.isFinite(area)&&area>=4,areaSquareMetres:area,sizeBasis:'runner-dimensions',reason:Number.isFinite(area)?area>=4?null:'under-four-square-metres':'size-unverified'};
   }
   // A bundle explicitly containing undersized rugs is outside the size rule.
@@ -47,7 +48,6 @@ export function adultRugInfo(title,desc='',fields={},photoAssessment=null){
   // Divar's standard 4/6/9/12 metre sizes are nominal area classes.
   // Do not reinterpret their parenthesized standard dimensions as a conflict.
   // Explicit seller measurements override nominal labels; omit copied form text.
-  const sellerDesc=String(desc).split('\n').filter(line=>!/ابعاد:/u.test(line)).join(' ');
   const sellerSizes=[...numbers(sellerDesc).matchAll(new RegExp(number+'\\s*متر(?:ی|\\s*مربع)(?![\\p{L}])','gu'))].map(m=>Number(m[1]));
   if(sellerSizes.some(area=>area<4))return {accepted:false,reason:'under-four-square-metres'};
   const measuredArea=measuredSize(name)??measuredSize(sellerDesc);
