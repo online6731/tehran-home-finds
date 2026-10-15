@@ -59,6 +59,9 @@ excludedIds.add('gaQvk7ds');
 excludedIds.add('gaQfGk-K');
 // Seller explicitly says the two rugs have never been used.
 excludedIds.add('gaQPmh9r');
+// Seller includes a small rug of unverified size in the six-metre rug bundle;
+// both are visible in the gallery, so the bundle does not meet the size rule.
+excludedIds.add('gaQjHreb');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){

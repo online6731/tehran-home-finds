@@ -12978,5 +12978,21 @@
       "روی بدنهٔ دستگاه در عکس اصلیِ معرفی محصول، تصویر کارتونی پنگوئن دیده می‌شود؛ ملاک، طرح روی خود محصول است."
     ],
     "scope": "ارزیابی عکس اصلی؛ تصویر معرفی محصول است و سلامت یا وضعیت واقعی دستگاه را ثابت نمی‌کند."
+  },
+  {
+    "version": 1,
+    "id": "gaQLIwLM",
+    "method": "primary-photo",
+    "photoCount": 1,
+    "photoUrl": "https://s100.divarcdn.com/static/photo/neda/webp_post/5oVVwsjZ6jJQwFDHTbsyvQ/8aa0378f-6f58-440c-b761-4c1372d88209.webp",
+    "fingerprint": "f4b3b810b3800b1927e3e00637e66c226b42b235eab0c6c836bfee6d7b7f3dee",
+    "reviewedAt": 1792054174576,
+    "appearanceScore": 50,
+    "limitedEvidence": true,
+    "audience": "child",
+    "observations": [
+      "روی درِ خود کمد در عکس اصلی، شخصیت کارتونی پو با لباس قرمز دیده می‌شود؛ شاهد، طرح روی محصول است و نه رنگ یا اشیای پس‌زمینه."
+    ],
+    "scope": "فقط عکس اصلی برای گروه مخاطب بررسی شد؛ ارزیابی سلامت یا کیفیت فنی نیست."
   }
 ]

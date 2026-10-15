@@ -5,6 +5,7 @@ import {matchesAdultProduct} from '../src/audience.mjs';
 test('Child and teen products are excluded in every category and in mixed bundles',()=>{
   for(const [title,desc,fields] of [
     ['کمد کودک پسر','',{}],['کمد بچه با ویترین','',{}],
+    ['کمد بچهMdf ضدخش','',{}],['کمدبچه','',{}],['مخصوص بچه، سالم','',{}],
     ['کمد لباس','کمد لباس کودک کار کرده',{}],['فایل پلاستیکی کودک','',{}],
     ['جاکفشی و دراور به همراه تخت نوجوان','',{}],
     ['لباسشویی AEG مخصوص لباس بچه','',{}],['مینی واش','مناسب لباس نوزاد',{}],

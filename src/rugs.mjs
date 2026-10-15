@@ -19,9 +19,13 @@ function measuredSize(value){
     const cm=/سانتی\s*متر/u.test(pair[0]);
     return (a>20||cm&&a>=10?a/100:a)*(b>20||cm&&b>=10?b/100:b);
   }
-  const length=text.match(new RegExp('طول\\s*'+number+'\\s*(سانتی\\s*متر|متر)','u'));
-  const width=text.match(new RegExp('عرض\\s*'+number+'\\s*(سانتی\\s*متر|متر)','u'));
-  return length&&width?Number(length[1])*(length[2].startsWith('سانتی')?.01:1)*Number(width[1])*(width[2].startsWith('سانتی')?.01:1):null;
+  const length=text.match(new RegExp('طول\\s*'+number+'\\s*(سانتی\\s*متر|متر)?','u'));
+  const width=text.match(new RegExp('عرض\\s*'+number+'\\s*(سانتی\\s*متر|متر)?','u'));
+  // A seller may give the unit only once: "عرض ۱ و نیم و طول ۲ متر و ۲۵ سانت".
+  // Require at least one explicit unit; unitless values over 20 are centimetres.
+  if(!length||!width||!length[2]&&!width[2])return null;
+  const metres=m=>Number(m[1])*(m[2]?.startsWith('سانتی')||!m[2]&&Number(m[1])>20?.01:1);
+  return metres(length)*metres(width);
 }
 export function adultRugInfo(title,desc='',fields={},photoAssessment=null){
   const name=normalize(title);
