@@ -97,6 +97,12 @@ for(const id of ['gaQz82Nb','gaQDd5TC'])excludedIds.add(id);
 excludedIds.add('gaQvNsR1');
 // Seller explicitly includes unused goods, outside the used/like-new scope.
 for(const id of ['gaQ7bFmn','gaQbtBqh'])excludedIds.add(id);
+// Full gallery review 2026-10-15 20:08: mixed or ambiguous lots, workshop
+// storage, unconfirmed prices, new goods, undersized
+// dining layouts, and rugs bundled with a runner lacking both dimensions.
+for(const id of ['gaRzAPL1','gaRLhe-J','gaRXiyiG','gaRfxBF0','gaR7QTtj','gaR3g_y-','gaRnBHb4','gaR_BXwl','gaRvASQc','gaRfRrv_','gaR3AWRL','gaR3hLG2'])excludedIds.add(id);
+// The Cinderella and Mickey/Minni rugs are excluded by fingerprinted
+// audience evidence in quality-reviews.json, using all four / one photos.
 // Full gallery review 2026-10-15 18:11: unconfirmed used commercial stock,
 // covers/support boards, ambiguous washer lot, non-household cabinets,
 // outside-Tehran goods, and a bundle with a four-seat dining table.
