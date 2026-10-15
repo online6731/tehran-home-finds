@@ -94,6 +94,16 @@ class SyncTests(unittest.TestCase):
     def test_removed_does_not_claim_sold(self):
         self.assertIn('فروش‌رفتن تأیید نشده', render(AD, 'outside_catalog', {}))
 
+    def test_gateway_failure_is_ambiguous(self):
+        response = type('Response', (), {'json': lambda _: {'ok': False, 'error_code': 502}})()
+        with patch.object(self.sync.http, 'post', return_value=response):
+            self.assertTrue(self.sync.api('sendRichMessage', {})['ambiguous'])
+
+    def test_legacy_gateway_failure_is_held(self):
+        save(self.sync.state_path, {'items': {}, 'attempts': {'fixture1': {'status': 'failed', 'error_code': 502}}})
+        reloaded = Sync(self.root, self.root / 'test-token')
+        self.assertEqual(reloaded.state['attempts']['fixture1']['status'], 'unknown')
+
 
 if __name__ == '__main__':
     unittest.main()
