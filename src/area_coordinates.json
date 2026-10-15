@@ -2623,5 +2623,29 @@
     "precision": "sampled-map-point",
     "source": "https://divar.ir/v/فروش-آپارتمان/gaK7I1gD",
     "note": "نقطهٔ نمونه از دادهٔ GeoCoordinates آگهی عمومی در فهرست https://divar.ir/s/tehran/mahestan در ۲۰۲۶-۱۰-۱۴؛ مرکز محله یا محل آگهی کالا نیست. با شهرک مهستان باغستان اشتباه نشود."
+  },
+  "ایوانک": {
+    "lat": 35.7572012,
+    "lon": 51.3582363,
+    "name": "ایوانک",
+    "type": "administrative",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/8321817"
+  },
+  "حصارک": {
+    "lat": 35.7841665,
+    "lon": 51.3110537,
+    "name": "حصارک",
+    "type": "administrative",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/8321813"
+  },
+  "اوین": {
+    "lat": 35.8000008,
+    "lon": 51.3942764,
+    "name": "اوین",
+    "type": "administrative",
+    "precision": "neighbourhood",
+    "source": "https://www.openstreetmap.org/relation/8321830"
   }
 }

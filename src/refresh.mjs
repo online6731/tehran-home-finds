@@ -46,6 +46,11 @@ excludedIds.add('gaP_HOXZ');
 excludedIds.add('gaP3HrRO');
 // Seller requires all four rugs together for 55 million, outside the budget.
 excludedIds.add('gaPvNvbZ');
+// Gallery and seller text: commercial kitchen chillers, outside household goods.
+excludedIds.add('gaQTwF3A');
+excludedIds.add('gaP7OFFS');
+// Both six-metre rugs must be purchased together for 27 million toman.
+excludedIds.add('gaP3etwu');
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
 export function eligible(ad,time=now()){
