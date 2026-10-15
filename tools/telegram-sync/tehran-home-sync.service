@@ -13,4 +13,3 @@ PrivateTmp=true
 ProtectSystem=strict
 ReadWritePaths=/var/lib/tehran-home-sync
 ProtectHome=true
-

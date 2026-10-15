@@ -29,10 +29,17 @@ VERSION = 2
 
 def save(path, value):
     tmp = path.with_suffix('.tmp')
-    tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding='utf-8')
-    with tmp.open('rb') as handle:
+    with tmp.open('w', encoding='utf-8') as handle:
+        handle.write(json.dumps(value, ensure_ascii=False, indent=2))
+        handle.flush()
         os.fsync(handle.fileno())
     os.replace(tmp, path)
+    if os.name != 'nt':
+        descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(descriptor)
+        finally:
+            os.close(descriptor)
 
 
 def fa(value):
