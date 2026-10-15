@@ -261,6 +261,12 @@ class Sync:
         for ad, status in work:
             if only and ad['id'] != only:
                 continue
+            # A long initial migration can cross the 24-hour boundary. Never
+            # send an already expired ad just because it was fresh at startup.
+            if status == 'active' and time.time() - stamp(ad) >= 86400:
+                if ad['id'] not in self.state['items']:
+                    continue
+                status = 'expired'
             try:
                 self.apply(ad, status)
             except Exception as exc:
