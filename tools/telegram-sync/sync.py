@@ -120,6 +120,10 @@ class Sync:
         self.root = root
         self.state_path = root / 'state.json'
         self.state = json.loads(self.state_path.read_text()) if self.state_path.exists() else {'items': {}, 'attempts': {}}
+        for attempt in self.state['attempts'].values():
+            code = attempt.get('error_code')
+            if attempt.get('status') == 'failed' and isinstance(code, int) and code >= 500:
+                attempt['status'] = 'unknown'
         self.topics = json.loads((root / 'topics.json').read_text())
         self.emojis = json.loads((root / 'emoji-catalog.json').read_text())
         self.token = token_path.read_text().strip()
@@ -130,7 +134,11 @@ class Sync:
 
     def api(self, method, data, files=None):
         try:
-            return self.http.post('https://api.telegram.org/bot' + self.token + '/' + method, data=data, files=files, timeout=(15, 100)).json()
+            result = self.http.post('https://api.telegram.org/bot' + self.token + '/' + method, data=data, files=files, timeout=(15, 100)).json()
+            # Gateway/server errors do not prove an upstream send was rejected.
+            if isinstance(result.get('error_code'), int) and result['error_code'] >= 500:
+                result['ambiguous'] = True
+            return result
         except Exception:
             return {'ok': False, 'ambiguous': True, 'error_code': 'transport_unknown'}
 
