@@ -165,6 +165,9 @@ export function eligible(ad,time=now()){
 // Full gallery/text review 2026-10-16 12:02: wrong products, narrow beds,
 // unverified rug lots, staged/unused goods, incomplete table and price conflict.
 for(const id of ["gaSHxUrX","gaSnwlY6","gaSLxIvi","gaS3gGOS","gaSXgOIf","gaSHwrHe","gaRnf6A2","gaSXh4zp","gaSLQKPt","gaR_fQe1","gaR__DA2","gaSrQAkm","gaSfgilb","gaSDg0mC"])excludedIds.add(id);
+// Full gallery/text review 2026-10-16 14:17: wrong products, narrow beds,
+// unverified rug lots, staged/unused goods, incomplete table and price conflict.
+for(const id of ["gaSPRU_D","gaS_SBrx","gaSvhXKr","gaS_xzis","gaS_wtdS","gaSfS8gh","gaSPjsDU","gaS_Rdeg","gaSDiX6h","gaSvhzME","gaSfhnHh","gaS7hWqM","gaRf4aeZ","gaSHiwyb","gaSrhERC","gaSLCR-E","gaSPygn0","gaSXi5zL","gaSfh2kP","gaSPyfWG","gaS3RQJQ","gaSbBgYD","gaS3hXiv","gaSjSjCS","gaS3xRWr"])excludedIds.add(id);
 const rows=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[slug,{slug,name,...prior.categories.find(c=>c.slug===slug),ads:prior.ads.filter(a=>a.category===name&&eligible(a))}]));
 const snapshotOnly=process.argv.includes('--snapshot-only');
 const startedAt=snapshotOnly?(prior.sourceStatus?.lastStartedAt||null):now();
