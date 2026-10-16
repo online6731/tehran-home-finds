@@ -47,6 +47,10 @@ for(const id of ['gaR3ZW3A','gaRfqrej'])excludedIds.add(id);
 // a second ad with the same green sofa gallery, and an ambiguous refrigerator
 // bundle including an unpictured gas heater. Keep these out of public delivery.
 for(const id of ['gaRD8FKI','gaR36hgm','gaRbcx8E'])excludedIds.add(id);
+// Full gallery/text review 2026-10-16 08:23: ironing cabinet, measured rug
+// below 4m2, mixed four-seat dining lot, loose wardrobe doors, Tabriz rug,
+// ambiguous prices/unused desk bundle and repeat green-sofa galleries.
+for(const id of ['gaRvN8Zu','gaRndQP2','gaRbNUGP','gaR7Nb74','gaRfM4_t','gaR3NIOW','gaRb8qfZ','gaRndgrO','gaRzs9Hl','gaRz9M3w','gaRvNYK3'])excludedIds.add(id);
 // Full gallery review 2026-10-15 23:11: a placeholder-price furniture lot,
 // a free refrigerator with only a stock image, and table frames without a top.
 for(const id of ['gaRDU2QJ','gaR_jvop','gaRzU_gr'])excludedIds.add(id);
