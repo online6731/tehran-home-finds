@@ -162,6 +162,9 @@ export function eligible(ad,time=now()){
     (ad.category!==categories['dining-table']||matchesDiningTable(ad.title,ad.desc,ad.seats))&&
     Array.isArray(ad.pics)&&ad.pics.length&&ad.pics.every(u=>/^https:\/\/[a-z0-9.-]+\.divarcdn\.com\//.test(u));
 }
+// Full gallery/text review 2026-10-16 12:02: wrong products, narrow beds,
+// unverified rug lots, staged/unused goods, incomplete table and price conflict.
+for(const id of ["gaSHxUrX","gaSnwlY6","gaSLxIvi","gaS3gGOS","gaSXgOIf","gaSHwrHe","gaRnf6A2","gaSXh4zp","gaSLQKPt","gaR_fQe1","gaR__DA2","gaSrQAkm","gaSfgilb","gaSDg0mC"])excludedIds.add(id);
 const rows=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[slug,{slug,name,...prior.categories.find(c=>c.slug===slug),ads:prior.ads.filter(a=>a.category===name&&eligible(a))}]));
 const snapshotOnly=process.argv.includes('--snapshot-only');
 const startedAt=snapshotOnly?(prior.sourceStatus?.lastStartedAt||null):now();
