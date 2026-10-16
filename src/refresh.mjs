@@ -177,6 +177,9 @@ for(const id of ["gaS7D_M1","gaSzEA13","gaSj1Rlp","gaSnEo0N","gaSrkkaU","gaS_jls
 // Full gallery/text review 2026-10-16 20:00: unconfirmed table capacity,
 // undimensioned runner lots, narrow bedroom set and four-seat dining bundles.
 for(const id of ["gaSD3rYv","gaSvW15f","gaSPGmDw","gaS7lL9i","gaS3FvgU"])excludedIds.add(id);
+// Full gallery/text review 2026-10-16 21:02: unconfirmed sizes and photo provenance,
+// ambiguous prices, four-seat dining bundle and unclear mixed lot.
+for(const id of ["gaSn2HPv","gaSbYSP7","gaSrnErE","gaSjIOYt","gaSLI2_y","gaS33Szy"])excludedIds.add(id);
 const rows=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[slug,{slug,name,...prior.categories.find(c=>c.slug===slug),ads:prior.ads.filter(a=>a.category===name&&eligible(a))}]));
 const snapshotOnly=process.argv.includes('--snapshot-only');
 const startedAt=snapshotOnly?(prior.sourceStatus?.lastStartedAt||null):now();
