@@ -38,6 +38,9 @@ const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4
 // lacking runner dimensions, explicit 120cm bed, wrong product price,
 // unpictured complete bed/sofa, and a non-household display cabinet.
 for(const id of ['gaRnOYTS','gaRL_Zym','gaR3eA5x','gaRH-wUq','gaRzMLVe','gaRPuzeG','gaRDOUZE'])excludedIds.add(id);
+// Follow-up scheduled snapshot: unclear bundle price, carton-only/stock images,
+// mixed doormat lot, unused bed boards, and unconfirmed per-rug pair price.
+for(const id of ['gaRTvWrM','gaRn_Nfj','gaRfP-T1','gaRnfcEy','gaRLvquX','gaRTPZ5o'])excludedIds.add(id);
 // The pirate boat bed and ship-wheel mirror are excluded by the matching
 // fingerprinted teen audience evidence (gallery photos 1 and 3).
 // Mirror gallery/text review: incomplete broken mirror lot with an ambiguous
