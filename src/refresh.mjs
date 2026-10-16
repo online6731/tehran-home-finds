@@ -37,6 +37,9 @@ const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4
 // Mirror gallery/text review: incomplete broken mirror lot with an ambiguous
 // bundle price, and an empty metal frame whose mirror is explicitly broken.
 for(const id of ['gaQT3PZs','gaQHHLoj'])excludedIds.add(id);
+// Full gallery/text review: loose mattress-support boards, and a handheld
+// vacuum powered through a vehicle cigarette-lighter cable (not household).
+for(const id of ['gaR71pqa','gaRrldtA'])excludedIds.add(id);
 // Full gallery review 2026-10-15 23:11: a placeholder-price furniture lot,
 // a free refrigerator with only a stock image, and table frames without a top.
 for(const id of ['gaRDU2QJ','gaR_jvop','gaRzU_gr'])excludedIds.add(id);
