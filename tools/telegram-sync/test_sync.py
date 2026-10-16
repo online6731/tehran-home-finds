@@ -34,6 +34,23 @@ class SyncTests(unittest.TestCase):
         self.sync.state['items'][AD['id']] = {'message_id': 188, 'thread': 5,
             'ad': copy.deepcopy(AD), 'file_ids': ['cached-photo']}
 
+    def test_timer_holds_unreviewed_new_and_existing_without_false_removal(self):
+        self.existing()
+        now = datetime.now(timezone.utc).timestamp()
+        first = {**AD, 'postedAt': int(now * 1000)}
+        second = {**first, 'id': 'new-unreviewed'}
+        third = {**first, 'id': 'reviewed', 'quality': {
+            'method': 'photos-and-description', 'photoCount': len(first['pics'])}}
+        response = unittest.mock.Mock()
+        response.json.return_value = {'ads': [first, second, third], 'categories': [{}]}
+        with patch.object(self.sync.http, 'get', return_value=response), \
+                patch.object(self.sync, 'verify'), patch.object(self.sync, 'apply') as apply:
+            self.sync.run()
+            self.assertEqual(apply.call_count, 1)
+            self.assertEqual(apply.call_args.args, (third, 'active'))
+        summary = json.loads((self.root / 'summary.json').read_text())
+        self.assertEqual(summary['held_unreviewed'], ['fixture1', 'new-unreviewed'])
+
     def test_fixed_persian_date_uses_original_absolute_timestamp(self):
         text = render(AD, 'active', {})
         self.assertIn(publication_date(AD['postedAt'] / 1000), text)

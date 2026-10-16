@@ -289,6 +289,7 @@ class Sync:
                 status = 'expired' if time.time() - stamp(ad) >= 86400 else 'outside_catalog'
                 work.append((ad, status))
         count = 0
+        held_unreviewed = []
         for ad, status in work:
             if only and ad['id'] != only:
                 continue
@@ -298,6 +299,14 @@ class Sync:
                 if ad['id'] not in self.state['items']:
                     continue
                 status = 'expired'
+            # The hourly fetch can publish before the gallery review finishes.
+            # Keep the ID in current so an existing card is not falsely removed,
+            # but hold both new sends and edits until the full gallery is reviewed.
+            quality = ad.get('quality') or {}
+            if status == 'active' and (quality.get('method') != 'photos-and-description'
+                    or quality.get('photoCount') != len(ad['pics'])):
+                held_unreviewed.append(ad['id'])
+                continue
             try:
                 self.apply(ad, status)
             except Exception as exc:
@@ -307,7 +316,7 @@ class Sync:
             count += 1
             if limit and count >= limit:
                 break
-        summary = {'finished_at': datetime.now(timezone.utc).isoformat(), 'edited': self.changed, 'sent': self.sent, 'unchanged': self.unchanged, 'errors': self.errors, 'current_ads': len(current), 'tracked': len(self.state['items']), 'partial_coverage': catalog.get('sourceStatus', {}).get('partial'), 'source_finished_at': catalog.get('sourceStatus', {}).get('lastFinishedAt'), 'sample_only': bool(only or limit)}
+        summary = {'finished_at': datetime.now(timezone.utc).isoformat(), 'edited': self.changed, 'sent': self.sent, 'unchanged': self.unchanged, 'errors': self.errors, 'held_unreviewed': held_unreviewed, 'current_ads': len(current), 'tracked': len(self.state['items']), 'partial_coverage': catalog.get('sourceStatus', {}).get('partial'), 'source_finished_at': catalog.get('sourceStatus', {}).get('lastFinishedAt'), 'sample_only': bool(only or limit)}
         save(self.root / ('sample-summary.json' if only or limit else 'summary.json'), summary)
         print(json.dumps(summary), flush=True)
         if self.errors:
