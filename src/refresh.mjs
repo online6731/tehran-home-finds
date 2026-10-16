@@ -43,6 +43,10 @@ for(const id of ['gaR71pqa','gaRrldtA'])excludedIds.add(id);
 // Full gallery/text review: six-compartment industrial changing-room locker,
 // and a furniture bundle explicitly including a four-seat dining set.
 for(const id of ['gaR3ZW3A','gaRfqrej'])excludedIds.add(id);
+// Full gallery/text review 2026-10-16 06:19: a room door misfiled as a dresser,
+// a second ad with the same green sofa gallery, and an ambiguous refrigerator
+// bundle including an unpictured gas heater. Keep these out of public delivery.
+for(const id of ['gaRD8FKI','gaR36hgm','gaRbcx8E'])excludedIds.add(id);
 // Full gallery review 2026-10-15 23:11: a placeholder-price furniture lot,
 // a free refrigerator with only a stock image, and table frames without a top.
 for(const id of ['gaRDU2QJ','gaR_jvop','gaRzU_gr'])excludedIds.add(id);
