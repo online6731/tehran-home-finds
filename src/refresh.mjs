@@ -40,6 +40,9 @@ for(const id of ['gaQT3PZs','gaQHHLoj'])excludedIds.add(id);
 // Full gallery/text review: loose mattress-support boards, and a handheld
 // vacuum powered through a vehicle cigarette-lighter cable (not household).
 for(const id of ['gaR71pqa','gaRrldtA'])excludedIds.add(id);
+// Full gallery/text review: six-compartment industrial changing-room locker,
+// and a furniture bundle explicitly including a four-seat dining set.
+for(const id of ['gaR3ZW3A','gaRfqrej'])excludedIds.add(id);
 // Full gallery review 2026-10-15 23:11: a placeholder-price furniture lot,
 // a free refrigerator with only a stock image, and table frames without a top.
 for(const id of ['gaRDU2QJ','gaR_jvop','gaRzU_gr'])excludedIds.add(id);
