@@ -34,6 +34,12 @@ const cover=/رو\s*مبلی/u;
 // gaNH08UZ: its 15 million form price buys only the 2-metre rug; the
 // adult-sized 4/9-metre rugs cost 25/45 million according to the description.
 const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
+// Full gallery/text review 2026-10-16 09:31: shop cabinetry, mixed rugs
+// lacking runner dimensions, explicit 120cm bed, wrong product price,
+// unpictured complete bed/sofa, and a non-household display cabinet.
+for(const id of ['gaRnOYTS','gaRL_Zym','gaR3eA5x','gaRH-wUq','gaRzMLVe','gaRPuzeG','gaRDOUZE'])excludedIds.add(id);
+// The pirate boat bed and ship-wheel mirror are excluded by the matching
+// fingerprinted teen audience evidence (gallery photos 1 and 3).
 // Mirror gallery/text review: incomplete broken mirror lot with an ambiguous
 // bundle price, and an empty metal frame whose mirror is explicitly broken.
 for(const id of ['gaQT3PZs','gaQHHLoj'])excludedIds.add(id);
