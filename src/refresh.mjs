@@ -189,6 +189,9 @@ for(const id of ["gaSD3rYv","gaSvW15f","gaSPGmDw","gaS7lL9i","gaS3FvgU"])exclude
 // Full gallery/text review 2026-10-16 21:02: unconfirmed sizes and photo provenance,
 // ambiguous prices, four-seat dining bundle and unclear mixed lot.
 for(const id of ["gaSn2HPv","gaSbYSP7","gaSrnErE","gaSjIOYt","gaSLI2_y","gaS33Szy"])excludedIds.add(id);
+// Full gallery/text review 2026-10-17 07:17: price conflict, clothes hangers,
+// mixed building doors, placeholder photos, unclear adult use, single sleeper and duplicate.
+for(const id of ['gaTPiSts','gaTDC8UJ','gaTvxxGZ','gaTLiExv','gaTDSby0','gaT_AZCG','gaTfhm0X','gaTrQv-0'])excludedIds.add(id);
 const rows=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[slug,{slug,name,...prior.categories.find(c=>c.slug===slug),ads:prior.ads.filter(a=>a.category===name&&eligible(a))}]));
 const snapshotOnly=process.argv.includes('--snapshot-only');
 const startedAt=snapshotOnly?(prior.sourceStatus?.lastStartedAt||null):now();
