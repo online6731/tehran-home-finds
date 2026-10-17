@@ -34,6 +34,9 @@ const cover=/رو\s*مبلی/u;
 // gaNH08UZ: its 15 million form price buys only the 2-metre rug; the
 // adult-sized 4/9-metre rugs cost 25/45 million according to the description.
 const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4','gaLbmG4W','gaLXm6J8','gaLLSabb','gaLv9KXr','gaLbsXSc','gaL_c6EH','gaLLrls3','gaL7MkzL','gaLT__M9','gaMrJQAL','gaMXZ7Jo','gaMr6j9P','gaNrU2LG','gaNLmDRV','gaN_EhLM','gaNHO2R3','gaNjsdvi','gaNf9JKj','gaNb91mX','gaNnthos']);
+// Full gallery/text review 2026-10-17 05:05: rug buyer solicitation, and
+// a gas listing whose gallery shows a freestanding oven plus a refrigerator.
+for(const id of ['gaSb_t5z','gaS7fok2'])excludedIds.add(id);
 // Full gallery/text review 2026-10-16 09:31: shop cabinetry, mixed rugs
 // lacking runner dimensions, explicit 120cm bed, wrong product price,
 // unpictured complete bed/sofa, and a non-household display cabinet.
