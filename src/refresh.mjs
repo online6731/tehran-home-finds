@@ -192,6 +192,9 @@ for(const id of ["gaSn2HPv","gaSbYSP7","gaSrnErE","gaSjIOYt","gaSLI2_y","gaS33Sz
 // Full gallery/text review 2026-10-17 07:17: price conflict, clothes hangers,
 // mixed building doors, placeholder photos, unclear adult use, single sleeper and duplicate.
 for(const id of ['gaTPiSts','gaTDC8UJ','gaTvxxGZ','gaTLiExv','gaTDSby0','gaT_AZCG','gaTfhm0X','gaTrQv-0'])excludedIds.add(id);
+// Full gallery/text review 2026-10-17 08:23: price conflict, single sleepers,
+// unclear photo provenance, filing cabinets, duplicate items and an unpriced rug lot.
+for(const id of ['gaTTizrr','gaT_i30a','gaTXSx1E','gaT3S22w','gaTXis6j','gaTzic5M','gaTPiZFJ','gaTDDUgL'])excludedIds.add(id);
 const rows=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[slug,{slug,name,...prior.categories.find(c=>c.slug===slug),ads:prior.ads.filter(a=>a.category===name&&eligible(a))}]));
 const snapshotOnly=process.argv.includes('--snapshot-only');
 const startedAt=snapshotOnly?(prior.sourceStatus?.lastStartedAt||null):now();
