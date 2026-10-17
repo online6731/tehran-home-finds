@@ -156,6 +156,9 @@ for(const id of ['gaQf_7z6','gaQDd8Dv'])excludedIds.add(id);
 // evidence in quality-reviews.json after review validation below.
 const slugByCategory=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[name,slug]));
 const priorById=new Map(prior.ads.map(ad=>[ad.id,ad]));
+// Full-gallery review 2026-10-17 13:53 UTC: ambiguous prices, incomplete goods, non-Tehran, single sleep, undersize rugs and duplicate goods.
+// The baby washer is excluded by its fingerprinted child-audience review.
+for(const id of ["gaTXlHzP","gaT3HvAK","gaTT2e1B","gaTPH4KG","gaTHW9De","gaTPGvQ5","gaTj2oTI","gaTrF48o","gaTf1FBg","gaTL3-Fe","gaTj2AzL","gaTnXQ0P","gaTflQLI","gaTL1zN-","gaTTWRZ2","gaTTWa5Z","gaTjlhaR","gaTTW7iD","gaTPHLWo","gaTzF1w1","gaTrmJ00","gaTbXXR-","gaTXnzW4","gaTTVnim","gaT7mZWr"])excludedIds.add(id);
 export function eligible(ad,time=now()){
   return ad&&matchesAdultProduct(ad.title,ad.desc,ad.productFields)&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
