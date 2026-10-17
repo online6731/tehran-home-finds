@@ -37,6 +37,9 @@ const excludedIds=new Set(['gaNH08UZ','gaLrWy1Y','gaLHWjwi','gaLvxgX_','gaLfmUW4
 // Full gallery/text review 2026-10-17 05:05: rug buyer solicitation, and
 // a gas listing whose gallery shows a freestanding oven plus a refrigerator.
 for(const id of ['gaSb_t5z','gaS7fok2'])excludedIds.add(id);
+// The changed title now explicitly calls this a diaper washer; adult-only
+// eligibility is unclear, so hold it until the intended use is established.
+excludedIds.add('gaSTnx9Z');
 // Full gallery/text review 2026-10-16 09:31: shop cabinetry, mixed rugs
 // lacking runner dimensions, explicit 120cm bed, wrong product price,
 // unpictured complete bed/sofa, and a non-household display cabinet.
