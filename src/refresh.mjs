@@ -40,6 +40,9 @@ for(const id of ['gaSb_t5z','gaS7fok2'])excludedIds.add(id);
 // The changed title now explicitly calls this a diaper washer; adult-only
 // eligibility is unclear, so hold it until the intended use is established.
 excludedIds.add('gaSTnx9Z');
+// Gallery/text review: a lone bedside cabinet misfiled as a double bed,
+// and an office filing safe outside the household dresser category.
+for(const id of ['gaTrwWHP','gaTfA4-W'])excludedIds.add(id);
 // Full gallery/text review 2026-10-16 09:31: shop cabinetry, mixed rugs
 // lacking runner dimensions, explicit 120cm bed, wrong product price,
 // unpictured complete bed/sofa, and a non-household display cabinet.
