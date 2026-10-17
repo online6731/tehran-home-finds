@@ -198,7 +198,7 @@ for(const id of ['gaTTizrr','gaT_i30a','gaTXSx1E','gaT3S22w','gaTXis6j','gaTzic5
 // Full gallery/text review 2026-10-17 10:21: ambiguous prices and provenance,
 // duplicate items, unconfirmed sleeper/table/rug dimensions and unused rug.
 // The balloon cabinet is excluded by its fingerprinted child-audience review.
-for(const id of ['gaT_j3tB','gaTPEKP5','gaTXkT2u','gaTH0h2C','gaTzkzLO','gaT3kIce','gaTbE5TA','gaTnTIWa','gaTTkjSy','gaT_0I5t','gaTD0os_','gaTjkTkq','gaTHENwn'])excludedIds.add(id);
+for(const id of ['gaT_j3tB','gaTPEKP5','gaTXEA41','gaTXkT2u','gaTH0h2C','gaTzkzLO','gaT3kIce','gaTbE5TA','gaTnTIWa','gaTTkjSy','gaT_0I5t','gaTD0os_','gaTjkTkq','gaTHENwn'])excludedIds.add(id);
 const rows=Object.fromEntries(Object.entries(categories).map(([slug,name])=>[slug,{slug,name,...prior.categories.find(c=>c.slug===slug),ads:prior.ads.filter(a=>a.category===name&&eligible(a))}]));
 const snapshotOnly=process.argv.includes('--snapshot-only');
 const startedAt=snapshotOnly?(prior.sourceStatus?.lastStartedAt||null):now();
