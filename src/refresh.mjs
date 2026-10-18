@@ -183,6 +183,8 @@ for(const id of ["gaUTpoHk","gaUz4sdv","gaUL6F6r","gaU_adGH","gaUboNE4","gaUvpSC
 for(const id of ["gaUHMzFr","gaUjbfUk","gaUzLD6O","gaUPbNIW","gaU3rS9k","gaUzb2f5","gaUzaTfP","gaUDcnH4"])excludedIds.add(id);
 // Full-gallery eligibility holds from heartbeat 1504: see exact evidence in quality-reviews.json.
 for(const id of ["gaUzcO-2","gaUr9n9U","gaUjt6Ec","gaULueKC","gaUrsh6q","gaUrdKaH","gaUr9Mty","gaUHdlYm","gaU3t2_D","gaU_9t2W"])excludedIds.add(id);
+// Full-gallery eligibility holds from heartbeat 1614b: see exact evidence in quality-reviews.json.
+for(const id of ["gaUruEOB","gaU3ew9r"])excludedIds.add(id);
 export function eligible(ad,time=now()){
   return ad&&matchesAdultProduct(ad.title,ad.desc,ad.productFields)&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
