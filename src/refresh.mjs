@@ -185,6 +185,10 @@ for(const id of ["gaUHMzFr","gaUjbfUk","gaUzLD6O","gaUPbNIW","gaU3rS9k","gaUzb2f
 for(const id of ["gaUzcO-2","gaUr9n9U","gaUjt6Ec","gaULueKC","gaUrsh6q","gaUrdKaH","gaUr9Mty","gaUHdlYm","gaU3t2_D","gaU_9t2W"])excludedIds.add(id);
 // Full-gallery eligibility holds from heartbeat 1614b: see exact evidence in quality-reviews.json.
 for(const id of ["gaUruEOB","gaU3ew9r"])excludedIds.add(id);
+// Full-gallery eligibility holds from heartbeat 1814: see exact evidence in quality-reviews.json.
+for(const id of ["gaVHwCWc","gaVDAgIe","gaVHQMxw","gaUbfskF","gaU3vUky","gaULtOVD","gaUXPyDn","gaU7f7lO","gaUzfUmd","gaVDw6Ag","gaU_voJq","gaVDRXFn","gaVnAHVz","gaUD_Y9L","gaVTwUid","gaVbwv-E","gaVTg6Vk"])excludedIds.add(id);
+// Full-gallery eligibility holds from heartbeat beyond-1814: see exact evidence in quality-reviews.json.
+for(const id of ["gaVPRPod","gaVfT_-c","gaV7Bgq4","gaVbjQZ6","gaVLiWsO","gaVPRb2s","gaVXREXN","gaVXy8iX","gaVDjTel","gaVHT78S","gaVvSq68","gaVPDox1","gaVXhlyt"])excludedIds.add(id);
 export function eligible(ad,time=now()){
   return ad&&matchesAdultProduct(ad.title,ad.desc,ad.productFields)&&slugByCategory[ad.category]&&matchesHomeCategory(slugByCategory[ad.category],ad.title,ad.desc)&&matchesAppliance(slugByCategory[ad.category],ad.title,ad.productFields||{},ad.desc)&&!excludedIds.has(ad.id)&&Number.isFinite(ad.price)&&ad.price>=1e6&&ad.price<=15e6&&
     ad.postedAt<=time&&ad.postedAt>time-86400000&&ad.expiresAt>time&&
