@@ -1,1 +1,15 @@
-{"name":"tehran-home-finds","private":true,"type":"module","scripts":{"refresh":"node src/refresh.mjs","snapshot":"node src/refresh.mjs --snapshot-only"},"engines":{"node":">=22"}}
+{
+  "name": "tehran-home-finds",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "refresh": "node src/refresh.mjs",
+    "snapshot": "node src/refresh.mjs --snapshot-only",
+    "test": "node --test test/*.test.mjs",
+    "test:search": "node --test test/divar-search.test.mjs",
+    "search:dev": "node services/divar-search/server.mjs --dev"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

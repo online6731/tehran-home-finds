@@ -3,3 +3,4 @@ node_modules/
 *.tmp
 __pycache__/
 *.pyc
+services/divar-search/private-data/
