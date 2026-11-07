@@ -1,0 +1,17 @@
+{
+  "verifiedAt": "2026-10-16T11:29:00Z",
+  "cities": [
+    {
+      "slug": "tehran",
+      "id": "1",
+      "name": "تهران",
+      "source": "https://divar.ir/s/tehran"
+    },
+    {
+      "slug": "shiraz",
+      "id": "6",
+      "name": "شیراز",
+      "source": "https://divar.ir/s/shiraz"
+    }
+  ]
+}

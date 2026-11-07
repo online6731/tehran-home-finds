@@ -7,3 +7,7 @@ The catalog offers eleven category tabs plus an all-items tab: sofas, dining tab
 GitHub Actions requests the public source every four hours. Source limits and incomplete coverage are shown in the public JSON and UI. Verified previous ads survive failed requests only until their 24-hour expiry. Public GitHub Pages needs no local computer to remain running. Scheduled Actions can be delayed by GitHub, and anonymous source access may be unavailable from its runners.
 
 Only generated UI, public ad data, source/parser code, approximate neighborhood coordinates, this workflow, and asset licenses belong in this repository. No workspace logs, authentication files, or private keys are published.
+
+## AIRA general Divar search preparation
+
+The isolated all-category search/watchlist service, private preview and integration handoff are in [services/divar-search](services/divar-search/README.md). Run `npm run search:dev` with Node 24.18+. It does not activate production Telegram delivery.

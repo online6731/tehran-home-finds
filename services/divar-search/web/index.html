@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>آیرا · جست‌وجو و واچ‌لیست دیوار</title
+  ><link rel="stylesheet" href="/style.css" />
+  <header>
+    <span class="brand">آیرا <b>×</b> دیوار</span
+    ><span class="badge">پیش‌نمایش ادغام</span>
+  </header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">دستیار پیدا کردن</p>
+      <h1>بگو دنبال چی می‌گردی.</h1>
+      <p>
+        از همهٔ دسته‌های دیوار جست‌وجو کن، فیلترها را تنظیم کن و جست‌وجویت را
+        نگه دار.
+      </p>
+    </section>
+    <section class="panel">
+      <label for="intent">توضیح خواستهٔ شما</label
+      ><textarea
+        id="intent"
+        rows="3"
+        maxlength="2000"
+        placeholder="مثلاً: گوشی سامسونگ کارکرده تهران تا ۲۰ میلیون تومان"
+      ></textarea
+      ><button id="understand">تبدیل به فیلتر</button>
+      <p id="interpretation" role="status"></p>
+      <details open>
+        <summary>فیلترهای جست‌وجو</summary>
+        <div class="filters">
+          <label>عبارت جست‌وجو<input id="query" maxlength="500" /></label
+          ><label
+            >شهر<input
+              id="city"
+              value="tehran"
+              list="cities"
+              dir="ltr"
+            /><datalist id="cities"></datalist
+            ><small>نامک شهر دیوار؛ مثلاً tehran یا shiraz</small></label
+          ><label
+            >دسته<select id="category">
+              <option value="ROOT">همهٔ دسته‌ها</option>
+            </select></label
+          ><label
+            >حداقل قیمت (تومان)<input
+              id="minPrice"
+              type="number"
+              min="0"
+              step="1000" /></label
+          ><label
+            >حداکثر قیمت (تومان)<input
+              id="maxPrice"
+              type="number"
+              min="0"
+              step="1000" /></label
+          ><label
+            >وضعیت کالا<select
+              id="condition"
+              multiple
+              size="3"
+              aria-describedby="conditionHint"
+            >
+              <option>کارکرده</option>
+              <option>در حد نو</option>
+              <option>نو</option></select
+            ><small id="conditionHint"
+              >انتخاب خالی یعنی همهٔ وضعیت‌ها؛ انتخاب چندتایی مجاز است.</small
+            ></label
+          ><label
+            >محله‌ها (با ویرگول)<input
+              id="areas"
+              placeholder="مثلاً میرداماد، ونک" /></label
+          ><label
+            >واژه‌های حذف‌شده<input
+              id="exclude"
+              placeholder="با ویرگول جدا کنید" /></label
+          ><label
+            >زمان انتشار<select id="age">
+              <option value="24">۲۴ ساعت اخیر</option>
+              <option value="48">دو روز اخیر</option>
+              <option value="168">هفت روز اخیر</option>
+            </select></label
+          >
+        </div>
+        <section class="fieldFilters">
+          <label>فیلترهای ویژهٔ دسته</label
+          ><small
+            >نام و مقدار دقیق ویژگی درج‌شده در آگهی، مثل «حافظهٔ داخلی» و «۲۵۶
+            گیگابایت»</small
+          >
+          <div id="fieldRows"></div>
+          <button id="addField" class="secondary" type="button">
+            افزودن ویژگی
+          </button>
+        </section>
+        <label class="inline"
+          ><input id="requirePhotos" type="checkbox" checked />فقط آگهی‌های
+          دارای عکس</label
+        >
+      </details>
+      <label
+        >نام واچ‌لیست<input
+          id="watchName"
+          maxlength="120"
+          placeholder="مثلاً گوشی دلخواه من" /></label
+      ><label class="inline"
+        ><input id="notifyExisting" type="checkbox" />نتایج موجود هم در اولین
+        پایش اعلان شوند</label
+      >
+      <div class="actions">
+        <button id="search">جست‌وجو در دیوار</button
+        ><button id="save" class="secondary">ذخیره در واچ‌لیست</button
+        ><button id="newWatch" class="secondary">جست‌وجوی جدید</button
+        ><a id="source" target="_blank" rel="noopener noreferrer"
+          >باز کردن جست‌وجو در دیوار ↗</a
+        >
+      </div>
+      <small
+        >لینک دیوار شامل عبارت، شهر، دسته و قیمت است؛ سایر فیلترها روی نتایج
+        دریافت‌شده اعمال می‌شوند.</small
+      >
+      <p id="notice" role="status">در حال آماده‌سازی…</p>
+    </section>
+    <nav>
+      <button id="resultsTab" class="active">نتایج جست‌وجو</button
+      ><button id="watchesTab">واچ‌لیست‌ها</button
+      ><button id="favoritesTab">علاقه‌مندی‌ها</button
+      ><button id="eventsTab">اعلان‌ها</button>
+    </nav>
+    <div id="content" aria-live="polite">
+      <div class="empty">اولین جست‌وجوی خود را بسازید.</div>
+    </div>
+    <footer>
+      نسخهٔ آماده‌سازی · واچ‌لیست این پیش‌نمایش در سرور محلی و مرورگر فعلی
+      شماست. ارسال تلگرام پس از اتصال به هویت مشترک آیرا فعال می‌شود. پوشش منبع
+      ممکن است ناقص باشد؛ بررسی‌نشدن عکس‌ها صریح نمایش داده می‌شود.
+    </footer>
+  </main>
+  <script type="module" src="/app.mjs"></script>
+</html>
